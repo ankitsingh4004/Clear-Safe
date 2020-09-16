@@ -1,5 +1,7 @@
 package com.workorder.app.activity;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,13 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.workorder.app.R;
+import com.workorder.app.util.Constants;
 import com.workorder.app.util.UrlClass;
 import com.workorder.app.webservicecallback.OnTaskCompleted;
 import com.workorder.app.webservicecallback.SendData;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ChangePassword extends Fragment {
@@ -62,7 +67,7 @@ public class ChangePassword extends Fragment {
         }else if (!confirmpass.getText().toString().equalsIgnoreCase(newPass.getText().toString())) {
             Toast.makeText(getContext(),"Please enter new password and confirm password same.",Toast.LENGTH_LONG).show();
         }else if(!hasNonAlpha){
-            Toast.makeText(getContext(),"Passwords must have at least one non alphanumeric character.",Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(),"Passwords must have atleast one non alphanumeric character.",Toast.LENGTH_LONG).show();
         } else {
             try {
                 JSONObject jsonObject = new JSONObject();
@@ -74,11 +79,20 @@ public class ChangePassword extends Fragment {
                     @Override
                     public void onTaskCompleted(String response) {
                         try {
+                            JSONObject object = new JSONObject(response);
+                            Boolean result = object.getBoolean("status");
+                            if (result) {
+                                opentThanksYesClickDialog1("Password Changed.");
+                            } else {
+                                //Toast.makeText(context, "Signature Uploaded Failed...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "" + object.getString("msg"), Toast.LENGTH_SHORT).show();
 
-                            Log.v("response",response);
-                        } catch (Exception e) {
-                            Log.d("ResponseException", e.toString());
+                            }
+
+                        } catch (JSONException e) {
+
                         }
+
                     }
                 }, true).execute();
 
@@ -89,4 +103,26 @@ public class ChangePassword extends Fragment {
 
         }
     }
+
+
+    public void opentThanksYesClickDialog1(String message) {
+        final Dialog dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.inflate_home_thanks_yes_click);
+        TextView tv_type = dialog.findViewById(R.id.tv_alert_type);
+        TextView tv_ok = dialog.findViewById(R.id.tv_ok_thanks);
+        tv_type.setText("Alert");
+        TextView tv_message = dialog.findViewById(R.id.tv_message_thanks);
+        tv_message.setText(message);
+
+        dialog.show();
+        tv_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+
+
+            }
+        });
+    }
+
 }
