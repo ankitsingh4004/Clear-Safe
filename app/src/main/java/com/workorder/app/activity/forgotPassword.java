@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import com.workorder.app.R;
 import com.workorder.app.util.UrlClass;
+import com.workorder.app.webservicecallback.GetApiCall;
 import com.workorder.app.webservicecallback.GetApiCallback;
 import com.workorder.app.webservicecallback.GetCallback;
 import com.workorder.app.webservicecallback.OnTaskCompleted;
@@ -39,7 +40,7 @@ public class forgotPassword extends AppCompatActivity {
                 } else {
                     Log.v("response", UrlClass.Forgot_Password+et_login_user_id.getText().toString());
                     try {
-                        new GetCallback(getApplicationContext(),  UrlClass.Forgot_Password+et_login_user_id.getText().toString(), new OnTaskCompleted<String>() {
+                        new GetApiCall(forgotPassword.this,  UrlClass.Forgot_Password+et_login_user_id.getText().toString(), new OnTaskCompleted<String>() {
                             @Override
                             public void onTaskCompleted(String response) {
                                 try {

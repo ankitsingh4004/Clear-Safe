@@ -33,11 +33,11 @@ public class Profile  extends Fragment {
         city=rootView.findViewById(R.id.city);
         country=rootView.findViewById(R.id.country);
 
-     //   name.setText(Constants.loginPOJO.getProfile().getEmail().toString());
+        name.setText(Constants.loginPOJO.getProfile().getFIRSTNAME().toString()+" "+Constants.loginPOJO.getProfile().getLASTNAME().toString());
         email.setText(Constants.loginPOJO.getProfile().getEmail().toString());
-       // phone.setText(Constants.loginPOJO.getProfile().getPERSONALMOBILE().toString());
-       // company.setText(Constants.loginPOJO.getProfile().getCompanyName().toString());
-     //   city.setText(Constants.loginPOJO.getProfile().getPERSONALCITY().toString());
+        phone.setText(Constants.loginPOJO.getProfile().getPERSONALMOBILE().toString());
+        company.setText(Constants.loginPOJO.getProfile().getPERSONALADDRESS1().toString());
+        city.setText(Constants.loginPOJO.getProfile().getBUSINESSADDRESS1().toString());
       //  country.setText(Constants.loginPOJO.getProfile().getPERSONALCOUNTRYID().toString());
 
         return  rootView;

@@ -1,11 +1,14 @@
 package com.workorder.app.activity;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.workorder.app.R;
@@ -46,9 +49,6 @@ public class ResetPassword extends AppCompatActivity {
                 }else if (confirmpass.getText().toString().equals("")) {
                     confirmpass.requestFocus();
                     confirmpass.setError("Please enter confirm password");
-                }else if (code.getText().toString().equals("")) {
-                    code.requestFocus();
-                    code.setError("Please enter code");
                 }else if (!confirmpass.getText().toString().equalsIgnoreCase(newpass.getText().toString())) {
                     Toast.makeText(getApplicationContext(),"Please enter new password and confirm password same.",Toast.LENGTH_LONG).show();
                 }else if(!hasNonAlpha){
@@ -61,14 +61,14 @@ public class ResetPassword extends AppCompatActivity {
                         jsonObject.put("Password", newpass.getText().toString().trim());
                         jsonObject.put("ConfirmPassword", confirmpass.getText().toString().trim());
                         jsonObject.put("Code", code1);
+                        Log.v("json",jsonObject.toString());
 
                         Log.v("json",jsonObject.toString());
                         new SendData1(getApplicationContext(), jsonObject, UrlClass.Reset_Password, new OnTaskCompleted<String>() {
                             @Override
                             public void onTaskCompleted(String response) {
                                 try {
-
-
+                                    opentThanksYesClickDialog1("Successfully Password is Reset.");
                                     Log.v("response",response);
                                 } catch (Exception e) {
                                     Log.d("ResponseException", e.toString());
@@ -85,4 +85,28 @@ public class ResetPassword extends AppCompatActivity {
             }
         });
     }
+
+    public void opentThanksYesClickDialog1(String message) {
+        final Dialog dialog = new Dialog(ResetPassword.this);
+        dialog.setContentView(R.layout.inflate_home_thanks_yes_click);
+        TextView tv_type = dialog.findViewById(R.id.tv_alert_type);
+        TextView tv_ok = dialog.findViewById(R.id.tv_ok_thanks);
+        tv_type.setText("Alert");
+        TextView tv_message = dialog.findViewById(R.id.tv_message_thanks);
+        tv_message.setText(message);
+
+        dialog.show();
+        tv_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ResetPassword.this,LoginActivity.class));
+                dialog.dismiss();
+
+
+
+            }
+        });
+    }
+
+
 }

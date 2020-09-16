@@ -148,7 +148,7 @@ public class SendData extends AsyncTask<Object, Void, Object> {
             dialog.dismiss();
         }
         else{
-            Toast.makeText(context, "Oops Something went wrong!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Oops! something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
 
             dialog.dismiss();
         }

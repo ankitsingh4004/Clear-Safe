@@ -123,7 +123,7 @@
                 android:drawablePadding="5dp"
                 android:textColorHint="#6D6D6D"
                 android:layout_centerInParent="true"
-                android:hint="Company Name"
+                android:hint="Personal Address"
                 android:layout_below="@+id/relative_above"
                 />
             </android.support.design.widget.TextInputLayout>
@@ -146,7 +146,7 @@
                 android:drawablePadding="5dp"
                 android:textColorHint="#6D6D6D"
                 android:layout_centerInParent="true"
-                android:hint="City"
+                android:hint="Business Address"
                 android:layout_below="@+id/relative_above"
                 />
             </android.support.design.widget.TextInputLayout>
@@ -154,6 +154,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:visibility="gone"
                 android:layout_marginBottom="20dp"
                 >
 

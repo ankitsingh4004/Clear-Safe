@@ -223,7 +223,7 @@ public class LoginActivity extends AppCompatActivity implements VersionCheckList
                  //  jsonObject.put("username", userName);
                  //   jsonObject.put("Password", password);
                     jsonObject.put("username", "shaluch123@gmail.com");
-                    jsonObject.put("Password", "P@ssword123");
+                    jsonObject.put("Password", "P&ssword123");
                     //jsonObject.put("grant_type","password");
                    // UrlClass.BASE_URL="http://109.228.49.117:8095/api/";
                     new SendData1(this, jsonObject, UrlClass.LOGIN_URL, new OnTaskCompleted<String>() {
