@@ -57,4 +57,18 @@
 
 
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:hint="Comment"
+            android:visibility="gone"
+            android:padding="5dp"
+            android:id="@+id/comment"
+            android:layout_below="@+id/radiogroup"
+            android:background="@drawable/option_border"/>
+
+
 </RelativeLayout>

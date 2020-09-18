@@ -35,8 +35,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SurveyTemplate extends FragmentActivity {
-    int workorderno;
-    String workorderid;
+    int assessmentid;
+    int workorderid;
     RecyclerView recyclerView;
     SurveyTempAdapter adapter;
     List<SurveyTemplatePojo> lcs;
@@ -49,8 +49,8 @@ public class SurveyTemplate extends FragmentActivity {
         iv_back = findViewById(R.id.iv_site_location_back);
 
 
-     /*   workorderno=getIntent().getIntExtra("workorderno",0);
-        workorderid=getIntent().getStringExtra("workorderid");*/
+        workorderid=getIntent().getIntExtra("workorderid",0);
+        assessmentid=getIntent().getIntExtra("assessmentid",0);
 
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +86,7 @@ public class SurveyTemplate extends FragmentActivity {
                 List<SurveyTemplatePojo> data = new ArrayList<>();
                 data = response.body();
 
-                adapter=new SurveyTempAdapter(SurveyTemplate.this,data);
+                adapter=new SurveyTempAdapter(SurveyTemplate.this,data,workorderid,assessmentid);
                 recyclerView.setAdapter(adapter);
             }
             @Override

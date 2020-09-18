@@ -220,11 +220,17 @@ public class LoginActivity extends AppCompatActivity implements VersionCheckList
 
                 try {
                     JSONObject jsonObject = new JSONObject();
-                 //  jsonObject.put("username", userName);
-                 //   jsonObject.put("Password", password);
+                  //  jsonObject.put("username", userName);
+                  //  jsonObject.put("Password", password);
+                //  jsonObject.put("username", "radhey2784@gmail.com");
+                 // jsonObject.put("Password", "Test@123");
+                   // jsonObject.put("username", "shaluclient123@gmail.com");
+                  //  jsonObject.put("Password", "P@ssword123");
+                  //  jsonObject.put("username", "pratikCont@yopmail.com");
+                  //  jsonObject.put("Password", "P@ssword123");
                     jsonObject.put("username", "shaluch123@gmail.com");
                     jsonObject.put("Password", "P&ssword123");
-                    //jsonObject.put("grant_type","password");
+                  //  jsonObject.put("grant_type","password");
                    // UrlClass.BASE_URL="http://109.228.49.117:8095/api/";
                     new SendData1(this, jsonObject, UrlClass.LOGIN_URL, new OnTaskCompleted<String>() {
                         @Override
@@ -238,9 +244,9 @@ public class LoginActivity extends AppCompatActivity implements VersionCheckList
 
                                 value=0;
 
-                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                                startActivity(intent);
-
+                            /*    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                startActivity(intent);*/
+                                setConditionToLogin(response);
 
                               /*  if (Constants.loginPOJO.getBaseUrl()!=null)
                                 {
@@ -296,33 +302,34 @@ public class LoginActivity extends AppCompatActivity implements VersionCheckList
         }
         return true;
     }
-   /* public void setConditionToLogin(String response)
+
+
+    public void setConditionToLogin(String response)
     {
         Constants.USER_ID = userName.trim();
-        Log.d("Role", Constants.loginPOJO.getUserRole());
-        Log.d("CompanyId", Constants.loginPOJO.getPersonCompanyId());
-        UrlClass.ROLE_TYPE = Constants.loginPOJO.getUserRole();
-        UrlClass.COMPANYID = Constants.loginPOJO.getPersonCompanyId();
-        if (Constants.loginPOJO.getUserRole().equals("Worker") *//*|| Constants.loginPOJO.getUserRole().equals("Contractor")*//*) {
+        Log.d("Role", String.valueOf(Constants.loginPOJO.getProfile().getRoleNames()));
+        Log.d("CompanyId", String.valueOf(Constants.loginPOJO.getProfile().getCompanyId()));
+        UrlClass.ROLE_TYPE = String.valueOf(Constants.loginPOJO.getProfile().getRoleNames());
+        UrlClass.COMPANYID = String.valueOf(Constants.loginPOJO.getProfile().getCompanyId());
+        if (Constants.loginPOJO.getProfile().getRoleNames().get(0).equalsIgnoreCase("Employee")         ) {
             Constants.ACTIVITY_NAME =Constants.HOME_ACTIVITY;
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
         }else {
             LoginResponseModel loginResponseModel=new Gson().fromJson(response,LoginResponseModel.class);
-            if(loginResponseModel.userrole.trim().equals("Facilities Manager"))//BBM
+            if(loginResponseModel.getProfile().getRoleNames().get(0).equals("Facilities Manager"))//BBM
                 preferenceManagerWorkOrder.setKey_User_Role("Finance Manager");
             else
-            preferenceManagerWorkOrder.setKey_User_Role(loginResponseModel.userrole);
-            preferenceManagerWorkOrder.setKey_User_Name(loginResponseModel.username);
-            preferenceManagerWorkOrder.setKey_User_Id(String.valueOf(loginResponseModel.userid));
-            preferenceManagerWorkOrder.setKey_Person_Company_Id(String.valueOf(loginResponseModel.personcompanyid));
-            preferenceManagerWorkOrder.setKey_Parent_Company_Id(String.valueOf(loginResponseModel.parentcompanyid));
-            username1=loginResponseModel.getUsername();
-            userid= String.valueOf(loginResponseModel.getUserid());
-            userrole=loginResponseModel.getUserrole();
-            if (userrole.toString().trim().equals("Worker")){
-
+            preferenceManagerWorkOrder.setKey_User_Role(loginResponseModel.getProfile().getRoleNames().get(0));
+            preferenceManagerWorkOrder.setKey_User_Name(loginResponseModel.getProfile().getUserName());
+            preferenceManagerWorkOrder.setKey_User_Id(String.valueOf(loginResponseModel.getProfile().getId()));
+            preferenceManagerWorkOrder.setKey_Person_Company_Id(String.valueOf(loginResponseModel.getProfile().getCompanyId()));
+            preferenceManagerWorkOrder.setKey_Parent_Company_Id(String.valueOf(loginResponseModel.getProfile().getCompanyId()));
+            username1=loginResponseModel.getProfile().getUserName();
+            userid= String.valueOf(loginResponseModel.getProfile().getId());
+            userrole=loginResponseModel.getProfile().getRoleNames().get(0);
+            if (userrole.toString().trim().equals("Employee")){
                 Bundle bundle=new Bundle();
                 bundle.putString("Id", preferenceManagerWorkOrder.getKey_Person_Company_Id());
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -337,11 +344,11 @@ public class LoginActivity extends AppCompatActivity implements VersionCheckList
                 intent.putExtras(bundle);
                 startActivity(intent);
                 finish();
-            }*//*else if (userrole.toString().trim().equals("Worker")){
-
-                                        Intent intent = new Intent(LoginActivity.this,WorkerSearchList.class);
-                                        startActivity(intent);
-                                    }*//*else if (userrole.toString().trim().equals("Client")) {
+            }else if (userrole.toString().trim().equals("Employee")){
+                Intent intent = new Intent(LoginActivity.this,WorkerSearchList.class);
+                startActivity(intent);
+             }
+            else if (userrole.toString().trim().equals("Client")) {
                 Bundle bundle=new Bundle();
                 bundle.putString("Id", preferenceManagerWorkOrder.getKey_Person_Company_Id());
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -373,7 +380,6 @@ public class LoginActivity extends AppCompatActivity implements VersionCheckList
 
 
     }
-*/
     public void showUpdateDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LoginActivity.this);
 

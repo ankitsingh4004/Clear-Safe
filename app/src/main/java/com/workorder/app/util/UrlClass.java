@@ -31,7 +31,7 @@ public class UrlClass {
     public static String GET_WORK_ORDER_NO=BASE_URL+"api/workorderfortenant/getworkordernumber";
 
     public static String UPDATE_STATUS_URL=BASE_URL+ "api/Order/updateactivity";//"SiteActivity/updatestatus";
-    public static String SUBMIT_ANSWER=BASE_URL+ "api/SurveyApi/UpdateAnswer";//"SiteActivity/updatestatus";
+    public static String SUBMIT_ANSWER=BASE_URL+ "api/Survey/SubmitSurvey";//"SiteActivity/updatestatus";
 
     public static String CREATE_ACTIVITY_URL=BASE_URL+"api/SiteActivity/createactivity";//http://109.228.49.117:8095/api/SiteActivity/createactivity
 

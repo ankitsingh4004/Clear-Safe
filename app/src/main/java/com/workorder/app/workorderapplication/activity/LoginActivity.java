@@ -48,11 +48,11 @@ public class LoginActivity extends AppCompatActivity {
                 new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                callLogin();
+                //callLogin();
             }
         });
     }
-    public void callLogin()
+   /* public void callLogin()
     {
         if (user.getText().toString().matches("")) {
           user.setError("Please Enter Your Name");
@@ -164,5 +164,5 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "NetworkWorkOrder is not available", Toast.LENGTH_LONG).show();
             }
         }
-    }
+    }*/
 }

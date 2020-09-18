@@ -22,6 +22,7 @@
     <color name="dashback">#EEEEEE</color>
     <color name="list_color">#F02314</color>
     <color name="search">#039BE5</color>
+    <color name="bargraph">#0479cc</color>
     <color name="dropdown">#efeff2</color>
     <color name="spinnerBack">#fff6e9</color>
     <color name="even">#C7E1D0</color>

@@ -47,16 +47,16 @@ public class LoginPOJO implements Serializable {
 
         @SerializedName("RoleNames")
         @Expose
-        private Object roleNames;
+        private List<String> roleNames = null;
         @SerializedName("CompanyName")
         @Expose
         private Object companyName;
         @SerializedName("CountryID")
         @Expose
-        private Integer countryID;
+        private Object countryID;
         @SerializedName("StateID")
         @Expose
-        private Integer stateID;
+        private Object stateID;
         @SerializedName("CompanyTypeID")
         @Expose
         private Integer companyTypeID;
@@ -68,61 +68,61 @@ public class LoginPOJO implements Serializable {
         private Integer companyId;
         @SerializedName("PERSONAL_COUNTRY_ID")
         @Expose
-        private Object pERSONALCOUNTRYID;
+        private Integer pERSONALCOUNTRYID;
         @SerializedName("PERSONAL_STATE_ID")
         @Expose
-        private Object pERSONALSTATEID;
+        private Integer pERSONALSTATEID;
         @SerializedName("FIRST_NAME")
         @Expose
-        private Object fIRSTNAME;
+        private String fIRSTNAME;
         @SerializedName("MIDDLE_NAME")
         @Expose
         private Object mIDDLENAME;
         @SerializedName("LAST_NAME")
         @Expose
-        private Object lASTNAME;
+        private String lASTNAME;
         @SerializedName("COMPANY_NAME")
         @Expose
         private Object cOMPANYNAME;
         @SerializedName("PERSONALADDRESS1")
         @Expose
-        private Object pERSONALADDRESS1;
+        private String pERSONALADDRESS1;
         @SerializedName("PERSONALADDRESS2")
         @Expose
-        private Object pERSONALADDRESS2;
+        private String pERSONALADDRESS2;
         @SerializedName("PERSONAL_CITY")
         @Expose
-        private Object pERSONALCITY;
+        private String pERSONALCITY;
         @SerializedName("PERSONAL_MOBILE")
         @Expose
-        private Object pERSONALMOBILE;
+        private String pERSONALMOBILE;
         @SerializedName("PERSONAL_PHONE")
         @Expose
-        private Object pERSONALPHONE;
+        private String pERSONALPHONE;
         @SerializedName("BUSINESS_ADDRESS1")
         @Expose
-        private Object bUSINESSADDRESS1;
+        private String bUSINESSADDRESS1;
         @SerializedName("BUSINESS_ADDRESS2")
         @Expose
-        private Object bUSINESSADDRESS2;
+        private String bUSINESSADDRESS2;
         @SerializedName("BUSINESS_CITY")
         @Expose
-        private Object bUSINESSCITY;
+        private String bUSINESSCITY;
         @SerializedName("BUSINESS_COUNTRY_ID")
         @Expose
-        private Object bUSINESSCOUNTRYID;
+        private Integer bUSINESSCOUNTRYID;
         @SerializedName("BUSINESS_EMAIL")
         @Expose
-        private Object bUSINESSEMAIL;
+        private String bUSINESSEMAIL;
         @SerializedName("BUSINESS_MOBILE")
         @Expose
-        private Object bUSINESSMOBILE;
+        private String bUSINESSMOBILE;
         @SerializedName("BUSINESS_PHONE")
         @Expose
-        private Object bUSINESSPHONE;
+        private String bUSINESSPHONE;
         @SerializedName("BUSINESS_STATE_ID")
         @Expose
-        private Object bUSINESSSTATEID;
+        private Integer bUSINESSSTATEID;
         @SerializedName("BUSINESS_WEB_ADD")
         @Expose
         private Object bUSINESSWEBADD;
@@ -146,7 +146,7 @@ public class LoginPOJO implements Serializable {
         private Integer pARENTPERSONID;
         @SerializedName("PERSONAL_EMAIL")
         @Expose
-        private Object pERSONALEMAIL;
+        private String pERSONALEMAIL;
         @SerializedName("PERSONAL_FAX")
         @Expose
         private Object pERSONALFAX;
@@ -165,6 +165,18 @@ public class LoginPOJO implements Serializable {
         @SerializedName("isSameAddress")
         @Expose
         private Boolean isSameAddress;
+        @SerializedName("PersonalState")
+        @Expose
+        private String personalState;
+        @SerializedName("BusinessState")
+        @Expose
+        private String businessState;
+        @SerializedName("PersonalCountry")
+        @Expose
+        private String personalCountry;
+        @SerializedName("BusinessCountry")
+        @Expose
+        private String businessCountry;
         @SerializedName("Id")
         @Expose
         private String id;
@@ -208,11 +220,11 @@ public class LoginPOJO implements Serializable {
         @Expose
         private Integer accessFailedCount;
 
-        public Object getRoleNames() {
+        public List<String> getRoleNames() {
             return roleNames;
         }
 
-        public void setRoleNames(Object roleNames) {
+        public void setRoleNames(List<String> roleNames) {
             this.roleNames = roleNames;
         }
 
@@ -224,19 +236,19 @@ public class LoginPOJO implements Serializable {
             this.companyName = companyName;
         }
 
-        public Integer getCountryID() {
+        public Object getCountryID() {
             return countryID;
         }
 
-        public void setCountryID(Integer countryID) {
+        public void setCountryID(Object countryID) {
             this.countryID = countryID;
         }
 
-        public Integer getStateID() {
+        public Object getStateID() {
             return stateID;
         }
 
-        public void setStateID(Integer stateID) {
+        public void setStateID(Object stateID) {
             this.stateID = stateID;
         }
 
@@ -264,27 +276,27 @@ public class LoginPOJO implements Serializable {
             this.companyId = companyId;
         }
 
-        public Object getPERSONALCOUNTRYID() {
+        public Integer getPERSONALCOUNTRYID() {
             return pERSONALCOUNTRYID;
         }
 
-        public void setPERSONALCOUNTRYID(Object pERSONALCOUNTRYID) {
+        public void setPERSONALCOUNTRYID(Integer pERSONALCOUNTRYID) {
             this.pERSONALCOUNTRYID = pERSONALCOUNTRYID;
         }
 
-        public Object getPERSONALSTATEID() {
+        public Integer getPERSONALSTATEID() {
             return pERSONALSTATEID;
         }
 
-        public void setPERSONALSTATEID(Object pERSONALSTATEID) {
+        public void setPERSONALSTATEID(Integer pERSONALSTATEID) {
             this.pERSONALSTATEID = pERSONALSTATEID;
         }
 
-        public Object getFIRSTNAME() {
+        public String getFIRSTNAME() {
             return fIRSTNAME;
         }
 
-        public void setFIRSTNAME(Object fIRSTNAME) {
+        public void setFIRSTNAME(String fIRSTNAME) {
             this.fIRSTNAME = fIRSTNAME;
         }
 
@@ -296,11 +308,11 @@ public class LoginPOJO implements Serializable {
             this.mIDDLENAME = mIDDLENAME;
         }
 
-        public Object getLASTNAME() {
+        public String getLASTNAME() {
             return lASTNAME;
         }
 
-        public void setLASTNAME(Object lASTNAME) {
+        public void setLASTNAME(String lASTNAME) {
             this.lASTNAME = lASTNAME;
         }
 
@@ -312,107 +324,107 @@ public class LoginPOJO implements Serializable {
             this.cOMPANYNAME = cOMPANYNAME;
         }
 
-        public Object getPERSONALADDRESS1() {
+        public String getPERSONALADDRESS1() {
             return pERSONALADDRESS1;
         }
 
-        public void setPERSONALADDRESS1(Object pERSONALADDRESS1) {
+        public void setPERSONALADDRESS1(String pERSONALADDRESS1) {
             this.pERSONALADDRESS1 = pERSONALADDRESS1;
         }
 
-        public Object getPERSONALADDRESS2() {
+        public String getPERSONALADDRESS2() {
             return pERSONALADDRESS2;
         }
 
-        public void setPERSONALADDRESS2(Object pERSONALADDRESS2) {
+        public void setPERSONALADDRESS2(String pERSONALADDRESS2) {
             this.pERSONALADDRESS2 = pERSONALADDRESS2;
         }
 
-        public Object getPERSONALCITY() {
+        public String getPERSONALCITY() {
             return pERSONALCITY;
         }
 
-        public void setPERSONALCITY(Object pERSONALCITY) {
+        public void setPERSONALCITY(String pERSONALCITY) {
             this.pERSONALCITY = pERSONALCITY;
         }
 
-        public Object getPERSONALMOBILE() {
+        public String getPERSONALMOBILE() {
             return pERSONALMOBILE;
         }
 
-        public void setPERSONALMOBILE(Object pERSONALMOBILE) {
+        public void setPERSONALMOBILE(String pERSONALMOBILE) {
             this.pERSONALMOBILE = pERSONALMOBILE;
         }
 
-        public Object getPERSONALPHONE() {
+        public String getPERSONALPHONE() {
             return pERSONALPHONE;
         }
 
-        public void setPERSONALPHONE(Object pERSONALPHONE) {
+        public void setPERSONALPHONE(String pERSONALPHONE) {
             this.pERSONALPHONE = pERSONALPHONE;
         }
 
-        public Object getBUSINESSADDRESS1() {
+        public String getBUSINESSADDRESS1() {
             return bUSINESSADDRESS1;
         }
 
-        public void setBUSINESSADDRESS1(Object bUSINESSADDRESS1) {
+        public void setBUSINESSADDRESS1(String bUSINESSADDRESS1) {
             this.bUSINESSADDRESS1 = bUSINESSADDRESS1;
         }
 
-        public Object getBUSINESSADDRESS2() {
+        public String getBUSINESSADDRESS2() {
             return bUSINESSADDRESS2;
         }
 
-        public void setBUSINESSADDRESS2(Object bUSINESSADDRESS2) {
+        public void setBUSINESSADDRESS2(String bUSINESSADDRESS2) {
             this.bUSINESSADDRESS2 = bUSINESSADDRESS2;
         }
 
-        public Object getBUSINESSCITY() {
+        public String getBUSINESSCITY() {
             return bUSINESSCITY;
         }
 
-        public void setBUSINESSCITY(Object bUSINESSCITY) {
+        public void setBUSINESSCITY(String bUSINESSCITY) {
             this.bUSINESSCITY = bUSINESSCITY;
         }
 
-        public Object getBUSINESSCOUNTRYID() {
+        public Integer getBUSINESSCOUNTRYID() {
             return bUSINESSCOUNTRYID;
         }
 
-        public void setBUSINESSCOUNTRYID(Object bUSINESSCOUNTRYID) {
+        public void setBUSINESSCOUNTRYID(Integer bUSINESSCOUNTRYID) {
             this.bUSINESSCOUNTRYID = bUSINESSCOUNTRYID;
         }
 
-        public Object getBUSINESSEMAIL() {
+        public String getBUSINESSEMAIL() {
             return bUSINESSEMAIL;
         }
 
-        public void setBUSINESSEMAIL(Object bUSINESSEMAIL) {
+        public void setBUSINESSEMAIL(String bUSINESSEMAIL) {
             this.bUSINESSEMAIL = bUSINESSEMAIL;
         }
 
-        public Object getBUSINESSMOBILE() {
+        public String getBUSINESSMOBILE() {
             return bUSINESSMOBILE;
         }
 
-        public void setBUSINESSMOBILE(Object bUSINESSMOBILE) {
+        public void setBUSINESSMOBILE(String bUSINESSMOBILE) {
             this.bUSINESSMOBILE = bUSINESSMOBILE;
         }
 
-        public Object getBUSINESSPHONE() {
+        public String getBUSINESSPHONE() {
             return bUSINESSPHONE;
         }
 
-        public void setBUSINESSPHONE(Object bUSINESSPHONE) {
+        public void setBUSINESSPHONE(String bUSINESSPHONE) {
             this.bUSINESSPHONE = bUSINESSPHONE;
         }
 
-        public Object getBUSINESSSTATEID() {
+        public Integer getBUSINESSSTATEID() {
             return bUSINESSSTATEID;
         }
 
-        public void setBUSINESSSTATEID(Object bUSINESSSTATEID) {
+        public void setBUSINESSSTATEID(Integer bUSINESSSTATEID) {
             this.bUSINESSSTATEID = bUSINESSSTATEID;
         }
 
@@ -472,11 +484,11 @@ public class LoginPOJO implements Serializable {
             this.pARENTPERSONID = pARENTPERSONID;
         }
 
-        public Object getPERSONALEMAIL() {
+        public String getPERSONALEMAIL() {
             return pERSONALEMAIL;
         }
 
-        public void setPERSONALEMAIL(Object pERSONALEMAIL) {
+        public void setPERSONALEMAIL(String pERSONALEMAIL) {
             this.pERSONALEMAIL = pERSONALEMAIL;
         }
 
@@ -526,6 +538,38 @@ public class LoginPOJO implements Serializable {
 
         public void setIsSameAddress(Boolean isSameAddress) {
             this.isSameAddress = isSameAddress;
+        }
+
+        public String getPersonalState() {
+            return personalState;
+        }
+
+        public void setPersonalState(String personalState) {
+            this.personalState = personalState;
+        }
+
+        public String getBusinessState() {
+            return businessState;
+        }
+
+        public void setBusinessState(String businessState) {
+            this.businessState = businessState;
+        }
+
+        public String getPersonalCountry() {
+            return personalCountry;
+        }
+
+        public void setPersonalCountry(String personalCountry) {
+            this.personalCountry = personalCountry;
+        }
+
+        public String getBusinessCountry() {
+            return businessCountry;
+        }
+
+        public void setBusinessCountry(String businessCountry) {
+            this.businessCountry = businessCountry;
         }
 
         public String getId() {
@@ -639,5 +683,6 @@ public class LoginPOJO implements Serializable {
         public void setAccessFailedCount(Integer accessFailedCount) {
             this.accessFailedCount = accessFailedCount;
         }
+
     }
 }

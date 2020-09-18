@@ -30,10 +30,13 @@ import retrofit2.Response;
 public class SurveyTempAdapter extends RecyclerView.Adapter<SurveyTempAdapter.QuestionListAdapter> {
     Context context;
     List<SurveyTemplatePojo> attachementPOJOList;
+    int workorderid; int assessmentid;
 
-    public SurveyTempAdapter(Context context, List<SurveyTemplatePojo> attachementPOJOList) {
+    public SurveyTempAdapter(Context context, List<SurveyTemplatePojo> attachementPOJOList, int workorderid, int assessmentid) {
         this.context = context;
         this.attachementPOJOList=attachementPOJOList;
+        this.workorderid=workorderid;
+        this. assessmentid=assessmentid;
     }
 
     @NonNull
@@ -79,6 +82,8 @@ public class SurveyTempAdapter extends RecyclerView.Adapter<SurveyTempAdapter.Qu
                 public void onClick(View view) {
                     Intent i=new Intent(context, SurveyActivity.class);
                     i.putExtra("surveyTemplateId",attachementPOJOList.get(getLayoutPosition()).getSURVEYID());
+                    i.putExtra("assessmentid",assessmentid);
+                    i.putExtra("workorderid",workorderid);
                     context.startActivity(i);
                 }
             });

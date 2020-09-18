@@ -46,6 +46,8 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
     boolean buttonOn;
     private LinkedHashMap<Integer, String> map=new LinkedHashMap<>();
     public List<SurveyQuestionPojo> lcs;
+    public static String coment;
+    ArrayList<Integer> answer=new ArrayList<>();
 
     public SurveyAdapter(Context context, List<SurveyQuestionPojo.SurveyAnswer> attachementPOJOList, int pos, RatingSelectionInterface ratingSelectionInterface, LinkedHashMap<Integer, String> map, List<SurveyQuestionPojo> lcs) {
         this.context = context;
@@ -126,6 +128,29 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
                 holder.radioGroup.addView(rb[i]);
             }
 
+            if (pos==lcs.size()-1){
+                holder.comment.setVisibility(View.VISIBLE);
+            }else {
+                holder.comment.setVisibility(View.GONE);
+            }
+
+            holder.comment.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    coment=holder.comment.getText().toString();
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    coment=holder.comment.getText().toString();
+                }
+            });
+
             holder.edittext.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -135,12 +160,14 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     ratingSelectionInterface.itemselect(lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID(),attachementPOJOList.get(position).getSURVEYANSWERID(),  attachementPOJOList.get(position).getGOTOQUESTIONID(), lcs.get(pos).getSURVEYID(), holder.edittext.getText().toString());
+                    ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),holder.edittext.getText().toString(),answer);
 
                 }
 
                 @Override
                 public void afterTextChanged(Editable editable) {
                     ratingSelectionInterface.itemselect(lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID(),attachementPOJOList.get(position).getSURVEYANSWERID(),  attachementPOJOList.get(position).getGOTOQUESTIONID(), lcs.get(pos).getSURVEYID(), holder.edittext.getText().toString());
+                    ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),holder.edittext.getText().toString(),answer);
 
                 }
             });
@@ -195,7 +222,7 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
         RadioGroup radioGroup;
         LinearLayout check;
         LinearLayout freetext;
-        EditText edittext;
+        EditText edittext,comment;
 
         public QuestionListAdapter(@NonNull View itemView) {
             super(itemView);
@@ -204,6 +231,7 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
             freetext = itemView.findViewById(R.id.freetext);
             radioGroup = itemView.findViewById(R.id.radiogroup);
             edittext = itemView.findViewById(R.id.edittext);
+            comment = itemView.findViewById(R.id.comment);
             radioGroup.setOnCheckedChangeListener(this);
         }
 
@@ -224,7 +252,8 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
 
                     selected=selection;
                     ratingSelectionInterface.itemselect(lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID(), attachementPOJOList.get(position).getSURVEYANSWERID(), attachementPOJOList.get(position).getGOTOQUESTIONID(), lcs.get(pos).getSURVEYID(), attachementPOJOList.get(position).getSURVEYANSWERTITLE());
-
+                    answer.add(attachementPOJOList.get(position).getSURVEYANSWERID());
+                    ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer);
                 } catch (Exception e) {
 
                 }
@@ -234,6 +263,7 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
 
     public interface RatingSelectionInterface {
         void itemselect(Integer questionID, Integer answerID, Object gotoid, Integer surveyID, String aswer);
+        void itemselect1(Integer questionID, Object ParentQuestionId, String FreeText,ArrayList<Integer> answer);
         void itemUnSelect(int questionID);
     }
 

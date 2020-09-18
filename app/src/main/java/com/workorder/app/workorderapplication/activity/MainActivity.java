@@ -22,11 +22,29 @@ import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.workorder.app.R;
 
+import com.workorder.app.Util;
 import com.workorder.app.activity.LoginActivity;
 import com.workorder.app.util.Constants;
+import com.workorder.app.util.UrlClass;
 import com.workorder.app.util.UtilityFunction;
+import com.workorder.app.webservicecallback.GetApiCallback;
+import com.workorder.app.webservicecallback.OnTaskCompleted;
 import com.workorder.app.workorderapplication.model.dashboardModel.AdminTreeStructure;
 import com.workorder.app.workorderapplication.model.dashboardModel.ClientList;
 import com.workorder.app.workorderapplication.model.dashboardModel.ClientTreeStructure;
@@ -41,6 +59,8 @@ import com.workorder.app.workorderapplication.remote.ApiServicesWorkOrder;
 import com.workorder.app.workorderapplication.remote.NetworkWorkOrder;
 import com.workorder.app.workorderapplication.remote.PreferenceManagerWorkOrder;
 import com.workorder.app.workorderapplication.remote.UtilityWorkOrder;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -69,11 +89,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ProgressDialog progressDoalog;
     Context mContext;
     NavigationView navigationView;
+     BarChart chart;
+    private static final int MAX_X_VALUE = 7;
+    private static final int MAX_Y_VALUE = 50;
+    private static final int MIN_Y_VALUE = 5;
+    private static final String SET_LABEL = "Monthly Assesment";
+    private static final String[] DAYS = { "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_work_order);
+        chart=findViewById(R.id.barchart);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -324,10 +351,88 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else //if (preferenceManagerWorkOrder.getKey_User_Role().equals("Administrator"))
         {
             fetchDashBoardListAdmin();
-        }
+
+            BarDataSet barDataSet = new BarDataSet(getData(), "Monthly Assesment");
+            barDataSet.setBarBorderWidth(0.6f);
+            barDataSet.setColors(getResources().getColor(R.color.bargraph));
+            BarData barData = new BarData(barDataSet);
+            XAxis xAxis = chart.getXAxis();
+            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+            final String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun"};
+
+            chart.getAxisLeft().setDrawGridLines(false);
+            chart.getXAxis().setDrawGridLines(false);
+
+            YAxis yAxisRight = chart.getAxisRight();
+            yAxisRight.setEnabled(false);
 
 
+            IndexAxisValueFormatter formatter = new IndexAxisValueFormatter(months);
+            xAxis.setGranularity(1f);
+            xAxis.setValueFormatter(formatter);
+            chart.setData(barData);
+            chart.setFitBars(true);
+            chart.animateXY(3500, 3500);
+            chart.invalidate();
+            chart.setDescription(null);
         }
+    }
+
+    private ArrayList getData(){
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        entries.add(new BarEntry(0f, 30f));
+        entries.add(new BarEntry(1f, 80f));
+        entries.add(new BarEntry(2f, 60f));
+        entries.add(new BarEntry(3f, 50f));
+        entries.add(new BarEntry(4f, 70f));
+        entries.add(new BarEntry(5f, 60f));
+        return entries;
+    }
+
+
+    private void configureChartAppearance() {
+        chart.getDescription().setEnabled(false);
+        chart.setDrawValueAboveBar(false);
+
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return DAYS[(int) value];
+            }
+        });
+
+        YAxis axisLeft = chart.getAxisLeft();
+        axisLeft.setGranularity(10f);
+        axisLeft.setAxisMinimum(0);
+
+        YAxis axisRight = chart.getAxisRight();
+        axisRight.setGranularity(10f);
+        axisRight.setAxisMinimum(0);
+    }
+
+    private BarData createChartData() {
+        ArrayList<BarEntry> values = new ArrayList<>();
+        for (int i = 0; i < MAX_X_VALUE; i++) {
+            float x = i;
+            float y = MIN_Y_VALUE;
+            values.add(new BarEntry(x, y));
+        }
+
+        BarDataSet set1 = new BarDataSet(values, SET_LABEL);
+
+        ArrayList<IBarDataSet> dataSets = new ArrayList<>();
+        dataSets.add(set1);
+
+        BarData data = new BarData(dataSets);
+        return data;
+    }
+
+    private void prepareChartData(BarData data) {
+        data.setValueTextSize(12f);
+        chart.setData(data);
+        chart.invalidate();
+    }
 
         private void fetchDashBoardListContractor() {
 
@@ -457,8 +562,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void fetchDashBoardListAdmin()
     {
         if (UtilityWorkOrder.isNetworkAvailable(getApplicationContext())) {
-            dialog.show();
-            ApiServicesWorkOrder apiServicesWorkOrder = NetworkWorkOrder.getInstance().getApiServicesWorkOrder();
+         //   dialog.show();
+
+            new GetApiCallback(MainActivity.this, UrlClass.BASE_URL + "api/Company/GetCompanyStatstics", new OnTaskCompleted<String>() {
+                @Override
+                public void onTaskCompleted(String response) {
+                    try {
+                        Log.v("response",response);
+                        JSONObject jsonObject = new JSONObject(response);
+                        company_number.setText(jsonObject.getString("registerCompany"));
+                        work_number.setText(jsonObject.getString("WorkOrderRasied"));
+                        asset_number.setText(jsonObject.getString("WorkOrderCompleted"));
+                        purchase_number.setText(jsonObject.getString("CurrentBalance"));
+                    }catch (Exception e){
+
+                    }
+
+                }
+            }, true).execute();
+
+
+        /*    ApiServicesWorkOrder apiServicesWorkOrder = NetworkWorkOrder.getInstance().getApiServicesWorkOrder();
             final PreferenceManagerWorkOrder preferenceManagerWorkOrder = PreferenceManagerWorkOrder.getInstance(getApplicationContext());//"http://109.228.49.117:8096/
             final Call<DashBoardAdmin> workOrderResponseModelCall= apiServicesWorkOrder.dashBoardListAdmin("application/json","api/home/linktree?rolename="+ preferenceManagerWorkOrder.getKey_User_Role()+"&companyid="+ preferenceManagerWorkOrder.getKey_Person_Company_Id()+"&parentcompanyid="+ preferenceManagerWorkOrder.getKey_Parent_Company_Id());
             workOrderResponseModelCall.enqueue(new Callback<DashBoardAdmin>() {
@@ -475,7 +599,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             asset_number.setText(String.valueOf(adminResponse.getAssetcount()));
                             work_number.setText(String.valueOf(adminResponse.getWordercount()));
                             adminTreeStructures= (ArrayList<AdminTreeStructure>) adminResponse.getTreestuctutr();
-                                /*Handler handler=new Handler();
+                                *//*Handler handler=new Handler();
                                 handler.post(new Runnable()
                                 {
                                     public void run()
@@ -488,7 +612,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                         }
 
                                     }
-                                });*/
+                                });*//*
                             dialog.dismiss();
                         }
                         else {
@@ -508,10 +632,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     System.out.println(t.getMessage() + t.getLocalizedMessage());
                     dialog.dismiss();
                 }
-            });
+            });*/
 
         }else {
-            Toast.makeText(getApplicationContext(), "NetworkWorkOrder is not available", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Network WorkOrder is not available", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -736,5 +860,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(getApplicationContext(), "NetworkWorkOrder is not available", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+
 
 }

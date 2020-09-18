@@ -50,6 +50,8 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 
+import static com.workorder.app.adapter.SurveyAdapter.coment;
+
 public class SurveyActivity extends FragmentActivity implements SurveyAdapter.RatingSelectionInterface {
     int surveyTemplateId;
     TextView tv_list_type;
@@ -67,8 +69,10 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
     TextView ques;
     int a=0,b=0;
     ArrayList<String> gotoid=new ArrayList<>();
-
+    int assessmentid;
+    int workorderid;
     private LinkedHashMap<Integer,String> map=new LinkedHashMap<>();
+    private LinkedHashMap<Integer,String> map1=new LinkedHashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +80,10 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
 
         iv_back = findViewById(R.id.iv_site_location_back);
         ques = findViewById(R.id.ques);
+
+        workorderid=getIntent().getIntExtra("workorderid",0);
+        assessmentid=getIntent().getIntExtra("assessmentid",0);
+
 
         surveyTemplateId=getIntent().getIntExtra("surveyTemplateId",0);
         Log.v("wrk", String.valueOf(surveyTemplateId));
@@ -242,42 +250,47 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                 else {
                     Log.v("size1", String.valueOf(i));
 
-
+                    JSONObject jsonObject = new JSONObject();
                     sub.setText("Submit");
                     sub.setTextColor(getResources().getColor(R.color.white));
                     next.setBackground(getResources().getDrawable(R.drawable.blue_desing));
 
                     if (map.size() == lcs.size()) {
-                        JSONArray jsonArray = new JSONArray();
-                        for (Map.Entry<Integer, String> mmap : map.entrySet()) {
-                            JSONObject jsonObject = new JSONObject();
-                            try {
-                                //    jsonObject.put("questionID", mmap.getKey());
-                                //   jsonObject.put("answerID",mmap.getValue().getAnswerID() );
-                                //   jsonObject.put("surveyAnswerID", mmap.getValue().getSurveyAnswerID());
-                                //  jsonObject.put("surveyID",mmap.getValue().getSurveyID() );
-                                //jsonObject.put("SurveyorIDt",mmap.getValue(). getSurveyorIDt());
 
+                        JSONArray jsonArray = new JSONArray();
+                        for (Map.Entry<Integer, String> mmap : map1.entrySet()) {
+                            JSONObject jsonObject1 = new JSONObject();
+                            try {
                                 String srValue = mmap.getValue();
                                 String aa = srValue.substring(mmap.getValue().indexOf(",") + 1);
                                 String surveyAnswerID = Util.before(aa, ",");
-                                String aaa = aa.substring(aa.indexOf(",") + 1);
-                                String surveyID = Util.before(aaa, ",");
-                                String SurveyorIDt = Util.after(aaa, ",");
+                                String surveyID = Util.after(aa, ",");
 
-                                jsonObject.put("questionID", mmap.getKey());
-                                jsonObject.put("answerID", Util.before(mmap.getValue(), ","));
-                                //  jsonObject.put("surveyAnswerID", "");
-                                jsonObject.put("surveyID", surveyID);
-                                //  jsonObject.put("SurveyorIDt", SurveyorIDt);
 
-                                jsonArray.put(jsonObject);
+                                jsonObject1.put("QuestionId", mmap.getKey());
+                                jsonObject1.put("ParentQuestionId", Util.before(mmap.getValue(), ","));
+                                jsonObject1.put("FreeText",surveyAnswerID);
+                                jsonObject1.put("Answers", surveyID);
+
+                                jsonArray.put(jsonObject1);
 
                             } catch (Exception e) {
                             }
                         }
 
-                        requestBody = jsonArray.toString();
+                        try {
+
+                            jsonObject.put("SurveyId",lcs.get(0).getSURVEYID());
+                            jsonObject.put("AssesmentId", assessmentid);
+                            jsonObject.put("WorkOrerId", workorderid);
+                            jsonObject.put("CompanyId",Constants.loginPOJO.getProfile().getCompanyId());
+                            jsonObject.put("Comments", coment);
+                            jsonObject.put("QuestionViewModel", jsonArray);
+                        }catch (Exception e){
+
+                        }
+
+                        requestBody = jsonObject.toString();
 
                         Log.v("shalu", requestBody);
                         boolean isConnected = ConnectivityReceiver.isConnected();
@@ -318,8 +331,8 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
 
-                                   // Toast.makeText(SurveyActivity.this, "Error" + error, Toast.LENGTH_SHORT).show();
-                                    opentThanksYesClickDialog("survey completed successfully");
+                                    Toast.makeText(SurveyActivity.this, "Error" + error, Toast.LENGTH_SHORT).show();
+
                                   //  startActivity(new Intent(SurveyActivity.this,HomeActivity.class));
 
                                 }
@@ -414,6 +427,12 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
     public void itemselect(Integer questionID, Integer answerID, Object gotoid, Integer surveyID, String SurveyorIDt) {
         map.put(questionID,answerID+","+gotoid+","+surveyID+","+SurveyorIDt);
         Log.v("SELECt",map.toString());
+    }
+
+    @Override
+    public void itemselect1(Integer questionID, Object ParentQuestionId, String FreeText, ArrayList<Integer> answer) {
+        map1.put(questionID,ParentQuestionId+","+FreeText+","+answer);
+        Log.v("SELECt1",map1.toString());
     }
 
     @Override
