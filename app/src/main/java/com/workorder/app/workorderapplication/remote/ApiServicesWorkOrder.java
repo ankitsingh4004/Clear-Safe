@@ -190,7 +190,7 @@ public interface ApiServicesWorkOrder {
     @GET
     Call<List<WorkOrderResponseModel>> workOrderList(
             @Header("Content-Type")
-                    String headerValue,
+                    String headerValue,@Header("Authorization") String auth,
             @Url String url
     );
 

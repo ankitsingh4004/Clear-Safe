@@ -185,7 +185,8 @@ public class SearchWorkOrder extends AppCompatActivity implements ClickListener 
         {
             fetchWorkOrderList();
         }else {
-            workOrderListFM();
+            fetchWorkOrderList();
+          //  workOrderListFM();
         }
 
 
@@ -293,7 +294,7 @@ public class SearchWorkOrder extends AppCompatActivity implements ClickListener 
         if (UtilityWorkOrder.isNetworkAvailable(getApplicationContext())) {
             progressDoalog.show();
             ApiServicesWorkOrder apiServicesWorkOrder = NetworkWorkOrder.getInstance().getApiServicesWorkOrder();
-            final Call<List<WorkOrderResponseModel>> workOrderResponseModelCall = apiServicesWorkOrder.workOrderList("application/json", "api/order/orderlist?rolename=" + rolename + "&companyid=" + companyid);
+            final Call<List<WorkOrderResponseModel>> workOrderResponseModelCall = apiServicesWorkOrder.workOrderList("application/json",Constants.loginPOJO.getAccessToken(),"api/order/orderlist?rolename=" + rolename + "&companyid=" + companyid);
             workOrderResponseModelCall.enqueue(new Callback<List<WorkOrderResponseModel>>() {
                 @Override
                 public void onResponse(Call<List<WorkOrderResponseModel>> call, Response<List<WorkOrderResponseModel>> response) {

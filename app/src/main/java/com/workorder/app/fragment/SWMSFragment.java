@@ -93,7 +93,17 @@ public class SWMSFragment extends Fragment implements LocationListener {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         init(rootView);
-      //  tv_wo_no.setText(Constants.workOrderdetail.getWorkOrderNo());
+
+        if(Constants.workOrderdetail==null){
+            tv_wo_no.setVisibility(View.GONE);
+            show.setVisibility(View.GONE);
+
+        }else {
+            tv_wo_no.setVisibility(View.VISIBLE);
+            show.setVisibility(View.VISIBLE);
+            tv_wo_no.setText(Constants.workOrderdetail.getWorkOrderNo());
+
+        }
 
 
         final SharedPreferences pref1 = getContext().getSharedPreferences("TASK_ID", MODE_PRIVATE);

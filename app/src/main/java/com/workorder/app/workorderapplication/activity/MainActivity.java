@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         cardcomp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "All Company", Toast.LENGTH_SHORT).show();;
+            //    Toast.makeText(MainActivity.this, "All Company", Toast.LENGTH_SHORT).show();;
             }
         });
 
@@ -570,9 +570,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     try {
                         Log.v("response",response);
                         JSONObject jsonObject = new JSONObject(response);
-                        company_number.setText(jsonObject.getString("registerCompany"));
-                        work_number.setText(jsonObject.getString("WorkOrderRasied"));
-                        asset_number.setText(jsonObject.getString("WorkOrderCompleted"));
+                        company_number.setText(jsonObject.getString("WorkOrderCompleted"));
+                        work_number.setText(jsonObject.getString("registerCompany"));
+                        asset_number.setText(jsonObject.getString("WorkOrderRasied"));
                         purchase_number.setText(jsonObject.getString("CurrentBalance"));
                     }catch (Exception e){
 

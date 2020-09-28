@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:layout_margin="10dp"
     >
 
@@ -55,20 +56,35 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" />
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/blinear"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textColor="#000"
+        android:textStyle="normal"
+        android:text="Add a comment to this answer in the box below -"
+        android:textSize="15sp">
+    </TextView>
 
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="10dp"
-            android:hint="Comment"
-            android:visibility="gone"
-            android:padding="5dp"
-            android:id="@+id/comment"
-            android:layout_below="@+id/radiogroup"
-            android:background="@drawable/option_border"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Comment"
+        android:visibility="visible"
+        android:padding="5dp"
+        android:id="@+id/comment"
+        android:layout_below="@+id/radiogroup"
+        android:background="@drawable/option_border"/>
+
+</LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

@@ -35,6 +35,8 @@ import com.workorder.app.api.APIInterface;
 import com.workorder.app.pojo.survey.SurveyQuestionPojo;
 import com.workorder.app.util.Constants;
 import com.workorder.app.util.UrlClass;
+import com.workorder.app.webservicecallback.OnTaskCompleted;
+import com.workorder.app.webservicecallback.SendData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -73,6 +75,8 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
     int workorderid;
     private LinkedHashMap<Integer,String> map=new LinkedHashMap<>();
     private LinkedHashMap<Integer,String> map1=new LinkedHashMap<>();
+    Boolean yesno;
+    String pqid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -261,16 +265,23 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                         for (Map.Entry<Integer, String> mmap : map1.entrySet()) {
                             JSONObject jsonObject1 = new JSONObject();
                             try {
+
                                 String srValue = mmap.getValue();
                                 String aa = srValue.substring(mmap.getValue().indexOf(",") + 1);
                                 String surveyAnswerID = Util.before(aa, ",");
-                                String surveyID = Util.after(aa, ",");
+                                String aaa = aa.substring(aa.indexOf(",") + 1);
+                                String surveyID = Util.before(aaa, ",");
+                                String aaaa = aaa.substring(aaa.indexOf(",") + 1);
+                                String yes = Util.before(aaaa, ",");
+                                String comment = Util.after(aaaa, ",");
 
 
                                 jsonObject1.put("QuestionId", mmap.getKey());
-                                jsonObject1.put("ParentQuestionId", Util.before(mmap.getValue(), ","));
+                                jsonObject1.put("ParentQuestionId", JSONObject.NULL);
                                 jsonObject1.put("FreeText",surveyAnswerID);
-                                jsonObject1.put("Answers", surveyID);
+                                jsonObject1.put("Answers", new JSONArray(surveyID));
+                                jsonObject1.put("YesNo",Boolean.parseBoolean(yes));
+                                jsonObject1.put("AnswerComments", comment);
 
                                 jsonArray.put(jsonObject1);
 
@@ -284,8 +295,8 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                             jsonObject.put("AssesmentId", assessmentid);
                             jsonObject.put("WorkOrerId", workorderid);
                             jsonObject.put("CompanyId",Constants.loginPOJO.getProfile().getCompanyId());
-                            jsonObject.put("Comments", coment);
-                            jsonObject.put("QuestionViewModel", jsonArray);
+                            jsonObject.put("Comments","");
+                            jsonObject.put("Questions", jsonArray);
                         }catch (Exception e){
 
                         }
@@ -295,66 +306,12 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                         Log.v("shalu", requestBody);
                         boolean isConnected = ConnectivityReceiver.isConnected();
                         if (isConnected == true) {
-
-                            StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlClass.SUBMIT_ANSWER,
-                                    new Response.Listener<String>() {
-                                        @Override
-                                        public void onResponse(String response) {
-
-                                            JSONObject jsonObject = null;
-                                            try {
-                                                jsonObject = new JSONObject(response);
-                                                String status = jsonObject.getString("status");
-                                                String message = jsonObject.getString("msg");
-
-                                                if (status.equalsIgnoreCase("true")) {
-                                                    // Toast.makeText(SurveyActivity.this, "" + message, Toast.LENGTH_SHORT).show();
-                                                    next.setEnabled(false);
-                                                    opentThanksYesClickDialog("survey completed successfully");
-                                                } else {
-                                                    opentThanksYesClickDialog("something went wrong");
-
-                                                }
-                                                //   map.clear();
-//                                            Fragment  fragment = new AssessmentHomeFragment();
-//                                            if (fragment != null) {
-//                                                getFragmentManager().beginTransaction().add(R.id.container, fragment, null).addToBackStack(null).commit();
-//
-//                                            }
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-
-
-                                        }
-                                    }, new Response.ErrorListener() {
+                            new SendData(SurveyActivity.this, jsonObject, UrlClass.SUBMIT_ANSWER, new OnTaskCompleted<String>() {
                                 @Override
-                                public void onErrorResponse(VolleyError error) {
-
-                                    Toast.makeText(SurveyActivity.this, "Error" + error, Toast.LENGTH_SHORT).show();
-
-                                  //  startActivity(new Intent(SurveyActivity.this,HomeActivity.class));
-
+                                public void onTaskCompleted(String response) {
+                                    opentThanksYesClickDialog("Survey Submitted Successfully");
                                 }
-                            }) {
-                                @Override
-                                public String getBodyContentType() {
-                                    return String.format("application/json; charset=utf-8");
-                                }
-
-                                @Override
-
-                                public byte[] getBody() throws AuthFailureError {
-                                    try {
-                                        return requestBody == null ? null : requestBody.getBytes("utf-8");
-                                    } catch (UnsupportedEncodingException uee) {
-                                        return null;
-                                    }
-                                }
-                            };
-                            RequestQueue requestQueue = Volley.newRequestQueue(SurveyActivity.this);
-                            requestQueue.add(stringRequest);
-
+                            }, true).execute();
                         } else {
                             SharedPreferences mPrefs = SurveyActivity.this.getSharedPreferences("PREFS_NAME", Context.MODE_PRIVATE);
                             SharedPreferences.Editor prefsEditor = mPrefs.edit();
@@ -430,10 +387,11 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
     }
 
     @Override
-    public void itemselect1(Integer questionID, Object ParentQuestionId, String FreeText, ArrayList<Integer> answer) {
-        map1.put(questionID,ParentQuestionId+","+FreeText+","+answer);
+    public void itemselect1(Integer questionID, Object ParentQuestionId, String FreeText, ArrayList<Integer> answer, String yes, String comment) {
+        map1.put(questionID,ParentQuestionId+","+FreeText+","+answer+","+yes+","+comment);
         Log.v("SELECt1",map1.toString());
     }
+
 
     @Override
     public void itemUnSelect(int questionID) {
