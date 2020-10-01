@@ -113,7 +113,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     boolean isNetworkEnable = false;
     SiteLocationPOJO siteLocationPOJO;
     double distance = 0;
-    public static final double DISTANCE =999978780;
+    public static final double DISTANCE =20;
     // Bottom Sheet
     ListView listView;
     TextView tv_suspended;
@@ -124,7 +124,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     TextView tv_go_on_site;
     public static int onsite;
     ProgressDialog dialog;
-
+ String workorderstatus;
+ String warninglevel;
+ TextView workOrderStatus;
+ TextView warningtext;
+ ImageView warning1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,6 +152,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         listView = findViewById(R.id.rv_bottom_sheet);
         tv_suspended = findViewById(R.id.tv_suspend_minute);
         tv_bottom_cancel = findViewById(R.id.tv_bottom_cancel);
+        workOrderStatus = findViewById(R.id.workOrderStatus);
+        warningtext = findViewById(R.id.warningtext);
+        warning1 = findViewById(R.id.warning1);
+
 
         ll_bottom_sheet.setVisibility(View.GONE);
         //   tv_trade_category = findViewById(R.id.tv_site_location_trade_category);
@@ -167,8 +175,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
         workorderid=getIntent().getIntExtra("WorkOrderid",0);
+        workorderstatus=getIntent().getStringExtra("workorderstatus");
+        warninglevel=getIntent().getStringExtra("warninglevel");
         Log.v("workorderid", String.valueOf(workorderid));
 
+        workOrderStatus.setText(workorderstatus);
+        warningtext.setText(warninglevel);
+        if(warninglevel.equalsIgnoreCase("Ok")){
+            warning1.setImageResource(R.drawable.ic_warning_black2_24dp);
+        }else if(warninglevel.equalsIgnoreCase("Failure")){
+            warning1.setImageResource(R.drawable.ic_warning_black3_24dp);
+        }else {
+            warning1.setImageResource(R.drawable.ic_warning_black1_24dp);
+        }
 
         new GetApiCallback(MapsActivity.this, UrlClass.BASE_URL+"api/Order/GetOrderAssesments?orderId="+workorderid, new OnTaskCompleted<String>() {
             @Override

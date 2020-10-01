@@ -54,6 +54,15 @@ public class SyncronizedHomeAdapter extends RecyclerView.Adapter<SyncronizedHome
 
             }*/
             holder.tv_assesment.setText(homePOJOList.get(position).getWorkOrderNo());
+            holder.workOrderStatus.setText(homePOJOList.get(position).getWorkOrderStatus());
+            holder.warningtext.setText(homePOJOList.get(position).getOrderWarningLevel());
+            if(homePOJOList.get(position).getOrderWarningLevel().equalsIgnoreCase("Ok")){
+                holder.warning.setImageResource(R.drawable.ic_warning_black2_24dp);
+            }else if(homePOJOList.get(position).getOrderWarningLevel().equalsIgnoreCase("Failure")){
+                holder.warning.setImageResource(R.drawable.ic_warning_black3_24dp);
+            }else {
+                holder.warning.setImageResource(R.drawable.ic_warning_black1_24dp);
+            }
             holder.priority.setText(homePOJOList.get(position).getPriority());
             holder.ordertype.setText(homePOJOList.get(position).getOrderType());
             holder.clientname.setText(homePOJOList.get(position).getClientName());
@@ -85,6 +94,8 @@ public class SyncronizedHomeAdapter extends RecyclerView.Adapter<SyncronizedHome
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("WorkOrderPOJO", homePOJOList.get(position));
                     intent.putExtra("WorkOrderid", homePOJOList.get(position).getWorkOrderId());
+                    intent.putExtra("workorderstatus", homePOJOList.get(position).getWorkOrderStatus());
+                    intent.putExtra("warninglevel", homePOJOList.get(position).getOrderWarningLevel());
                     Constants.workOrderPOJO=homePOJOList.get(position);
                     context.startActivity(intent);
                 }
@@ -109,13 +120,19 @@ public class SyncronizedHomeAdapter extends RecyclerView.Adapter<SyncronizedHome
         TextView ordertype;
         TextView tv_date;
         TextView tv_time;
+        TextView warningtext;
+        TextView workOrderStatus;
         ImageView iv_location;
+        ImageView warning;
 
         public SynchronizedHomeHolder(View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.firstcard);
             tv_assesment = itemView.findViewById(R.id.tv_inflate_work_order_number);
             priority = itemView.findViewById(R.id.priority);
+            warning = itemView.findViewById(R.id.warning);
+            workOrderStatus = itemView.findViewById(R.id.workOrderStatus);
+            warningtext = itemView.findViewById(R.id.warningtext);
             clientname = itemView.findViewById(R.id.clientname);
             ordertype = itemView.findViewById(R.id.ordertype);
             tv_place_of_work= itemView.findViewById(R.id.tv_inflate_synchronized_place_work);

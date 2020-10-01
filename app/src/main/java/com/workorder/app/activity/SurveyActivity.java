@@ -100,6 +100,7 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
             @Override
             public void onClick(View v) {
                 //onBackPressed();
+                map.clear();
                startActivity(new Intent(SurveyActivity.this,SurveyTemplate.class));
             }
         });
@@ -180,78 +181,84 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
             public void onClick(View view) {
 
                 if(i<lcs.size()-1) {
-                    String g;
-                        if(lcs.get(i).getQUESTIONTYPEID()==3){
-                            i=i+1;
+                   // if (map.size() > i) {
+                        String g;
+                        if (lcs.get(i).getQUESTIONTYPEID() == 3) {
+                            i = i + 1;
                             getlist(i);
                             back.setVisibility(View.VISIBLE);
                             adapter.notifyDataSetChanged();
-                        }else {
+                        } else {
                             if (SurveyAdapter.selected.equalsIgnoreCase("")) {
 
                             } else {
-                                for (int j = 0; j < lcs.get(i).getSurveyAnswers().size(); j++) {
-                                    if (SurveyAdapter.selected.equalsIgnoreCase(lcs.get(i).getSurveyAnswers().get(j).getSURVEYANSWERTITLE())) {
-                                        Object a = lcs.get(i).getSurveyAnswers().get(j).getGOTOQUESTIONID();
-                                        if (a != null) {
-                                            g = a.toString();
-                                        } else {
-                                            g = "";
-                                        }
 
-                                        Log.v("g", g);
-                                        if (g.equalsIgnoreCase("")) {
-                                            b = b + 1;
-                                            getlist(b);
-                                            i = b;
-                                            back.setVisibility(View.VISIBLE);
-                                            adapter.notifyDataSetChanged();
+                                    for (int j = 0; j < lcs.get(i).getSurveyAnswers().size(); j++) {
+                                        if (SurveyAdapter.selected.equalsIgnoreCase(lcs.get(i).getSurveyAnswers().get(j).getSURVEYANSWERTITLE())) {
+                                            Object a = lcs.get(i).getSurveyAnswers().get(j).getGOTOQUESTIONID();
+                                            if (a != null) {
+                                                g = a.toString();
+                                            } else {
+                                                g = "";
+                                            }
 
-
-                                            for (int k=0;k<gotoid.size();k++){
-                                                 String m=gotoid.get(k);
-                                                  Log.v("matchid",m);
-                                                  float x = Float.parseFloat(m);
-                                                  int y = (int) x;
-
-                                            if(y==lcs.get(i).getSURVEYQQUESTIONID()){
-                                              Log.v("matchid1",m);
+                                            Log.v("g", g);
+                                            if (g.equalsIgnoreCase("")) {
                                                 b = b + 1;
                                                 getlist(b);
                                                 i = b;
                                                 back.setVisibility(View.VISIBLE);
                                                 adapter.notifyDataSetChanged();
 
-                                            }
-                                          }
 
-                                     } else {
-                                            gotoid.add(g);
-                                            float x = Float.parseFloat(g);
-                                            int y = (int) x;
-                                            getlist(y - 1);
-                                            i = y - 1;
-                                            back.setVisibility(View.VISIBLE);
-                                            adapter.notifyDataSetChanged();
+                                                for (int k = 0; k < gotoid.size(); k++) {
+                                                    String m = gotoid.get(k);
+                                                    Log.v("matchid", m);
+                                                    float x = Float.parseFloat(m);
+                                                    int y = (int) x;
+
+                                                    if (y == lcs.get(i).getSURVEYQQUESTIONID()) {
+                                                        Log.v("matchid1", m);
+                                                        b = b + 1;
+                                                        getlist(b);
+                                                        i = b;
+                                                        back.setVisibility(View.VISIBLE);
+                                                        adapter.notifyDataSetChanged();
+
+                                                    }
+                                                }
+
+                                            } else {
+                                                gotoid.add(g);
+                                                float x = Float.parseFloat(g);
+                                                int y = (int) x;
+                                                getlist(y - 1);
+                                                i = y - 1;
+                                                back.setVisibility(View.VISIBLE);
+                                                adapter.notifyDataSetChanged();
+                                            }
                                         }
                                     }
-                                }
 
 
-                                }
                             }
+                        }
 
-                    if(i==lcs.size()-1){
-                        sub.setText("Submit");
-                        next.setBackground(getResources().getDrawable(R.drawable.blue_desing));
-                        sub.setTextColor(getResources().getColor(R.color.white));
-                        Log.v("size1", String.valueOf(i));
-                        Log.v("size", String.valueOf(lcs.size()));
+                        if (i == lcs.size() - 1) {
+                            sub.setText("Submit");
+                            next.setBackground(getResources().getDrawable(R.drawable.blue_desing));
+                            sub.setTextColor(getResources().getColor(R.color.white));
+                            Log.v("size1", String.valueOf(i));
+                            Log.v("size", String.valueOf(lcs.size()));
 
-                    }
+                        }
 
-                }
-                else {
+//                    }else {
+//                        Toast.makeText(SurveyActivity.this, "select one option" , Toast.LENGTH_SHORT).show();
+//
+//                    }
+
+                }  else {
                     Log.v("size1", String.valueOf(i));
 
                     JSONObject jsonObject = new JSONObject();
@@ -324,9 +331,7 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
 
                         }
 
-
                         Log.v("requestBody", requestBody);
-
 
                     } else {
                         Toast.makeText(SurveyActivity.this, "select one option" , Toast.LENGTH_SHORT).show();
@@ -367,7 +372,7 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                 surveyAnswers = lcs.get(p).getSurveyAnswers();
             }
             ques.setText(lcs.get(p).getQUESTIONTITLE());
-            adapter = new SurveyAdapter(SurveyActivity.this, surveyAnswers, p, this, map, lcs);
+            adapter = new SurveyAdapter(SurveyActivity.this, surveyAnswers, p, this, map, lcs,map1);
             rv_sync_task_list.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }catch (Exception e){

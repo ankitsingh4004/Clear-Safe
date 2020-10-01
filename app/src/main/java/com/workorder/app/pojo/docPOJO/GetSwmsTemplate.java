@@ -26,6 +26,12 @@ public class GetSwmsTemplate implements Serializable {
     @SerializedName("TemplateNumber")
     @Expose
     private String templateNumber;
+    @SerializedName("SWMSStatus")
+    @Expose
+    private String sWMSStatus;
+    @SerializedName("SWMSWarningLevel")
+    @Expose
+    private String sWMSWarningLevel;
     @SerializedName("Attachements")
     @Expose
     private List<Attachement> attachements = null;
@@ -56,6 +62,22 @@ public class GetSwmsTemplate implements Serializable {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getsWMSStatus() {
+        return sWMSStatus;
+    }
+
+    public void setsWMSStatus(String sWMSStatus) {
+        this.sWMSStatus = sWMSStatus;
+    }
+
+    public String getsWMSWarningLevel() {
+        return sWMSWarningLevel;
+    }
+
+    public void setsWMSWarningLevel(String sWMSWarningLevel) {
+        this.sWMSWarningLevel = sWMSWarningLevel;
     }
 
     public void setTitle(String title) {

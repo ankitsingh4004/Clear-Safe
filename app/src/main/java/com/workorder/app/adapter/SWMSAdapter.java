@@ -57,7 +57,15 @@ public class SWMSAdapter extends RecyclerView.Adapter<SWMSAdapter.DocListViewHol
             holder.tv_version.setText("V.no : " + attachementPOJO.getVersion());
             holder.tv_doc_temp.setText("" + attachementPOJO.getTemplateNumber());
             holder.tv_doc_date.setText(UtilityFunction.getSplitedDate(attachementPOJO.getAssignedDate()));
-
+        holder.workOrderStatus.setText(attachementPOJO.getsWMSStatus());
+        holder.warningtext.setText(attachementPOJO.getsWMSWarningLevel());
+        if(attachementPOJO.getsWMSWarningLevel().equalsIgnoreCase("Ok")){
+            holder.warning.setImageResource(R.drawable.ic_warning_black2_24dp);
+        }else if(attachementPOJO.getsWMSWarningLevel().equalsIgnoreCase("Failure")){
+            holder.warning.setImageResource(R.drawable.ic_warning_black3_24dp);
+        }else {
+            holder.warning.setImageResource(R.drawable.ic_warning_black1_24dp);
+        }
         PdfTemplate gridAdapter = new PdfTemplate(context,attachementPOJOList.get(position).getAttachements() ,assessmentid);
         holder.recycler_view.setAdapter(gridAdapter);
         gridAdapter.notifyDataSetChanged();
@@ -79,7 +87,10 @@ public class SWMSAdapter extends RecyclerView.Adapter<SWMSAdapter.DocListViewHol
         RecyclerView recycler_view;
      //   DocClickListner myclickListner;
         Integer position;
+        TextView warningtext;
+        TextView workOrderStatus;
 
+        ImageView warning;
 
         public DocListViewHolder(View itemView) {
             super(itemView);
@@ -93,7 +104,9 @@ public class SWMSAdapter extends RecyclerView.Adapter<SWMSAdapter.DocListViewHol
 
             taskCard = itemView.findViewById(R.id.firstcard);
 
-
+            warning = itemView.findViewById(R.id.warning1);
+            workOrderStatus = itemView.findViewById(R.id.workOrderStatus);
+            warningtext = itemView.findViewById(R.id.warningtext);
             recycler_view.setNestedScrollingEnabled(false);
             RecyclerView.LayoutManager mRecyclerGrid=new LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false);
             recycler_view.setLayoutManager(mRecyclerGrid);

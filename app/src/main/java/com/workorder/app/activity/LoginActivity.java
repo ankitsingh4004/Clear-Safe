@@ -220,8 +220,8 @@ public class LoginActivity extends AppCompatActivity implements VersionCheckList
 
                 try {
                     JSONObject jsonObject = new JSONObject();
-                 //   jsonObject.put("username", userName);
-                  //  jsonObject.put("Password", password);
+               //   jsonObject.put("username", userName);
+                 //  jsonObject.put("Password", password);
                    // jsonObject.put("username", "info@uveoustech.com");
                 //     jsonObject.put("Password", "Uveous@#$056");
                 //  jsonObject.put("username", "radhey2784@gmail.com");

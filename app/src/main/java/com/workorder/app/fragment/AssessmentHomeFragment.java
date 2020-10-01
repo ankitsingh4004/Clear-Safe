@@ -90,7 +90,6 @@ public class AssessmentHomeFragment extends Fragment{
 
           showProgressPopup();
 
-
           new GetApiCallback(getActivity(), UrlClass.BASE_URL+"api/Order/GetActiveWorkOrders", new OnTaskCompleted<String>() {
               @Override
               public void onTaskCompleted(String response) {
@@ -120,7 +119,7 @@ public class AssessmentHomeFragment extends Fragment{
 
       }else {
 
-              new GetApiCallback(getActivity(), "api/Order/GetActiveWorkOrders", new OnTaskCompleted<String>() {
+              new GetApiCallback(getActivity(), UrlClass.BASE_URL+"api/Order/GetActiveWorkOrders", new OnTaskCompleted<String>() {
                   @Override
                   public void onTaskCompleted(String response) {
                       Log.d("ResponseWorkOrder", response);

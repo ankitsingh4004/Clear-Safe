@@ -57,10 +57,10 @@ public class GetWorkOrderDetailPojo implements Serializable {
     private String buildingName;
     @SerializedName("Floor")
     @Expose
-    private String floor;
+    private Object floor;
     @SerializedName("Room")
     @Expose
-    private String room;
+    private Object room;
     @SerializedName("Address1")
     @Expose
     private String address1;
@@ -85,6 +85,15 @@ public class GetWorkOrderDetailPojo implements Serializable {
     @SerializedName("Lon")
     @Expose
     private Double lon;
+    @SerializedName("status")
+    @Expose
+    private String status;
+    @SerializedName("SWMSStatus")
+    @Expose
+    private String sWMSStatus;
+    @SerializedName("SWMSWarningLevel")
+    @Expose
+    private String sWMSWarningLevel;
 
     public Integer getAssesmentId() {
         return assesmentId;
@@ -214,19 +223,19 @@ public class GetWorkOrderDetailPojo implements Serializable {
         this.buildingName = buildingName;
     }
 
-    public String getFloor() {
+    public Object getFloor() {
         return floor;
     }
 
-    public void setFloor(String floor) {
+    public void setFloor(Object floor) {
         this.floor = floor;
     }
 
-    public String getRoom() {
+    public Object getRoom() {
         return room;
     }
 
-    public void setRoom(String room) {
+    public void setRoom(Object room) {
         this.room = room;
     }
 
@@ -292,6 +301,30 @@ public class GetWorkOrderDetailPojo implements Serializable {
 
     public void setLon(Double lon) {
         this.lon = lon;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getSWMSStatus() {
+        return sWMSStatus;
+    }
+
+    public void setSWMSStatus(String sWMSStatus) {
+        this.sWMSStatus = sWMSStatus;
+    }
+
+    public String getSWMSWarningLevel() {
+        return sWMSWarningLevel;
+    }
+
+    public void setSWMSWarningLevel(String sWMSWarningLevel) {
+        this.sWMSWarningLevel = sWMSWarningLevel;
     }
 
 }

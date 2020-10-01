@@ -2,6 +2,7 @@ package com.workorder.app.fragment;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -95,14 +96,18 @@ public class SWMSFragment extends Fragment implements LocationListener {
         init(rootView);
 
         if(Constants.workOrderdetail==null){
-            tv_wo_no.setVisibility(View.GONE);
-            show.setVisibility(View.GONE);
+            final SharedPreferences pref1 = getContext().getSharedPreferences("work", MODE_PRIVATE);
+            String wno = pref1.getString("workorderno",null);
+            tv_wo_no.setText(wno);
 
         }else {
             tv_wo_no.setVisibility(View.VISIBLE);
             show.setVisibility(View.VISIBLE);
             tv_wo_no.setText(Constants.workOrderdetail.getWorkOrderNo());
-
+            SharedPreferences mPrefs = getActivity().getSharedPreferences("work", Context.MODE_PRIVATE);
+            SharedPreferences.Editor prefsEditor = mPrefs.edit();
+            prefsEditor.putString("workorderno",Constants.workOrderdetail.getWorkOrderNo());
+            prefsEditor.commit();
         }
 
 
@@ -117,6 +122,8 @@ public class SWMSFragment extends Fragment implements LocationListener {
             tv_go_on_site.setEnabled(false);
         }else {
             Log.v("id", String.valueOf(id));
+
+
             boolean isConnected = ConnectivityReceiver.isConnected();
             if (isConnected == true) {
                 try {

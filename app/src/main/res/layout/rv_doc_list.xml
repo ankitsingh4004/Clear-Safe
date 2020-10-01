@@ -92,7 +92,103 @@ android:layout_height="wrap_content"
                     android:text="03-12-2018" />
 
 
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_toRightOf="@+id/img_attachment"
+                    android:id="@+id/f"
+                    android:layout_below="@+id/tv_doc_date"
+                    android:visibility="visible"
+                    android:orientation="horizontal">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="SWMS Status - "
+                        android:fontFamily="sans-serif-medium"
+
+                        android:textColor="#000"
+                        android:textSize="15sp" />
+
+
+                    <TextView
+                        android:id="@+id/workOrderStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="130dp"
+                        android:layout_marginTop="3dp"
+                        android:textColor="#000"
+                        android:text="Signed"
+                        android:layout_marginRight="10dp"
+                        android:textSize="15sp" />
+
+                    <!--    <ImageView
+                            android:id="@+id/iv_site_location_direction"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="right|bottom"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:paddingBottom="3dp"
+                            android:src="@drawable/ic_location_direction"
+                            />-->
+
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_below="@+id/f"
+                    android:layout_toRightOf="@+id/img_attachment"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="2dp"
+                    android:visibility="visible"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Warning Level - "
+                        android:textColor="#000"
+                        android:fontFamily="sans-serif-medium"
+
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/warningtext"
+                        android:textColor="#000"
+                        android:layout_marginLeft="25dp"
+
+                        android:text="Ok"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@+id/warning1"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="10dp"
+                        app:srcCompat="@drawable/ic_warning_black2_24dp"
+                        />
+
+                    <!--    <ImageView
+                            android:id="@+id/iv_site_location_direction"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="right|bottom"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:paddingBottom="3dp"
+                            android:src="@drawable/ic_location_direction"
+                            />-->
+
+
+                </LinearLayout>
 
 
             </RelativeLayout>

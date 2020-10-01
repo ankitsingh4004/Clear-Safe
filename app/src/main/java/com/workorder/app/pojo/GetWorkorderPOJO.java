@@ -63,10 +63,10 @@ public class GetWorkorderPOJO implements Serializable {
     private String buildingName;
     @SerializedName("Floor")
     @Expose
-    private String floor;
+    private Object floor;
     @SerializedName("Room")
     @Expose
-    private String room;
+    private Object room;
     @SerializedName("Address1")
     @Expose
     private String address1;
@@ -91,6 +91,12 @@ public class GetWorkorderPOJO implements Serializable {
     @SerializedName("Lon")
     @Expose
     private Double lon;
+    @SerializedName("WorkOrderStatus")
+    @Expose
+    private String workOrderStatus;
+    @SerializedName("OrderWarningLevel")
+    @Expose
+    private String orderWarningLevel;
 
     public Integer getWorkOrderId() {
         return workOrderId;
@@ -236,19 +242,19 @@ public class GetWorkorderPOJO implements Serializable {
         this.buildingName = buildingName;
     }
 
-    public String getFloor() {
+    public Object getFloor() {
         return floor;
     }
 
-    public void setFloor(String floor) {
+    public void setFloor(Object floor) {
         this.floor = floor;
     }
 
-    public String getRoom() {
+    public Object getRoom() {
         return room;
     }
 
-    public void setRoom(String room) {
+    public void setRoom(Object room) {
         this.room = room;
     }
 
@@ -314,6 +320,22 @@ public class GetWorkorderPOJO implements Serializable {
 
     public void setLon(Double lon) {
         this.lon = lon;
+    }
+
+    public String getWorkOrderStatus() {
+        return workOrderStatus;
+    }
+
+    public void setWorkOrderStatus(String workOrderStatus) {
+        this.workOrderStatus = workOrderStatus;
+    }
+
+    public String getOrderWarningLevel() {
+        return orderWarningLevel;
+    }
+
+    public void setOrderWarningLevel(String orderWarningLevel) {
+        this.orderWarningLevel = orderWarningLevel;
     }
 
 }

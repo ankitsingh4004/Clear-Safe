@@ -224,6 +224,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
+
                 android:orientation="horizontal">
 
                 <TextView
@@ -366,11 +367,98 @@
             </FrameLayout>
 
             <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:visibility="visible"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Order Status - "
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:id="@+id/workOrderStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="150dp"
+                    android:layout_marginTop="3dp"
+                    android:text=""
+                    android:layout_marginRight="10dp"
+                    android:textSize="13sp" />
+
+                <!--    <ImageView
+                        android:id="@+id/iv_site_location_direction"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="right|bottom"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:paddingBottom="3dp"
+                        android:src="@drawable/ic_location_direction"
+                        />-->
+
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="2dp"
+                android:visibility="visible"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Warning Level - "
+                    android:textColor="#000"
+
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/warningtext"
+                    android:layout_marginLeft="42dp"
+
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@+id/warning1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    app:srcCompat="@drawable/ic_warning_black1_24dp"
+                    />
+
+                <!--    <ImageView
+                        android:id="@+id/iv_site_location_direction"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="right|bottom"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:paddingBottom="3dp"
+                        android:src="@drawable/ic_location_direction"
+                        />-->
+
+
+            </LinearLayout>
+
+            <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:background="@drawable/blue_desing"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
 
