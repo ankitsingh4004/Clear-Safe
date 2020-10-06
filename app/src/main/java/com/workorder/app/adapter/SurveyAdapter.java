@@ -76,7 +76,7 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
 
         try {
             int p=pos+1;
-            holder.ques.setText(lcs.get(pos).getQUESTIONTITLE());
+            holder.ques.setText(p+"."+lcs.get(pos).getQUESTIONTITLE());
 
 
 //            for( int i = 0; i <=attachementPOJOList.get(pos).getSurveyquestPOJOS().size(); i++) {
@@ -182,17 +182,17 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
                                 Log.e("Selected", "" + selection);
                                 Log.v("score", ratingSelectionInterface.toString());
                                 selected = selection;
-                                ratingSelectionInterface.itemselect(lcs.get(pos).getSurveyAnswers().get(id).getSURVEYQUESTIONID(), attachementPOJOList.get(id).getSURVEYANSWERID(), attachementPOJOList.get(id).getGOTOQUESTIONID(), lcs.get(pos).getSURVEYID(), attachementPOJOList.get(id).getSURVEYANSWERTITLE());
+                                ratingSelectionInterface.itemselect(lcs.get(pos).getSURVEYQQUESTIONID(), attachementPOJOList.get(id).getSURVEYANSWERID(), attachementPOJOList.get(id).getGOTOQUESTIONID(), lcs.get(pos).getSURVEYID(), attachementPOJOList.get(id).getSURVEYANSWERTITLE());
 
                                 answer.add(lcs.get(pos).getSurveyAnswers().get(id).getSURVEYANSWERID());
-                                ratingSelectionInterface.itemselect1(lcs.get(pos).getSurveyAnswers().get(id).getSURVEYQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, "", "");
+                                ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, "false", "");
                             } else {
                                 for (int a = 0; a < answer.size(); a++) {
                                     if (lcs.get(pos).getSurveyAnswers().get(id).getSURVEYANSWERID() == answer.get(a)) {
                                         answer.remove(a);
                                     }
                                 }
-                                ratingSelectionInterface.itemselect1(lcs.get(pos).getSurveyAnswers().get(id).getSURVEYQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, "", "");
+                                ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, "false", "");
 
                             }
                         }
@@ -248,12 +248,12 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
                     coment=holder.comment.getText().toString();
                     if(lcs.get(pos).getQUESTIONTYPEID()==1){
                         if(selected.equalsIgnoreCase("yes")){
-                            ratingSelectionInterface.itemselect1(lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"true",coment);
+                            ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"true",coment);
                         }else {
-                            ratingSelectionInterface.itemselect1(lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"false",coment);
+                            ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"false",coment);
                         }
                     }else {
-                        ratingSelectionInterface.itemselect1(lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"",coment);
+                        ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"",coment);
                     }
                 }
 
@@ -262,13 +262,13 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
                     coment=holder.comment.getText().toString();
                     if(lcs.get(pos).getQUESTIONTYPEID()==1){
                         if(selected.equalsIgnoreCase("yes")){
-                            ratingSelectionInterface.itemselect1(lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"true",coment);
+                            ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"true",coment);
                         }else {
-                            ratingSelectionInterface.itemselect1(lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"false",coment);
+                            ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"false",coment);
                         }
                     }else {
 
-                        ratingSelectionInterface.itemselect1(lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"",coment);
+                        ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"",coment);
                     }
                 }
             });
@@ -281,21 +281,20 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    ratingSelectionInterface.itemselect(lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID(),attachementPOJOList.get(position).getSURVEYANSWERID(),  attachementPOJOList.get(position).getGOTOQUESTIONID(), lcs.get(pos).getSURVEYID(),charSequence.toString());
 
                 }
 
                 @Override
                 public void afterTextChanged(Editable editable) {
-                    ratingSelectionInterface.itemselect(lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID(),attachementPOJOList.get(position).getSURVEYANSWERID(),  attachementPOJOList.get(position).getGOTOQUESTIONID(), lcs.get(pos).getSURVEYID(), editable.toString());
-                    ratingSelectionInterface.itemselect1(lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID(),lcs.get(pos).getPARENTQID(),holder.edittext.getText().toString(),answer,"","");
+                    ratingSelectionInterface.itemselect(lcs.get(pos).getSURVEYQQUESTIONID(),0, 0, lcs.get(pos).getSURVEYID(), editable.toString());
+                    ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),holder.edittext.getText().toString(),answer,"","");
 
                 }
             });
 
             for (Map.Entry mEntry: map.entrySet())
             {
-                if (mEntry.getKey().equals(lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID()))
+                if (mEntry.getKey().equals(lcs.get(pos).getSURVEYQQUESTIONID()))
                 {
                     try {
                         String srValue=mEntry.getValue().toString();
@@ -312,7 +311,7 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
                         }
 
                         if(lcs.get(pos).getQUESTIONTYPEID()==3) {
-                            if (lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID() == mEntry.getKey()) {
+                            if (lcs.get(pos).getSURVEYQQUESTIONID() == mEntry.getKey()) {
                                 holder.edittext.setText(selecion);
                             }
                         }
@@ -382,16 +381,16 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
                         Log.v("score", ratingSelectionInterface.toString());
 
                         selected = selection;
-                        ratingSelectionInterface.itemselect(lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID(), attachementPOJOList.get(position).getSURVEYANSWERID(), attachementPOJOList.get(position).getGOTOQUESTIONID(), lcs.get(pos).getSURVEYID(), attachementPOJOList.get(position).getSURVEYANSWERTITLE());
+                        ratingSelectionInterface.itemselect(lcs.get(pos).getSURVEYQQUESTIONID(), attachementPOJOList.get(position).getSURVEYANSWERID(), attachementPOJOList.get(position).getGOTOQUESTIONID(), lcs.get(pos).getSURVEYID(), attachementPOJOList.get(position).getSURVEYANSWERTITLE());
                         if (lcs.get(pos).getQUESTIONTYPEID() == 1) {
                             if (selection.equalsIgnoreCase("yes")) {
-                                ratingSelectionInterface.itemselect1(lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, "true", "");
+                                ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, "true", "");
                             } else {
-                                ratingSelectionInterface.itemselect1(lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, "false", "");
+                                ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, "false", "");
                             }
                         } else {
                             answer.add(attachementPOJOList.get(position).getSURVEYANSWERID());
-                            ratingSelectionInterface.itemselect1(lcs.get(pos).getSurveyAnswers().get(position).getSURVEYQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, "", "");
+                            ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, "", "");
                         }
 
                 } catch (Exception e) {

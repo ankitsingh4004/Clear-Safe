@@ -220,8 +220,8 @@ public class LoginActivity extends AppCompatActivity implements VersionCheckList
 
                 try {
                     JSONObject jsonObject = new JSONObject();
-               //   jsonObject.put("username", userName);
-                 //  jsonObject.put("Password", password);
+               //    jsonObject.put("username", userName);
+               //    jsonObject.put("Password", password);
                    // jsonObject.put("username", "info@uveoustech.com");
                 //     jsonObject.put("Password", "Uveous@#$056");
                 //  jsonObject.put("username", "radhey2784@gmail.com");
@@ -230,9 +230,9 @@ public class LoginActivity extends AppCompatActivity implements VersionCheckList
                   //  jsonObject.put("Password", "P@ssword123");
                   //  jsonObject.put("username", "pratikCont@yopmail.com");
                   //  jsonObject.put("Password", "P@ssword123");
-                     jsonObject.put("username", "shaluch123@gmail.com");
+                   jsonObject.put("username", "ravi@gmail.com");
                    jsonObject.put("Password", "P@ssword123");
-
+//
                   //  jsonObject.put("grant_type","password");
                    // UrlClass.BASE_URL="http://109.228.49.117:8095/api/";
                     new SendData1(this, jsonObject, UrlClass.LOGIN_URL, new OnTaskCompleted<String>() {

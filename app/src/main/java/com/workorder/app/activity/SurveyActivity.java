@@ -307,6 +307,7 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                         }catch (Exception e){
 
                         }
+                        Log.v("shalu1",map1.toString());
 
                         requestBody = jsonObject.toString();
 

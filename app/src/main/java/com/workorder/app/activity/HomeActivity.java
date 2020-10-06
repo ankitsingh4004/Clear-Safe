@@ -96,9 +96,9 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
         getWindow().setNavigationBarColor(getResources().getColor(R.color.navigationbar));
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorAccent));
 
-        // Constants.loginPOJO= PreferenceManagerWorkOrder.GetLoginData(this);
-//        tv_name.setText(Constants.loginPOJO.getUsername());
-     //   tv_role.setText(Constants.loginPOJO.getUserRole());
+       // Constants.loginPOJO= PreferenceManagerWorkOrder.GetLoginData(this);
+        tv_name.setText(Constants.loginPOJO.getProfile().getFIRSTNAME().toString()+" "+Constants.loginPOJO.getProfile().getLASTNAME().toString());
+        tv_role.setText(Constants.loginPOJO.getProfile().getRoleNames().get(0));
 
         final SharedPreferences pref = getSharedPreferences("PREFS_NAME", MODE_PRIVATE);
         String json_array = pref.getString("jsonarray", null);
@@ -627,6 +627,10 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
                         tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_on_site_bg_design));
                         tv_go_on_site.setEnabled(true);
 
+                        SharedPreferences mPrefs = getSharedPreferences("TASK_ID", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                        prefsEditor.putInt("assess",Constants.homeStatusPOJO.getASSESMENTID() );
+                        prefsEditor.commit();
                     } else if (Constants.homeStatusPOJO.getSTATUS().equals("Off-Site")) {
                         tv_go_on_site.setText("Off-Site");
                         tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));
