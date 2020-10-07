@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.workorder.app.R;
 import com.workorder.app.Util;
+import com.workorder.app.pojo.assesment.SubmitPojo;
 import com.workorder.app.pojo.docPOJO.AttachementPOJO;
 import com.workorder.app.pojo.survey.SurveyPOJO;
 import com.workorder.app.pojo.survey.SurveyQuestionPojo;
@@ -31,6 +32,7 @@ import com.workorder.app.util.SubmitSurveyAns;
 import com.workorder.app.webservicecallback.OnTaskCompleted;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,6 +50,8 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
     boolean buttonOn;
     private LinkedHashMap<Integer, String> map=new LinkedHashMap<>();
     private LinkedHashMap<Integer, String> map1=new LinkedHashMap<>();
+    public static LinkedHashMap<Integer, ArrayList<Integer>> map2=new LinkedHashMap<>();
+    public static LinkedHashMap<Integer, SubmitPojo> map3=new LinkedHashMap<>();
     public List<SurveyQuestionPojo> lcs;
     public static String coment;
     ArrayList<Integer> answer=new ArrayList<>();
@@ -172,7 +176,7 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
                     holder.check.addView(textView);
                 }
 
-                if(lcs.get(pos).getQUESTIONTYPEID()==4) {
+              if(lcs.get(pos).getQUESTIONTYPEID()==4) {
                     checkBox.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -185,6 +189,9 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
                                 ratingSelectionInterface.itemselect(lcs.get(pos).getSURVEYQQUESTIONID(), attachementPOJOList.get(id).getSURVEYANSWERID(), attachementPOJOList.get(id).getGOTOQUESTIONID(), lcs.get(pos).getSURVEYID(), attachementPOJOList.get(id).getSURVEYANSWERTITLE());
 
                                 answer.add(lcs.get(pos).getSurveyAnswers().get(id).getSURVEYANSWERID());
+                                map2.put(lcs.get(pos).getSURVEYQQUESTIONID(),answer);
+                                SubmitPojo submitPojo=new SubmitPojo(lcs.get(pos).getSURVEYQQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, false, "");
+                                map3.put(lcs.get(pos).getSURVEYQQUESTIONID(),submitPojo);
                                 ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, "false", "");
                             } else {
                                 for (int a = 0; a < answer.size(); a++) {
@@ -192,6 +199,9 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
                                         answer.remove(a);
                                     }
                                 }
+                                map2.put(lcs.get(pos).getSURVEYQQUESTIONID(),answer);
+                                SubmitPojo submitPojo=new SubmitPojo(lcs.get(pos).getSURVEYQQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, false, "");
+                                map3.put(lcs.get(pos).getSURVEYQQUESTIONID(),submitPojo);
                                 ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, "false", "");
 
                             }
@@ -233,7 +243,7 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
                     }*/
 
 
-                }
+               }
 
             }
 
@@ -246,15 +256,7 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     coment=holder.comment.getText().toString();
-                    if(lcs.get(pos).getQUESTIONTYPEID()==1){
-                        if(selected.equalsIgnoreCase("yes")){
-                            ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"true",coment);
-                        }else {
-                            ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"false",coment);
-                        }
-                    }else {
-                        ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"",coment);
-                    }
+
                 }
 
                 @Override
@@ -262,12 +264,17 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
                     coment=holder.comment.getText().toString();
                     if(lcs.get(pos).getQUESTIONTYPEID()==1){
                         if(selected.equalsIgnoreCase("yes")){
+                            SubmitPojo submitPojo=new SubmitPojo(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,true,coment);
+                            map3.put(lcs.get(pos).getSURVEYQQUESTIONID(),submitPojo);
                             ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"true",coment);
                         }else {
+                            SubmitPojo submitPojo=new SubmitPojo(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,false,coment);
+                            map3.put(lcs.get(pos).getSURVEYQQUESTIONID(),submitPojo);
                             ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"false",coment);
                         }
                     }else {
-
+                        SubmitPojo submitPojo=new SubmitPojo(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,false,coment);
+                        map3.put(lcs.get(pos).getSURVEYQQUESTIONID(),submitPojo);
                         ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),"",answer,"",coment);
                     }
                 }
@@ -286,6 +293,8 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
 
                 @Override
                 public void afterTextChanged(Editable editable) {
+                    SubmitPojo submitPojo=new SubmitPojo(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),holder.edittext.getText().toString(),answer,false,"");
+                    map3.put(lcs.get(pos).getSURVEYQQUESTIONID(),submitPojo);
                     ratingSelectionInterface.itemselect(lcs.get(pos).getSURVEYQQUESTIONID(),0, 0, lcs.get(pos).getSURVEYID(), editable.toString());
                     ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(),lcs.get(pos).getPARENTQID(),holder.edittext.getText().toString(),answer,"","");
 
@@ -320,6 +329,8 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
                     }
                 }
             }
+
+
             Log.v("map",map.toString());
 
 
@@ -376,7 +387,7 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
 
                         String selection = (String) butt.getText();
 
-                        answer=new ArrayList<>();
+                       answer=new ArrayList<>();
                         Log.e("Selected", "" + selection);
                         Log.v("score", ratingSelectionInterface.toString());
 
@@ -384,12 +395,18 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
                         ratingSelectionInterface.itemselect(lcs.get(pos).getSURVEYQQUESTIONID(), attachementPOJOList.get(position).getSURVEYANSWERID(), attachementPOJOList.get(position).getGOTOQUESTIONID(), lcs.get(pos).getSURVEYID(), attachementPOJOList.get(position).getSURVEYANSWERTITLE());
                         if (lcs.get(pos).getQUESTIONTYPEID() == 1) {
                             if (selection.equalsIgnoreCase("yes")) {
+                                SubmitPojo submitPojo=new SubmitPojo(lcs.get(pos).getSURVEYQQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, true, "");
+                                map3.put(lcs.get(pos).getSURVEYQQUESTIONID(),submitPojo);
                                 ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, "true", "");
                             } else {
+                                SubmitPojo submitPojo=new SubmitPojo(lcs.get(pos).getSURVEYQQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, false, "");
+                                map3.put(lcs.get(pos).getSURVEYQQUESTIONID(),submitPojo);
                                 ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, "false", "");
                             }
                         } else {
                             answer.add(attachementPOJOList.get(position).getSURVEYANSWERID());
+                            SubmitPojo submitPojo=new SubmitPojo(lcs.get(pos).getSURVEYQQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, false, "");
+                            map3.put(lcs.get(pos).getSURVEYQQUESTIONID(),submitPojo);
                             ratingSelectionInterface.itemselect1(lcs.get(pos).getSURVEYQQUESTIONID(), lcs.get(pos).getPARENTQID(), "", answer, "", "");
                         }
 

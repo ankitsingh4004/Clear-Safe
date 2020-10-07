@@ -25,6 +25,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 import com.workorder.app.ConnectivityReceiver;
 import com.workorder.app.R;
 import com.workorder.app.Util;
@@ -32,6 +34,7 @@ import com.workorder.app.adapter.Survey;
 import com.workorder.app.adapter.SurveyAdapter;
 import com.workorder.app.api.APIHelper;
 import com.workorder.app.api.APIInterface;
+import com.workorder.app.pojo.assesment.SubmitPojo;
 import com.workorder.app.pojo.survey.SurveyQuestionPojo;
 import com.workorder.app.util.Constants;
 import com.workorder.app.util.UrlClass;
@@ -44,6 +47,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -53,6 +57,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 import static com.workorder.app.adapter.SurveyAdapter.coment;
+import static com.workorder.app.adapter.SurveyAdapter.map2;
+import static com.workorder.app.adapter.SurveyAdapter.map3;
 
 public class SurveyActivity extends FragmentActivity implements SurveyAdapter.RatingSelectionInterface {
     int surveyTemplateId;
@@ -269,11 +275,11 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                     if (map.size() == lcs.size()) {
 
                         JSONArray jsonArray = new JSONArray();
-                        for (Map.Entry<Integer, String> mmap : map1.entrySet()) {
+                        for (Map.Entry<Integer, SubmitPojo> mmap : map3.entrySet()) {
                             JSONObject jsonObject1 = new JSONObject();
                             try {
 
-                                String srValue = mmap.getValue();
+                              /*  String srValue = mmap.getValue();
                                 String aa = srValue.substring(mmap.getValue().indexOf(",") + 1);
                                 String surveyAnswerID = Util.before(aa, ",");
                                 String aaa = aa.substring(aa.indexOf(",") + 1);
@@ -281,20 +287,24 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                                 String aaaa = aaa.substring(aaa.indexOf(",") + 1);
                                 String yes = Util.before(aaaa, ",");
                                 String comment = Util.after(aaaa, ",");
-
+*/
 
                                 jsonObject1.put("QuestionId", mmap.getKey());
-                                jsonObject1.put("ParentQuestionId", JSONObject.NULL);
-                                jsonObject1.put("FreeText",surveyAnswerID);
-                                jsonObject1.put("Answers", new JSONArray(surveyID));
-                                jsonObject1.put("YesNo",Boolean.parseBoolean(yes));
-                                jsonObject1.put("AnswerComments", comment);
+                                jsonObject1.put("ParentQuestionId", mmap.getValue().getParentQuestionId());
+                                jsonObject1.put("FreeText",mmap.getValue().getFreetext());
+                                jsonObject1.put("Answers",new JSONArray(mmap.getValue().getAnswers()));
+                                jsonObject1.put("YesNo",mmap.getValue().getYesNo());
+                                jsonObject1.put("AnswerComments",mmap.getValue().getAnswerComments());
 
                                 jsonArray.put(jsonObject1);
 
                             } catch (Exception e) {
+                                e.printStackTrace();
+                                Log.v("exp",e.toString());
                             }
                         }
+
+
 
                         try {
 
@@ -356,6 +366,7 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
         TextView tv_message=dialog.findViewById(R.id.tv_message_thanks);
         tv_message.setText(message);
 
+        dialog.setCanceledOnTouchOutside(false);
         dialog.show();
         tv_ok.setOnClickListener(new View.OnClickListener() {
             @Override
