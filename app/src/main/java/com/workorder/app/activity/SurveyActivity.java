@@ -34,7 +34,7 @@ import com.workorder.app.adapter.Survey;
 import com.workorder.app.adapter.SurveyAdapter;
 import com.workorder.app.api.APIHelper;
 import com.workorder.app.api.APIInterface;
-import com.workorder.app.pojo.assesment.SubmitPojo;
+
 import com.workorder.app.pojo.survey.SurveyQuestionPojo;
 import com.workorder.app.util.Constants;
 import com.workorder.app.util.UrlClass;
@@ -186,7 +186,116 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
             @Override
             public void onClick(View view) {
 
-                if(i<lcs.size()-1) {
+                if(i< lcs.size()-1) {
+                    if(map.size()>i){
+                        i = i + 1;
+
+                        back.setVisibility(View.VISIBLE);
+
+                        adapter.notifyDataSetChanged();
+                        getlist(i);
+                        Log.v("size", String.valueOf( lcs.size()));
+                        Log.v("size1", String.valueOf(i));
+                        if(i== lcs.size()-1){
+                            sub.setText("Submit");
+                            next.setBackground(getResources().getDrawable(R.drawable.blue_desing));
+                            sub.setTextColor(getResources().getColor(R.color.white));
+                            Log.v("size1", String.valueOf(i));
+                            Log.v("size", String.valueOf( lcs.size()));
+
+                        }
+                    }else {
+                        Toast.makeText(SurveyActivity.this, "select one option" , Toast.LENGTH_SHORT).show();
+
+                    }
+
+                }
+                else {
+
+                    JSONObject jsonObject = new JSONObject();
+                    sub.setText("Submit");
+                    sub.setTextColor(getResources().getColor(R.color.white));
+                    next.setBackground(getResources().getDrawable(R.drawable.blue_desing));
+
+                    if (map.size() == lcs.size()) {
+
+                        JSONArray jsonArray = new JSONArray();
+                        for (Map.Entry<Integer, SubmitPojo> mmap : map3.entrySet()) {
+                            JSONObject jsonObject1 = new JSONObject();
+                            try {
+
+                              /*  String srValue = mmap.getValue();
+                                String aa = srValue.substring(mmap.getValue().indexOf(",") + 1);
+                                String surveyAnswerID = Util.before(aa, ",");
+                                String aaa = aa.substring(aa.indexOf(",") + 1);
+                                String surveyID = Util.before(aaa, ",");
+                                String aaaa = aaa.substring(aaa.indexOf(",") + 1);
+                                String yes = Util.before(aaaa, ",");
+                                String comment = Util.after(aaaa, ",");
+*/
+
+                                jsonObject1.put("QuestionId", mmap.getKey());
+                                jsonObject1.put("ParentQuestionId", mmap.getValue().getParentQuestionId());
+                                jsonObject1.put("FreeText",mmap.getValue().getFreeText());
+                                jsonObject1.put("Answers",new JSONArray(mmap.getValue().getAnswer()));
+                                jsonObject1.put("YesNo",mmap.getValue().getYes());
+                                jsonObject1.put("AnswerComments",mmap.getValue().getComment());
+
+                                jsonArray.put(jsonObject1);
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                Log.v("exp",e.toString());
+                            }
+                        }
+
+
+
+                        try {
+
+                            jsonObject.put("SurveyId",lcs.get(0).getSURVEYID());
+                            jsonObject.put("AssesmentId", assessmentid);
+                            jsonObject.put("WorkOrerId", workorderid);
+                            jsonObject.put("CompanyId",Constants.loginPOJO.getProfile().getCompanyId());
+                            jsonObject.put("Comments","");
+                            jsonObject.put("Questions", jsonArray);
+                        }catch (Exception e){
+
+                        }
+                        Log.v("shalu1",map1.toString());
+
+                        requestBody = jsonObject.toString();
+
+                        Log.v("shalu", requestBody);
+                        boolean isConnected = ConnectivityReceiver.isConnected();
+                        if (isConnected == true) {
+                            new SendData(SurveyActivity.this, jsonObject, UrlClass.SUBMIT_ANSWER, new OnTaskCompleted<String>() {
+                                @Override
+                                public void onTaskCompleted(String response) {
+                                    opentThanksYesClickDialog("Survey Submitted Successfully");
+                                }
+                            }, true).execute();
+                        } else {
+                            SharedPreferences mPrefs = SurveyActivity.this.getSharedPreferences("PREFS_NAME", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                            prefsEditor.putString("jsonarray", jsonArray.toString());
+                            prefsEditor.commit();
+
+                            opentThanksYesClickDialog("Network not available");
+                            //   Toast.makeText(SurveyActivity.this,"Network Not Available",Toast.LENGTH_LONG).show();
+                            //    startActivity(new Intent(SurveyActivity.this,HomeActivity.class));
+
+                        }
+
+                        Log.v("requestBody", requestBody);
+
+                    } else {
+                        Toast.makeText(SurveyActivity.this, "select one option" , Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+
+                /*if(i<lcs.size()-1) {
                    // if (map.size() > i) {
                         String g;
                         if (lcs.get(i).getQUESTIONTYPEID() == 3) {
@@ -279,7 +388,7 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                             JSONObject jsonObject1 = new JSONObject();
                             try {
 
-                              /*  String srValue = mmap.getValue();
+                              *//*  String srValue = mmap.getValue();
                                 String aa = srValue.substring(mmap.getValue().indexOf(",") + 1);
                                 String surveyAnswerID = Util.before(aa, ",");
                                 String aaa = aa.substring(aa.indexOf(",") + 1);
@@ -287,7 +396,7 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                                 String aaaa = aaa.substring(aaa.indexOf(",") + 1);
                                 String yes = Util.before(aaaa, ",");
                                 String comment = Util.after(aaaa, ",");
-*/
+*//*
 
                                 jsonObject1.put("QuestionId", mmap.getKey());
                                 jsonObject1.put("ParentQuestionId", mmap.getValue().getParentQuestionId());
@@ -348,7 +457,7 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                         Toast.makeText(SurveyActivity.this, "select one option" , Toast.LENGTH_SHORT).show();
 
                     }
-                }
+                }*/
             }
         });
 

@@ -24,7 +24,8 @@ import android.widget.Toast;
 
 import com.workorder.app.R;
 import com.workorder.app.Util;
-import com.workorder.app.pojo.assesment.SubmitPojo;
+import com.workorder.app.activity.SubmitPojo;
+
 import com.workorder.app.pojo.docPOJO.AttachementPOJO;
 import com.workorder.app.pojo.survey.SurveyPOJO;
 import com.workorder.app.pojo.survey.SurveyQuestionPojo;
