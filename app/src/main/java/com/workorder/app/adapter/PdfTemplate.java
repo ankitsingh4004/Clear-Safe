@@ -59,7 +59,6 @@ public class PdfTemplate extends RecyclerView.Adapter<PdfTemplate.MyViewHolder> 
         holder.openButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent=new Intent(context, ShowDocumentActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("pdf",""+attachements.get(position).getDocumentName());

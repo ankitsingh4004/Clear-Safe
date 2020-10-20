@@ -6,6 +6,7 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/521925ea85e4ad5c005788f8411c189f/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/521925ea85e4ad5c005788f8411c189f/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/521925ea85e4ad5c005788f8411c189f/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

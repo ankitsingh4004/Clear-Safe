@@ -124,11 +124,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     TextView tv_go_on_site;
     public static int onsite;
     ProgressDialog dialog;
- String workorderstatus;
- String warninglevel;
- TextView workOrderStatus;
- TextView warningtext;
- ImageView warning1;
+    String workorderstatus;
+    String warninglevel;
+    TextView workOrderStatus;
+    TextView warningtext;
+    TextView guidelines;
+    ImageView warning1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,6 +139,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         iv_back = findViewById(R.id.iv_site_location_back);
         template = findViewById(R.id.template);
         warning = findViewById(R.id.warning);
+        guidelines = findViewById(R.id.guidelines);
         description = findViewById(R.id.descrption);
         tv_go_on_site = findViewById(R.id.tv_home_activity_go_on_site);
         tv_mark_on_site = findViewById(R.id.tv_mark_on_site);

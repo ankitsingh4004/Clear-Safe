@@ -14,7 +14,6 @@ import com.workorder.app.R;
 import com.workorder.app.util.Constants;
 
 public class Profile  extends Fragment {
-
     EditText name;
     EditText email;
     EditText phone;
@@ -25,7 +24,6 @@ public class Profile  extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.activity_profile, container, false);
-
         name=rootView.findViewById(R.id.name);
         email=rootView.findViewById(R.id.email);
         phone=rootView.findViewById(R.id.phone);

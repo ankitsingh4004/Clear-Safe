@@ -100,7 +100,7 @@ public class ShowDocumentActivity extends AppCompatActivity implements DownloadF
              WebSettings webSettings = webView.getSettings();
              webSettings.setBuiltInZoomControls(true);
              webSettings.setJavaScriptEnabled(true);
-            webView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
+             webView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
 
              webView.getSettings().setBuiltInZoomControls(true);
              webView.getSettings().setDisplayZoomControls(false);
@@ -207,6 +207,7 @@ public class ShowDocumentActivity extends AppCompatActivity implements DownloadF
                 dialog.dismiss();
 
 
+
             }
         });
     }
@@ -219,6 +220,7 @@ public class ShowDocumentActivity extends AppCompatActivity implements DownloadF
 
     @Override
     protected void onDestroy() {
+
         super.onDestroy();
         if (adapter!=null){
             adapter.close();

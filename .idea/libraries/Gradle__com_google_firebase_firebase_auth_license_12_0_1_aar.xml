@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-license-12.0.1.aar/f1de3c4fab21bbe4cc56532282cd997e/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-license-12.0.1.aar/f1de3c4fab21bbe4cc56532282cd997e/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-license-12.0.1.aar/f1de3c4fab21bbe4cc56532282cd997e/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-vision-license-12.0.1.aar/b640cb4676da85cfed040a71caa580b5/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-vision-license-12.0.1.aar/b640cb4676da85cfed040a71caa580b5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-vision-license-12.0.1.aar/b640cb4676da85cfed040a71caa580b5/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

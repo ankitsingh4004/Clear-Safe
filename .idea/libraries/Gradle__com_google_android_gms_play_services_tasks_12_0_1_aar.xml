@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tasks-12.0.1.aar/b9c3a0ca799ed6bd5440595eb6f064bb/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tasks-12.0.1.aar/b9c3a0ca799ed6bd5440595eb6f064bb/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tasks-12.0.1.aar/b9c3a0ca799ed6bd5440595eb6f064bb/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

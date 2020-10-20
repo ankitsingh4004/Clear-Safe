@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/5bcb301410df630d4a301857f08129f0/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/5bcb301410df630d4a301857f08129f0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/5bcb301410df630d4a301857f08129f0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

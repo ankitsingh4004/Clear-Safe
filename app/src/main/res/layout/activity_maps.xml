@@ -453,29 +453,59 @@
 
             </LinearLayout>
 
-            <FrameLayout
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/blue_desing"
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
-
-                <TextView
+                <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Survey"
-                    android:textStyle="bold"
-                    android:id="@+id/template"
-                    android:textSize="15sp"
-                    android:padding="10dp"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/white">
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/blue_desing"
+                    android:orientation="horizontal">
 
 
-                </TextView>
-            </FrameLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Survey"
+                        android:textStyle="bold"
+                        android:id="@+id/template"
+                        android:textSize="15sp"
+                        android:padding="10dp"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white">
+
+
+                    </TextView>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:background="@drawable/blue_desing"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Guide Lines"
+                        android:textStyle="bold"
+                        android:id="@+id/guidelines"
+                        android:textSize="15sp"
+                        android:padding="10dp"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white">
+
+
+                    </TextView>
+                </FrameLayout>
+
+            </LinearLayout>
 
             <!--   <FrameLayout
                    android:layout_width="wrap_content"
