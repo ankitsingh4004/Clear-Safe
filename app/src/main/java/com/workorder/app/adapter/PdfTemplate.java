@@ -1,5 +1,6 @@
 package com.workorder.app.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.workorder.app.R;
 import com.workorder.app.activity.ShowDocumentActivity;
+import com.workorder.app.activity.ShowPdf;
 import com.workorder.app.pojo.docPOJO.AttachementPOJO;
 import com.workorder.app.pojo.docPOJO.GetSwmsTemplate;
 import com.workorder.app.util.UtilityFunction;
@@ -21,15 +23,16 @@ import com.workorder.app.util.UtilityFunction;
 import java.util.List;
 
 public class PdfTemplate extends RecyclerView.Adapter<PdfTemplate.MyViewHolder> {
-
     Context context;
     List<GetSwmsTemplate.Attachement> attachements;
+    GetSwmsTemplate attachementPOJO1;
     int assessmentid;
 
-    public PdfTemplate(Context context, List<GetSwmsTemplate.Attachement> attachements,int assessmentid) {
+    public PdfTemplate(Context context, List<GetSwmsTemplate.Attachement> attachements, int assessmentid, GetSwmsTemplate attachementPOJO) {
         this.context=context;
         this.attachements=attachements;
         this.assessmentid=assessmentid;
+        this.attachementPOJO1=attachementPOJO;
     }
 
     @NonNull
@@ -37,36 +40,54 @@ public class PdfTemplate extends RecyclerView.Adapter<PdfTemplate.MyViewHolder> 
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.rv_pdf_list, parent, false);
-
         return new MyViewHolder(itemView);
-
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         final GetSwmsTemplate.Attachement attachementPOJO=attachements.get(position);
-
         int i=position+1;
         holder.tv_DocName.setText(""+attachementPOJO.getDocumentName());
         holder.tv_doc.setText(""+attachementPOJO.getDocumentName());
         holder.img_attachment.setText(""+i+".");
         holder.tv_doc_date.setText(UtilityFunction.getSplitedDate(attachementPOJO.getAssignedDate()));
-
-            holder.tv_signed_status.setText(attachementPOJO.getStatus());
-
+        holder.tv_signed_status.setText(attachementPOJO.getStatus());
 
 
         holder.openButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context, ShowDocumentActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("documentname",attachementPOJO1.getFILENAME());
+                intent.putExtra("documenturl",attachementPOJO1.getDOCUMENTURL());
                 intent.putExtra("pdf",""+attachements.get(position).getDocumentName());
                 intent.putExtra("status",attachements.get(position).getStatus());
                 intent.putExtra("assesmenttemplateid",attachements.get(position).getAssesmentTemplateId());
                 intent.putExtra("assesmentid",assessmentid);
                 intent.putExtra("assesmentempid",attachements.get(position).getAssignedEmployeeId());
                 context.startActivity(intent);
+              /*  if(attachementPOJO1.getFILENAME().equalsIgnoreCase("")){
+                    Intent intent=new Intent(context, ShowDocumentActivity.class);
+                    intent.putExtra("documentname",attachementPOJO1.getFILENAME());
+                    intent.putExtra("documenturl",attachementPOJO1.getDOCUMENTURL());
+                    intent.putExtra("pdf",""+attachements.get(position).getDocumentName());
+                    intent.putExtra("status",attachements.get(position).getStatus());
+                    intent.putExtra("assesmenttemplateid",attachements.get(position).getAssesmentTemplateId());
+                    intent.putExtra("assesmentid",assessmentid);
+                    intent.putExtra("assesmentempid",attachements.get(position).getAssignedEmployeeId());
+                    context.startActivity(intent);
+                }else {
+                    Intent intent=new Intent(context, ShowPdf.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("documentname",attachementPOJO1.getFILENAME());
+                    intent.putExtra("documenturl",attachementPOJO1.getDOCUMENTURL());
+                    intent.putExtra("pdf",""+attachements.get(position).getDocumentName());
+                    intent.putExtra("status",attachements.get(position).getStatus());
+                    intent.putExtra("assesmenttemplateid",attachements.get(position).getAssesmentTemplateId());
+                    intent.putExtra("assesmentid",assessmentid);
+                    intent.putExtra("assesmentempid",attachements.get(position).getAssignedEmployeeId());
+                    context.startActivity(intent);
+                }*/
 
             }
         });
@@ -87,16 +108,15 @@ public class PdfTemplate extends RecyclerView.Adapter<PdfTemplate.MyViewHolder> 
         Integer position;
         Button openButton;
 
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_DocName = itemView.findViewById(R.id.tv_doc_name);
+
             tv_doc = itemView.findViewById(R.id.tv_doc);
             img_attachment = itemView.findViewById(R.id.img_attachment);
             tv_doc_date = itemView.findViewById(R.id.tv_doc_date);
             tv_signed_status=itemView.findViewById(R.id.tv_signed_status);
             openButton = itemView.findViewById(R.id.btn_doc_open);
-
             taskCard = itemView.findViewById(R.id.firstcard);
         }
     }

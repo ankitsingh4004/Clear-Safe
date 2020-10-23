@@ -54,14 +54,25 @@ public class SignatureActivity extends AppCompatActivity implements CompoundButt
     GetSwmsTemplate.Attachement attachementPOJO;
     final Context context = this;
     int assesmenttemplateid;
+    String documentname;
     int assesmentempid;
     int assesmentid;
+    TextView sms;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signature);
       //  tv_title=findViewById(R.id.tv_activity_name);
         iv_back=findViewById(R.id.iv_back);
+        sms=findViewById(R.id.sms);
+        documentname=getIntent().getStringExtra("documentname");
+
+   /*     if(documentname.equalsIgnoreCase("")){
+            sms.setText("Please enter your signature in the space below.");
+        }else {
+            sms.setText("Please sign to confirm that you have read the attached current instructions.If you have not read the attached document then please close this panel, read the file and then sign this panel by selecting the option SIGN.");
+        }*/
         assesmenttemplateid= getIntent().getIntExtra("assesmenttemplateid",0);
         assesmentempid= getIntent().getIntExtra("assesmentempid",0);
         assesmentid= getIntent().getIntExtra("assesmentid",0);

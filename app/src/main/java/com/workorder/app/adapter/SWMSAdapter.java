@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.workorder.app.R;
 import com.workorder.app.activity.MapsActivity;
 import com.workorder.app.activity.ShowDocumentActivity;
+import com.workorder.app.activity.ShowPdf;
 import com.workorder.app.pojo.docPOJO.AttachementPOJO;
 import com.workorder.app.pojo.docPOJO.GetSwmsTemplate;
 import com.workorder.app.util.Constants;
@@ -57,20 +58,38 @@ public class SWMSAdapter extends RecyclerView.Adapter<SWMSAdapter.DocListViewHol
             holder.tv_version.setText("V.no : " + attachementPOJO.getVersion());
             holder.tv_doc_temp.setText("" + attachementPOJO.getTemplateNumber());
             holder.tv_doc_date.setText(UtilityFunction.getSplitedDate(attachementPOJO.getAssignedDate()));
-        holder.workOrderStatus.setText(attachementPOJO.getsWMSStatus());
-        holder.warningtext.setText(attachementPOJO.getsWMSWarningLevel());
-        if(attachementPOJO.getsWMSWarningLevel().equalsIgnoreCase("Ok")){
+        holder.workOrderStatus.setText(attachementPOJO.getSWMSStatus());
+        holder.warningtext.setText(attachementPOJO.getSWMSWarningLevel());
+        if(attachementPOJO.getSWMSWarningLevel().equalsIgnoreCase("Ok")){
             holder.warning.setImageResource(R.drawable.ic_warning_black2_24dp);
-        }else if(attachementPOJO.getsWMSWarningLevel().equalsIgnoreCase("Failure")){
+        }else if(attachementPOJO.getSWMSWarningLevel().equalsIgnoreCase("Failure")){
             holder.warning.setImageResource(R.drawable.ic_warning_black3_24dp);
         }else {
             holder.warning.setImageResource(R.drawable.ic_warning_black1_24dp);
         }
-        PdfTemplate gridAdapter = new PdfTemplate(context,attachementPOJOList.get(position).getAttachements() ,assessmentid);
+        PdfTemplate gridAdapter = new PdfTemplate(context,attachementPOJOList.get(position).getAttachements() ,assessmentid,attachementPOJO);
         holder.recycler_view.setAdapter(gridAdapter);
         gridAdapter.notifyDataSetChanged();
 
+        if(attachementPOJO.getFILENAME().equalsIgnoreCase("")){
+            holder.file.setVisibility(View.GONE);
+        }else {
+            holder.file.setVisibility(View.VISIBLE);
+        }
 
+        holder.file.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, ShowPdf.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("documentname",attachementPOJO.getFILENAME());
+                intent.putExtra("documenturl",attachementPOJO.getDOCUMENTURL());
+             //   intent.putExtra("assesmenttemplateid",attachements.get(position).getAssesmentTemplateId());
+                intent.putExtra("assesmentid",assessmentid);
+             //   intent.putExtra("assesmentempid",attachements.get(position).getAssignedEmployeeId());
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -91,6 +110,7 @@ public class SWMSAdapter extends RecyclerView.Adapter<SWMSAdapter.DocListViewHol
         TextView workOrderStatus;
 
         ImageView warning;
+        Button file;
 
         public DocListViewHolder(View itemView) {
             super(itemView);
@@ -101,7 +121,7 @@ public class SWMSAdapter extends RecyclerView.Adapter<SWMSAdapter.DocListViewHol
             recycler_view = itemView.findViewById(R.id.recycler_view);
             tv_doc_date = itemView.findViewById(R.id.tv_doc_date);
             tv_version=itemView.findViewById(R.id.tv_version);
-
+            file = itemView.findViewById(R.id.file);
             taskCard = itemView.findViewById(R.id.firstcard);
 
             warning = itemView.findViewById(R.id.warning1);

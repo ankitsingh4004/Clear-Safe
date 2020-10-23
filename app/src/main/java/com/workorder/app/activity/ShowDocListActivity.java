@@ -40,7 +40,6 @@ public class ShowDocListActivity extends AppCompatActivity {
         rv_show_list.setLayoutManager(new LinearLayoutManager(this));
         try {
             assesmentHomePOJO = (AssesmentHomePOJO) getIntent().getSerializableExtra("AssesmentPOJO");
-
             if (assesmentHomePOJO!=null){
                 try {
                     Constants.assesmentHomePOJO=assesmentHomePOJO;

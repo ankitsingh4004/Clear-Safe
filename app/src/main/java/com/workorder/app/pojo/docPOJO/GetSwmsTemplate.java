@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.List;
 
 public class GetSwmsTemplate implements Serializable {
-
     @SerializedName("AssesmentTemplateId")
     @Expose
     private Integer assesmentTemplateId;
@@ -32,6 +31,18 @@ public class GetSwmsTemplate implements Serializable {
     @SerializedName("SWMSWarningLevel")
     @Expose
     private String sWMSWarningLevel;
+    @SerializedName("DOCUMENTNAME")
+    @Expose
+    private String dOCUMENTNAME;
+    @SerializedName("FILENAME")
+    @Expose
+    private String fILENAME;
+    @SerializedName("DOCUMENT_URL")
+    @Expose
+    private String dOCUMENTURL;
+    @SerializedName("VERSION_NUMBER")
+    @Expose
+    private String vERSIONNUMBER;
     @SerializedName("Attachements")
     @Expose
     private List<Attachement> attachements = null;
@@ -64,22 +75,6 @@ public class GetSwmsTemplate implements Serializable {
         return title;
     }
 
-    public String getsWMSStatus() {
-        return sWMSStatus;
-    }
-
-    public void setsWMSStatus(String sWMSStatus) {
-        this.sWMSStatus = sWMSStatus;
-    }
-
-    public String getsWMSWarningLevel() {
-        return sWMSWarningLevel;
-    }
-
-    public void setsWMSWarningLevel(String sWMSWarningLevel) {
-        this.sWMSWarningLevel = sWMSWarningLevel;
-    }
-
     public void setTitle(String title) {
         this.title = title;
     }
@@ -100,6 +95,54 @@ public class GetSwmsTemplate implements Serializable {
         this.templateNumber = templateNumber;
     }
 
+    public String getSWMSStatus() {
+        return sWMSStatus;
+    }
+
+    public void setSWMSStatus(String sWMSStatus) {
+        this.sWMSStatus = sWMSStatus;
+    }
+
+    public String getSWMSWarningLevel() {
+        return sWMSWarningLevel;
+    }
+
+    public void setSWMSWarningLevel(String sWMSWarningLevel) {
+        this.sWMSWarningLevel = sWMSWarningLevel;
+    }
+
+    public String getDOCUMENTNAME() {
+        return dOCUMENTNAME;
+    }
+
+    public void setDOCUMENTNAME(String dOCUMENTNAME) {
+        this.dOCUMENTNAME = dOCUMENTNAME;
+    }
+
+    public String getFILENAME() {
+        return fILENAME;
+    }
+
+    public void setFILENAME(String fILENAME) {
+        this.fILENAME = fILENAME;
+    }
+
+    public String getDOCUMENTURL() {
+        return dOCUMENTURL;
+    }
+
+    public void setDOCUMENTURL(String dOCUMENTURL) {
+        this.dOCUMENTURL = dOCUMENTURL;
+    }
+
+    public String getVERSIONNUMBER() {
+        return vERSIONNUMBER;
+    }
+
+    public void setVERSIONNUMBER(String vERSIONNUMBER) {
+        this.vERSIONNUMBER = vERSIONNUMBER;
+    }
+
     public List<Attachement> getAttachements() {
         return attachements;
     }
@@ -107,6 +150,7 @@ public class GetSwmsTemplate implements Serializable {
     public void setAttachements(List<Attachement> attachements) {
         this.attachements = attachements;
     }
+
 
     public class Attachement {
 

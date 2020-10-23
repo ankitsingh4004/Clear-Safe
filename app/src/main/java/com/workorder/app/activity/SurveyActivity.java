@@ -481,6 +481,7 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                Constants.ACTIVITY_NAME = Constants.HOME_ACTIVITY;
                 startActivity(new Intent(SurveyActivity.this,HomeActivity.class));
             }
         });

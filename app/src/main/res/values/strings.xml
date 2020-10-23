@@ -286,6 +286,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_show_all_site_in_map">Map</string>
     <string name="title_activity_show_work_order_on_map">Map</string>
+    <string name="please_sign_to_confirm_that_you_have_read_the_attached_current_instructions_if_you_have_not_read_the_attached_document_then_please_close_this_panel_read_the_file_and_then_sign_this_panel_by_selecting_the_option_sign">Please sign to confirm that you have read the attached current instructions. If you have not read the attached document then please close this panel, read the file and then sign this panel by selecting the option SIGN.</string>
 
 
 </resources>

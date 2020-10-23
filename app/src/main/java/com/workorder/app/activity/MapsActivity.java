@@ -113,7 +113,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     boolean isNetworkEnable = false;
     SiteLocationPOJO siteLocationPOJO;
     double distance = 0;
-    public static final double DISTANCE =20;
+    public static final double DISTANCE =99999920;
     // Bottom Sheet
     ListView listView;
     TextView tv_suspended;
@@ -713,6 +713,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
      /*  if (UtilityFunction.isNetworkAvailable(this))
        {
+
            dialog=new ProgressDialog(this);
            dialog.setMessage("Please wait...");
            dialog.setCancelable(false);

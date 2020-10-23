@@ -13,7 +13,6 @@
         android:id="@+id/webView"
         android:layout_width="match_parent"
         android:layout_below="@+id/toolbar"
-
         android:layout_height="match_parent"/>
 
     <FrameLayout
@@ -30,6 +29,7 @@
             android:layout_height="wrap_content" />
     </FrameLayout>
 
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_sign"
         android:layout_width="100dp"
@@ -40,5 +40,6 @@
         android:layout_marginRight="20dp"
         app:srcCompat="@drawable/ic_sign"
         />
+
 
 </RelativeLayout>

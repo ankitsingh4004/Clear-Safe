@@ -33,9 +33,9 @@ public class Profile  extends Fragment {
 
         name.setText(Constants.loginPOJO.getProfile().getFIRSTNAME().toString()+" "+Constants.loginPOJO.getProfile().getLASTNAME().toString());
         email.setText(Constants.loginPOJO.getProfile().getEmail().toString());
-        phone.setText(Constants.loginPOJO.getProfile().getPERSONALMOBILE().toString());
-        company.setText(Constants.loginPOJO.getProfile().getPERSONALADDRESS1().toString());
-        city.setText(Constants.loginPOJO.getProfile().getBUSINESSADDRESS1().toString());
+         phone.setText(Constants.loginPOJO.getProfile().getBUSINESSMOBILE().toString());
+       company.setText(Constants.loginPOJO.getProfile().getBUSINESSADDRESS1().toString());
+        city.setText(Constants.loginPOJO.getProfile().getBUSINESSCITY().toString());
       //  country.setText(Constants.loginPOJO.getProfile().getPERSONALCOUNTRYID().toString());
 
         return  rootView;

@@ -1,5 +1,6 @@
 package com.workorder.app.fragment;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -72,20 +73,20 @@ public class SWMSFragment extends Fragment implements LocationListener {
     TextView tv_wo_no;
     TextView show;
     //HomeFragmentAdapter adapter;
-  //  private List<SearchTaskListResponseModel> list = new ArrayList<>();
-  //  private ArrayList<SearchTaskListResponseModel> data;
-   /**/RecyclerView rv_home;
-      String task = "";
-  //  private PreferenceManager preferenceManager;
-  //  private ProgressDialog progressDialog;
-   // private List<SearchTaskListResponseModel> responseModel;
+    //  private List<SearchTaskListResponseModel> list = new ArrayList<>();
+    //  private ArrayList<SearchTaskListResponseModel> data;
+    /**/ RecyclerView rv_home;
+    String task = "";
+    //  private PreferenceManager preferenceManager;
+    //  private ProgressDialog progressDialog;
+    // private List<SearchTaskListResponseModel> responseModel;
 
 
     GetLocationPOJO locationPOJO;
     int id;
     SWMSAdapter adapter;
     AssesmentHomePOJO assesmentHomePOJO;
-    List<AttachementPOJO> attachementPOJOS=new ArrayList<>();
+    List<AttachementPOJO> attachementPOJOS = new ArrayList<>();
 
     Integer srValue;
 
@@ -95,32 +96,32 @@ public class SWMSFragment extends Fragment implements LocationListener {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         init(rootView);
 
-        if(Constants.workOrderdetail==null){
+        if (Constants.workOrderdetail == null) {
             final SharedPreferences pref1 = getContext().getSharedPreferences("work", MODE_PRIVATE);
-            String wno = pref1.getString("workorderno",null);
+            String wno = pref1.getString("workorderno", null);
             tv_wo_no.setText(wno);
 
-        }else {
+        } else {
             tv_wo_no.setVisibility(View.VISIBLE);
             show.setVisibility(View.VISIBLE);
             tv_wo_no.setText(Constants.workOrderdetail.getWorkOrderNo());
             SharedPreferences mPrefs = getActivity().getSharedPreferences("work", Context.MODE_PRIVATE);
             SharedPreferences.Editor prefsEditor = mPrefs.edit();
-            prefsEditor.putString("workorderno",Constants.workOrderdetail.getWorkOrderNo());
+            prefsEditor.putString("workorderno", Constants.workOrderdetail.getWorkOrderNo());
             prefsEditor.commit();
         }
 
 
         final SharedPreferences pref1 = getContext().getSharedPreferences("TASK_ID", MODE_PRIVATE);
-         id = pref1.getInt("assess", 0);
-        if(id==0){
+        id = pref1.getInt("assess", 0);
+        if (id == 0) {
             tv_wo_no.setVisibility(View.GONE);
             show.setVisibility(View.GONE);
             opentThanksYesClickDialog1("SWMS are only available once the Work Order has been started and you are On-Site.");
             tv_go_on_site.setText("Off-Site");
             tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));
             tv_go_on_site.setEnabled(false);
-        }else {
+        } else {
             Log.v("id", String.valueOf(id));
 
 
@@ -152,8 +153,6 @@ public class SWMSFragment extends Fragment implements LocationListener {
         }
 
 
-
-
         return rootView;
     }
 
@@ -171,20 +170,20 @@ public class SWMSFragment extends Fragment implements LocationListener {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Constants.ACTIVITY_NAME =Constants.HOME_ACTIVITY;
+                Constants.ACTIVITY_NAME = Constants.HOME_ACTIVITY;
 
-                startActivity(new Intent(getContext(),HomeActivity.class));
+                startActivity(new Intent(getContext(), HomeActivity.class));
 
             }
         });
     }
 
     public void init(View rootView) {
-       rv_home = rootView.findViewById(R.id.rv_task_list);
-        tv_wo_no=rootView.findViewById(R.id.tv_swms_work_order_no);
-        show=rootView.findViewById(R.id.show);
+        rv_home = rootView.findViewById(R.id.rv_task_list);
+        tv_wo_no = rootView.findViewById(R.id.tv_swms_work_order_no);
+        show = rootView.findViewById(R.id.show);
         rv_home.setLayoutManager(new LinearLayoutManager(getActivity()));
-    //    progressDialog = new ProgressDialog(getActivity());
+        //    progressDialog = new ProgressDialog(getActivity());
     }
 
     public Toolbar setToolbar(View view) {
@@ -208,7 +207,7 @@ public class SWMSFragment extends Fragment implements LocationListener {
 
 
     public void callCheckOnSiteApi() {
-        new GetApiCallback(getContext(), UrlClass.BASE_URL+"api/Order/getactivity" , new OnTaskCompleted<String>() {
+        new GetApiCallback(getContext(), UrlClass.BASE_URL + "api/Order/getactivity", new OnTaskCompleted<String>() {
             @Override
             public void onTaskCompleted(String response) {
                 try {
@@ -218,12 +217,11 @@ public class SWMSFragment extends Fragment implements LocationListener {
                     if (Constants.homeStatusPOJO.getSTATUS().equals("On-Site")) {
                         try {
 
-                        }catch (Exception e)
-                        {
-                            Log.d("Exception",e.getMessage());
+                        } catch (Exception e) {
+                            Log.d("Exception", e.getMessage());
                         }
 
-                      //  tv_wo_no.setText(Constants.homeStatusPOJO.g());
+                        //  tv_wo_no.setText(Constants.homeStatusPOJO.g());
 
                         tv_go_on_site.setText(Constants.homeStatusPOJO.getSTATUS());
                         tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_on_site_bg_design));
@@ -382,6 +380,16 @@ public class SWMSFragment extends Fragment implements LocationListener {
             if (isNetworkEnable) {
                 location = null;
                 //locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,);
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
                 locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, this);
                 if (locationManager != null) {
                     location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);

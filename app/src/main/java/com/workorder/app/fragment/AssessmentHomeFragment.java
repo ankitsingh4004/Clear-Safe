@@ -117,9 +117,9 @@ public class AssessmentHomeFragment extends Fragment{
               }
           }, true).execute();
 
-      }else {
-
-              new GetApiCallback(getActivity(), UrlClass.BASE_URL+"api/Order/GetActiveWorkOrders", new OnTaskCompleted<String>() {
+      }
+      else {
+              new GetApiCallback(getActivity(), UrlClass.BASE_URL+"api/Order/GetActiveWorkOrders",    new OnTaskCompleted<String>() {
                   @Override
                   public void onTaskCompleted(String response) {
                       Log.d("ResponseWorkOrder", response);

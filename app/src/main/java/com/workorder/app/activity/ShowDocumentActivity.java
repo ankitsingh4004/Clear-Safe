@@ -48,11 +48,10 @@ public class ShowDocumentActivity extends AppCompatActivity implements DownloadF
     private ProgressBar progress;
     String user_id;
     String status;
+    String documentname;
     GetSwmsTemplate.Attachement attachementPOJO;
     ImageView iv_back;
     TextView tv_title;
-
-
     int assesmenttemplateid;
     int assesmentempid;
     int assesmentid;
@@ -60,6 +59,7 @@ public class ShowDocumentActivity extends AppCompatActivity implements DownloadF
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_document);
+
         fl_container=findViewById(R.id.frameContainer);
         progress=findViewById(R.id.progressbar);
         signFab = findViewById(R.id.fab_sign);
@@ -77,6 +77,7 @@ public class ShowDocumentActivity extends AppCompatActivity implements DownloadF
              }*/
 
              pdfName= getIntent().getStringExtra("pdf");
+             documentname= getIntent().getStringExtra("documentname");
              status= getIntent().getStringExtra("status");
              assesmenttemplateid= getIntent().getIntExtra("assesmenttemplateid",0);
              assesmentid= getIntent().getIntExtra("assesmentid",0);
@@ -109,8 +110,6 @@ public class ShowDocumentActivity extends AppCompatActivity implements DownloadF
              webView.loadUrl(finalUrl);
              webView.loadUrl("javascript:(function() { " +
                      "document.querySelector('[role=\"toolbar\"]').remove();})()");
-
-
              webView.setWebViewClient(new WebViewClient() {
 
                  @Override
@@ -158,9 +157,6 @@ public class ShowDocumentActivity extends AppCompatActivity implements DownloadF
 
          }
 
-
-
-
     iv_back.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -168,9 +164,7 @@ public class ShowDocumentActivity extends AppCompatActivity implements DownloadF
         }
     });
 
-
-
-    signFab.setOnClickListener(new View.OnClickListener() {
+     signFab.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if (status.equalsIgnoreCase("Signed")){
@@ -178,14 +172,11 @@ public class ShowDocumentActivity extends AppCompatActivity implements DownloadF
             }else {
                 Intent intent=new Intent(ShowDocumentActivity.this,SignatureActivity.class);
                 intent.putExtra("assesmenttemplateid",assesmenttemplateid);
+                intent.putExtra("documentname",documentname);
                 intent.putExtra("assesmentid",assesmentid);
                 intent.putExtra("assesmentempid",assesmentempid);
                 startActivity(intent);
-
-
             }
-
-
         }
     });
 
@@ -205,9 +196,6 @@ public class ShowDocumentActivity extends AppCompatActivity implements DownloadF
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-
-
-
             }
         });
     }
@@ -220,7 +208,6 @@ public class ShowDocumentActivity extends AppCompatActivity implements DownloadF
 
     @Override
     protected void onDestroy() {
-
         super.onDestroy();
         if (adapter!=null){
             adapter.close();

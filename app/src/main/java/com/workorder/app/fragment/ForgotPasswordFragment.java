@@ -11,11 +11,7 @@ import android.widget.Toast;
 
 import com.workorder.app.R;
 
-
-
 public class ForgotPasswordFragment extends Fragment {
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,7 +30,6 @@ public class ForgotPasswordFragment extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Toast.makeText(getActivity(),"Work In Progress", Toast.LENGTH_SHORT).show();
             }
         });

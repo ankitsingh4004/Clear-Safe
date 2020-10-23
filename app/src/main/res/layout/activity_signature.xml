@@ -52,17 +52,18 @@
         <LinearLayout
             android:id="@+id/checklinear"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/signature"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
 
             <CheckBox
                 android:id="@+id/ch_signature"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_gravity="center"
                 android:buttonTint="@color/colorAccent"
                 android:shadowColor="@color/black"
                 android:textColorHint="@color/blueTheme" />
@@ -71,7 +72,9 @@
                 android:id="@+id/sms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Please enter your signature in the space below. "
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Please enter your signature in the space below."
                 android:textColor="@color/blueTheme" />
         </LinearLayout>
 
@@ -79,8 +82,8 @@
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             >
             <CheckBox
                 android:id="@+id/ch_sign_as_worker"
