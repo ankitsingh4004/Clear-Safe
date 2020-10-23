@@ -27,6 +27,7 @@ public class UrlClass {
     public static String GET_WORKORDER_URL=BASE_URL+"api/order/assignedorderlist?rolename=";
 
     public static String UPLOAD_SIGN_URL=BASE_URL+"api/Order/SignedDocument"; //"TaskApi/SignedDocument";
+    public static String UPLOAD_SIGN_DOCUMENT=BASE_URL+"api/Order/SignCompanyDocument"; //"TaskApi/SignedDocument";
 
     public static String GET_WORK_ORDER_NO=BASE_URL+"api/workorderfortenant/getworkordernumber";
 

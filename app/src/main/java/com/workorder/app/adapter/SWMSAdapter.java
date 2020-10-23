@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.workorder.app.R;
@@ -50,11 +51,13 @@ public class SWMSAdapter extends RecyclerView.Adapter<SWMSAdapter.DocListViewHol
     }
 
     @Override
-    public void onBindViewHolder(DocListViewHolder holder,final int position) {
+    public void onBindViewHolder(final DocListViewHolder holder, final int position) {
         final GetSwmsTemplate attachementPOJO=attachementPOJOList.get(position);
 
 
             holder.tv_DocName.setText("" + attachementPOJO.getTitle());
+
+
             holder.tv_version.setText("V.no : " + attachementPOJO.getVersion());
             holder.tv_doc_temp.setText("" + attachementPOJO.getTemplateNumber());
             holder.tv_doc_date.setText(UtilityFunction.getSplitedDate(attachementPOJO.getAssignedDate()));
@@ -73,10 +76,17 @@ public class SWMSAdapter extends RecyclerView.Adapter<SWMSAdapter.DocListViewHol
 
         if(attachementPOJO.getFILENAME().equalsIgnoreCase("")){
             holder.file.setVisibility(View.GONE);
+            holder.ds.setVisibility(View.GONE);
         }else {
             holder.file.setVisibility(View.VISIBLE);
-        }
+            holder.ds.setVisibility(View.VISIBLE);
 
+        }
+        if(attachementPOJO.getSignedStatus()){
+            holder.tv_signed_status.setText("Signed");
+        }else {
+            holder.tv_signed_status.setText("Received");
+        }
         holder.file.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,8 +94,10 @@ public class SWMSAdapter extends RecyclerView.Adapter<SWMSAdapter.DocListViewHol
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("documentname",attachementPOJO.getFILENAME());
                 intent.putExtra("documenturl",attachementPOJO.getDOCUMENTURL());
+                intent.putExtra("status",holder.tv_signed_status.getText().toString());
+                intent.putExtra("versionno",attachementPOJO.getVERSIONNUMBER());
              //   intent.putExtra("assesmenttemplateid",attachements.get(position).getAssesmentTemplateId());
-                intent.putExtra("assesmentid",assessmentid);
+                intent.putExtra("assesmentid",attachementPOJO.getAssesmentId());
              //   intent.putExtra("assesmentempid",attachements.get(position).getAssignedEmployeeId());
                 context.startActivity(intent);
             }
@@ -99,7 +111,7 @@ public class SWMSAdapter extends RecyclerView.Adapter<SWMSAdapter.DocListViewHol
     }
 
     public class DocListViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_DocName,tv_doc_temp;
+        TextView tv_DocName,tv_doc_temp,tv_signed_status;
         TextView tv_doc_date;
         TextView tv_version;
         CardView taskCard;
@@ -110,6 +122,7 @@ public class SWMSAdapter extends RecyclerView.Adapter<SWMSAdapter.DocListViewHol
         TextView workOrderStatus;
 
         ImageView warning;
+        LinearLayout ds;
         Button file;
 
         public DocListViewHolder(View itemView) {
@@ -117,12 +130,14 @@ public class SWMSAdapter extends RecyclerView.Adapter<SWMSAdapter.DocListViewHol
           //  position = viewType;
           //  this.myclickListner = clickListner;
             tv_DocName = itemView.findViewById(R.id.tv_doc_name);
+            ds = itemView.findViewById(R.id.ds);
             tv_doc_temp = itemView.findViewById(R.id.tv_doc_temp);
             recycler_view = itemView.findViewById(R.id.recycler_view);
             tv_doc_date = itemView.findViewById(R.id.tv_doc_date);
             tv_version=itemView.findViewById(R.id.tv_version);
             file = itemView.findViewById(R.id.file);
             taskCard = itemView.findViewById(R.id.firstcard);
+            tv_signed_status = itemView.findViewById(R.id.tv_signed_status);
 
             warning = itemView.findViewById(R.id.warning1);
             workOrderStatus = itemView.findViewById(R.id.workOrderStatus);

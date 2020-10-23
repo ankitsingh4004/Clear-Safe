@@ -51,9 +51,11 @@ public class SignatureInstActivity extends AppCompatActivity implements Compound
     final Context context = this;
     int assesmenttemplateid;
     String documentname;
+    String versionno;
     int assesmentempid;
     int assesmentid;
     TextView sms;
+    int v;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,12 @@ public class SignatureInstActivity extends AppCompatActivity implements Compound
         iv_back=findViewById(R.id.iv_back);
         sms=findViewById(R.id.sms);
         documentname=getIntent().getStringExtra("documentname");
+        versionno=getIntent().getStringExtra("versionno");
+        try{
+            v=Integer.parseInt(versionno);
+        }catch (Exception e){
+
+        }
 
         sms.setText("Please sign to confirm that you have read the attached current instructions.If you have not read the attached document then please close this panel, read the file and then sign this panel by selecting the option SIGN.");
 
@@ -120,37 +128,23 @@ public class SignatureInstActivity extends AppCompatActivity implements Compound
                     if(checkBox.isChecked() && (ch_worker.isChecked() || ch_observer.isChecked()))
                     {
                         if (imageUrl.length()>5500) {
-                            //String CurentStatus = preferenceManager.getKeyStatus();
-                          /*  if (asigneeResponseModel != null) {
-
-                            //    uploadSignature();
-
-                            } else {
-                                if (CurentStatus.equals("ASSIGNED")) {
-                                    uploadSignature();
-                                } else {
-                                    showPopUp();
-                                }
-                            }*/
-
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                             String dateTime = dateFormat.format(new Date());
                             JSONObject jsonObject=new JSONObject();
 
-                            jsonObject.put("EmpID", assesmentempid);
-                            jsonObject.put("IsNameExist",1);
+
+                            jsonObject.put("AssesmentId", assesmentid);
                             jsonObject.put("IsSignedStatus",1);
-                         //   jsonObject.put("taskId",assesmentid);
-                            jsonObject.put("Username","");
                             jsonObject.put("SingNatureDate",dateTime);
-                            jsonObject.put("attachementid",assesmenttemplateid);
+                            jsonObject.put("FileName",documentname);
+                            jsonObject.put("VersionNo",v);
                             jsonObject.put("imageUrl",imageUrl);
 
                             Log.v("json",jsonObject.toString());
                             boolean isConnected = ConnectivityReceiver.isConnected();
 
                             if(isConnected ==true) {
-                                new SendData(SignatureInstActivity.this, jsonObject, UrlClass.UPLOAD_SIGN_URL, new OnTaskCompleted<String>() {
+                                new SendData(SignatureInstActivity.this, jsonObject, UrlClass.UPLOAD_SIGN_DOCUMENT, new OnTaskCompleted<String>() {
                                     @Override
                                     public void onTaskCompleted(String response) {
                                         Log.d("Post Response", response);
@@ -159,7 +153,7 @@ public class SignatureInstActivity extends AppCompatActivity implements Compound
                                             Boolean result = object.getBoolean("status");
                                             if (result) {
                                                 signature.clear();
-                                                Toast.makeText(context, "SWMS has been signed and submitted. No additional change can now be made.", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(context, "Document has been signed and submitted. No additional change can now be made.", Toast.LENGTH_SHORT).show();
                                                 Constants.ACTIVITY_NAME = Constants.SHOW_DOCUMENT_ACTIVITY;
                                                 startActivity(new Intent(SignatureInstActivity.this, HomeActivity.class));
                                                 finish();
@@ -171,7 +165,7 @@ public class SignatureInstActivity extends AppCompatActivity implements Compound
 
                                         } catch (JSONException e) {
                                             e.printStackTrace();
-                                            Toast.makeText(context, "SWMS has been signed and submitted. No additional change can now be made.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, "Document has been signed and submitted. No additional change can now be made.", Toast.LENGTH_SHORT).show();
                                             Constants.ACTIVITY_NAME = Constants.SHOW_DOCUMENT_ACTIVITY;
                                             startActivity(new Intent(SignatureInstActivity.this, HomeActivity.class));
                                             finish();

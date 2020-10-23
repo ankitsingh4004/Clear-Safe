@@ -99,7 +99,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
        // Constants.loginPOJO= PreferenceManagerWorkOrder.GetLoginData(this);
         tv_name.setText(Constants.loginPOJO.getProfile().getFIRSTNAME().toString()+" "+Constants.loginPOJO.getProfile().getLASTNAME().toString());
         tv_role.setText(Constants.loginPOJO.getProfile().getRoleNames().get(0));
-
+/*
         final SharedPreferences pref = getSharedPreferences("PREFS_NAME", MODE_PRIVATE);
         String json_array = pref.getString("jsonarray", null);
         try {
@@ -162,7 +162,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
             e.printStackTrace();
         }catch (NullPointerException e){
 
-        }
+        }*/
+/*
 
 
         final SharedPreferences pref1 = getSharedPreferences("PREFS_NAME1", MODE_PRIVATE);
@@ -208,6 +209,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
         }catch (NullPointerException e){
             e.printStackTrace();
         }
+*/
 
         callCheckOnSiteApi();
 
@@ -643,6 +645,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
 
             }
         }, true).execute();
+
     }
 
     private void fn_permission() {

@@ -60,6 +60,7 @@ public class AssessmentHomeFragment extends Fragment{
     String role="",companyId="";
     String url="";
     String workorderno;
+    int workno;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -104,7 +105,7 @@ public class AssessmentHomeFragment extends Fragment{
                 /*    JSONArray jsonArray=new JSONArray(response);
                     Log.d("SingleResponse",jsonArray.get(0).toString());*/
                       Constants.workOrderPOJOList = Arrays.asList(new Gson().fromJson(response, GetWorkorderPOJO[].class));
-                      syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno);
+                      syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,workno);
                       mrecyclerView.setAdapter(syncronizedHomeAdapter);
                      // Constants.TASK_ID = "" + Constants.workOrderPOJOList.get(0).get();
                       // assesmentHomePOJO=Constants.assesmentHomePOJOList.get(0);
@@ -132,7 +133,7 @@ public class AssessmentHomeFragment extends Fragment{
                 /*    JSONArray jsonArray=new JSONArray(response);
                     Log.d("SingleResponse",jsonArray.get(0).toString());*/
                           Constants.workOrderPOJOList = Arrays.asList(new Gson().fromJson(response, GetWorkorderPOJO[].class));
-                          syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,Constants.homeStatusPOJO.getSTATUS());
+                          syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,Constants.homeStatusPOJO.getSTATUS(),workno);
                           mrecyclerView.setAdapter(syncronizedHomeAdapter);
                          // Constants.TASK_ID = "" + Constants.workOrderPOJOList.get(0).getAssessmentTaskId();
                           // assesmentHomePOJO=Constants.assesmentHomePOJOList.get(0);
@@ -173,7 +174,7 @@ public class AssessmentHomeFragment extends Fragment{
               }
           },false).execute();*/
       }else {
-            syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno);
+            syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,workno);
             mrecyclerView.setAdapter(syncronizedHomeAdapter);
         }
       //  fetchData();
@@ -295,12 +296,14 @@ public class AssessmentHomeFragment extends Fragment{
                         tv_go_on_site.setText(Constants.homeStatusPOJO.getSTATUS());
                         tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_on_site_bg_design));
                         tv_go_on_site.setEnabled(true);
+                        workno=Constants.homeStatusPOJO.getWORK_ORDER_ID();
                      //   workorderno=Constants.homeStatusPOJO.getASSESMENTID();
 
                     } else if (Constants.homeStatusPOJO.getSTATUS().equals("Off-Site")) {
                         tv_go_on_site.setText("Off-Site");
                         tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));
                         tv_go_on_site.setEnabled(false);
+                        workno=0;
                         workorderno="";
                     }
                 } catch (Exception e) {

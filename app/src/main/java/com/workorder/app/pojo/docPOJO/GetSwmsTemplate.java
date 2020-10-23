@@ -43,6 +43,10 @@ public class GetSwmsTemplate implements Serializable {
     @SerializedName("VERSION_NUMBER")
     @Expose
     private String vERSIONNUMBER;
+
+    @SerializedName("SignedStatus")
+    private Boolean SignedStatus;
+
     @SerializedName("Attachements")
     @Expose
     private List<Attachement> attachements = null;
@@ -151,6 +155,13 @@ public class GetSwmsTemplate implements Serializable {
         this.attachements = attachements;
     }
 
+    public Boolean getSignedStatus() {
+        return SignedStatus;
+    }
+
+    public void setSignedStatus(Boolean signedStatus) {
+        SignedStatus = signedStatus;
+    }
 
     public class Attachement {
 
@@ -221,5 +232,7 @@ public class GetSwmsTemplate implements Serializable {
             this.status = status;
         }
 
+        public Attachement() {
+        }
     }
 }

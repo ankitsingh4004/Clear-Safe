@@ -60,6 +60,9 @@ public class HomeStatusPOJO implements Serializable {
     @SerializedName("EMPLOYEE_ID")
     @Expose
     private Integer eMPLOYEEID;
+    @SerializedName("WORK_ORDER_ID")
+    @Expose
+    private Integer WORK_ORDER_ID;
     @SerializedName("Assesment")
     @Expose
     private Object assesment;
@@ -227,4 +230,11 @@ public class HomeStatusPOJO implements Serializable {
         this.worker = worker;
     }
 
+    public Integer getWORK_ORDER_ID() {
+        return WORK_ORDER_ID;
+    }
+
+    public void setWORK_ORDER_ID(Integer WORK_ORDER_ID) {
+        this.WORK_ORDER_ID = WORK_ORDER_ID;
+    }
 }

@@ -24,11 +24,13 @@ public class ShowPdf extends AppCompatActivity {
     String documentname;
     String documenturl;
     String workorderno;
+    String status;
+    String versionno;
     String pdfName;
     int assesmenttemplateid;
     int assesmentempid;
     int assesmentid;
-    String status;
+
     FloatingActionButton signFab;
     ImageView iv_back;
     TextView tv_title;
@@ -39,7 +41,9 @@ public class ShowPdf extends AppCompatActivity {
 
         signFab = findViewById(R.id.fab_sign);
         documentname=getIntent().getStringExtra("documentname");
+        status=getIntent().getStringExtra("status");
         documenturl=getIntent().getStringExtra("documenturl");
+        versionno=getIntent().getStringExtra("versionno");
        // pdfName= getIntent().getStringExtra("pdf");
        // status= getIntent().getStringExtra("status");
      //   assesmenttemplateid= getIntent().getIntExtra("assesmenttemplateid",0);
@@ -67,12 +71,18 @@ public class ShowPdf extends AppCompatActivity {
         signFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(ShowPdf.this,SignatureInstActivity.class);
-            //    intent.putExtra("assesmenttemplateid",assesmenttemplateid);
-                intent.putExtra("documentname",documentname);
-                intent.putExtra("assesmentid",assesmentid);
-             //   intent.putExtra("assesmentempid",assesmentempid);
-                startActivity(intent);
+                if(status.equalsIgnoreCase("Signed")){
+                    opentThanksYesClickDialog1("Document File already signed");
+                }else {
+                    Intent intent=new Intent(ShowPdf.this,SignatureInstActivity.class);
+                    //    intent.putExtra("assesmenttemplateid",assesmenttemplateid);
+                    intent.putExtra("documentname",documentname);
+                    intent.putExtra("versionno",versionno);
+                    intent.putExtra("assesmentid",assesmentid);
+                    //   intent.putExtra("assesmentempid",assesmentempid);
+                    startActivity(intent);
+                }
+
             }
         });
 

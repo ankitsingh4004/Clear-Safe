@@ -1,5 +1,6 @@
 package com.workorder.app.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
@@ -12,10 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.workorder.app.R;
-import com.workorder.app.activity.HomeActivity;
 import com.workorder.app.activity.MapsActivity;
 import com.workorder.app.pojo.GetWorkorderPOJO;
-import com.workorder.app.pojo.WorkOrderPOJO;
 import com.workorder.app.util.Constants;
 import com.workorder.app.util.UtilityFunction;
 
@@ -26,11 +25,13 @@ public class SyncronizedHomeAdapter extends RecyclerView.Adapter<SyncronizedHome
     Context context;
     List<GetWorkorderPOJO> homePOJOList;
     String workorderno;
+    int workrno;
 
-    public SyncronizedHomeAdapter(Context context, List<GetWorkorderPOJO> homePOJOList, String workorderno) {
+    public SyncronizedHomeAdapter(Context context, List<GetWorkorderPOJO> homePOJOList, String workorderno, int workno) {
         this.context = context;
         this.homePOJOList = homePOJOList;
         this.workorderno=workorderno;
+        this.workrno=workno;
     }
 
 
@@ -41,7 +42,7 @@ public class SyncronizedHomeAdapter extends RecyclerView.Adapter<SyncronizedHome
     }
 
     @Override
-    public void onBindViewHolder(SynchronizedHomeHolder holder, final int position) {
+    public void onBindViewHolder(SynchronizedHomeHolder holder, @SuppressLint("RecyclerView") final int position) {
 
         try {
           /*  if(HomeActivity.tv_go_on_site.getText().toString().equalsIgnoreCase("On-Site")) {
@@ -62,6 +63,12 @@ public class SyncronizedHomeAdapter extends RecyclerView.Adapter<SyncronizedHome
                 holder.warning.setImageResource(R.drawable.ic_warning_black3_24dp);
             }else {
                 holder.warning.setImageResource(R.drawable.ic_warning_black1_24dp);
+            }
+
+            if(homePOJOList.get(position).getWorkOrderStatus().equalsIgnoreCase("Downloaded")){
+                if(homePOJOList.get(position).getWorkOrderId()==workrno){
+                    holder.workOrderStatus.setText("Active");
+                }
             }
             holder.priority.setText(homePOJOList.get(position).getPriority());
             holder.ordertype.setText(homePOJOList.get(position).getOrderType());
