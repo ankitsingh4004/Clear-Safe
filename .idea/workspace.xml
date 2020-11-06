@@ -6,7 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="DataCheck" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="CheckStatusResponse" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
@@ -38,19 +38,18 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_1_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/HomeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/LoginActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/MapsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/MapsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/Profile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/ShowPdf.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/ShowPdf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/SignatureInstActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/SignatureInstActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/adapter/SWMSAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/adapter/SWMSAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/adapter/SyncronizedHomeAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/adapter/SyncronizedHomeAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/fragment/AssessmentHomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/fragment/AssessmentHomeFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/pojo/HomeStatusPOJO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/pojo/HomeStatusPOJO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/pojo/docPOJO/GetSwmsTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/pojo/docPOJO/GetSwmsTemplate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/util/UrlClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/util/UrlClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/fragment/SWMSFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/fragment/SWMSFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/rv_doc_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/rv_doc_list.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +120,7 @@
     </replaceStrings>
   </component>
   <component name="GenerateSignedApkSettings">
-    <option name="KEY_STORE_PATH" value="F:\Android Project\Work Order KeyStore\WorkOreder.jks" />
+    <option name="KEY_STORE_PATH" value="E:\surveytemp\Risk-Survey-Android-App\app\risksurvey\risk.jks" />
     <option name="KEY_ALIAS" value="key0" />
     <option name="REMEMBER_PASSWORDS" value="true" />
     <option name="BUILD_TARGET_KEY" value="apk" />
@@ -135,9 +134,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ApkExportedModule" value="Risk-Survey-Android-App.app" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_2_API_28" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-10-22T05:15:11.536Z" />
-    <property name="ExportApk.ApkPath" value="E:\covid\covid\app\release" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-11-02T05:20:56.161Z" />
+    <property name="ExportApk.ApkPath" value="E:\surveytemp\RiskS\app\release" />
     <property name="ExportApk.BuildVariants" value="release" />
     <property name="ExportApk.SignV1" value="true" />
     <property name="ExportApk.SignV2" value="true" />
@@ -145,7 +145,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="device.picker.selection" value="Pixel_2_API_28" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/New folder/Vendor-App/vendor_app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../RiskS/app/release" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
     <property name="show.do.not.ask.upgrade.gradle.plugin" value="3.3.0" />
     <property name="show.migrate.to.gradle.popup" value="false" />
@@ -283,26 +283,26 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="430" height="466" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1603346586282" />
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1603446537854">
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1604661743141">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1603446537854" />
-    <state width="1323" height="400" key="GridCell.Tab.0.bottom" timestamp="1603458000876">
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1604661743141" />
+    <state width="1323" height="431" key="GridCell.Tab.0.bottom" timestamp="1604651130025">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="400" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1603458000876" />
-    <state width="1323" height="400" key="GridCell.Tab.0.center" timestamp="1603458000876">
+    <state width="1323" height="431" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1604651130025" />
+    <state width="1323" height="431" key="GridCell.Tab.0.center" timestamp="1604651130025">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="400" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1603458000876" />
-    <state width="1323" height="400" key="GridCell.Tab.0.left" timestamp="1603458000876">
+    <state width="1323" height="431" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1604651130025" />
+    <state width="1323" height="431" key="GridCell.Tab.0.left" timestamp="1604651130025">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="400" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1603458000876" />
-    <state width="1323" height="400" key="GridCell.Tab.0.right" timestamp="1603458000876">
+    <state width="1323" height="431" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1604651130025" />
+    <state width="1323" height="431" key="GridCell.Tab.0.right" timestamp="1604651130025">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="400" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1603458000876" />
+    <state width="1323" height="431" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1604651130025" />
     <state width="1323" height="28" key="GridCell.Tab.1.bottom" timestamp="1603350890841">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -379,11 +379,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/workorder/app/adapter/SWMSAdapter.java</url>
-          <line>152</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/SignatureActivity.java</url>
           <line>140</line>

@@ -1,5 +1,4 @@
-package com.workorder.app.activity;
-
+                                                                                                                                                                                                                                             package com.workorder.app.activity;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -221,7 +220,7 @@ public class LoginActivity extends AppCompatActivity implements VersionCheckList
                 try {
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("username", userName);
-                   jsonObject.put("Password", password);
+                    jsonObject.put("Password", password);
                    // jsonObject.put("username", "info@uveoustech.com");
                 //     jsonObject.put("Password", "Uveous@#$056");
                 //  jsonObject.put("username", "radhey2784@gmail.com");
@@ -230,8 +229,8 @@ public class LoginActivity extends AppCompatActivity implements VersionCheckList
                   //  jsonObject.put("Password", "P@ssword123");
                   //  jsonObject.put("username", "pratikCont@yopmail.com");
                   //  jsonObject.put("Password", "P@ssword123");
-              //   jsonObject.put("username", "shaluchauhanch3@gmail.com");
-              //    jsonObject.put("Password", "P@ssword123");
+                /*  jsonObject.put("username", "shaluchauhan3@gmail.com");
+                 jsonObject.put("Password", "P@ssword123");*/
 //
                   //  jsonObject.put("grant_type","password");
                    // UrlClass.BASE_URL="http://109.228.49.117:8095/api/";

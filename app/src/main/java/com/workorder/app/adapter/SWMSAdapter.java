@@ -74,34 +74,6 @@ public class SWMSAdapter extends RecyclerView.Adapter<SWMSAdapter.DocListViewHol
         holder.recycler_view.setAdapter(gridAdapter);
         gridAdapter.notifyDataSetChanged();
 
-        if(attachementPOJO.getFILENAME().equalsIgnoreCase("")){
-            holder.file.setVisibility(View.GONE);
-            holder.ds.setVisibility(View.GONE);
-        }else {
-            holder.file.setVisibility(View.VISIBLE);
-            holder.ds.setVisibility(View.VISIBLE);
-
-        }
-        if(attachementPOJO.getSignedStatus()){
-            holder.tv_signed_status.setText("Signed");
-        }else {
-            holder.tv_signed_status.setText("Received");
-        }
-        holder.file.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(context, ShowPdf.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("documentname",attachementPOJO.getFILENAME());
-                intent.putExtra("documenturl",attachementPOJO.getDOCUMENTURL());
-                intent.putExtra("status",holder.tv_signed_status.getText().toString());
-                intent.putExtra("versionno",attachementPOJO.getVERSIONNUMBER());
-             //   intent.putExtra("assesmenttemplateid",attachements.get(position).getAssesmentTemplateId());
-                intent.putExtra("assesmentid",attachementPOJO.getAssesmentId());
-             //   intent.putExtra("assesmentempid",attachements.get(position).getAssignedEmployeeId());
-                context.startActivity(intent);
-            }
-        });
 
     }
 
@@ -130,14 +102,13 @@ public class SWMSAdapter extends RecyclerView.Adapter<SWMSAdapter.DocListViewHol
           //  position = viewType;
           //  this.myclickListner = clickListner;
             tv_DocName = itemView.findViewById(R.id.tv_doc_name);
-            ds = itemView.findViewById(R.id.ds);
+
             tv_doc_temp = itemView.findViewById(R.id.tv_doc_temp);
             recycler_view = itemView.findViewById(R.id.recycler_view);
             tv_doc_date = itemView.findViewById(R.id.tv_doc_date);
             tv_version=itemView.findViewById(R.id.tv_version);
-            file = itemView.findViewById(R.id.file);
+
             taskCard = itemView.findViewById(R.id.firstcard);
-            tv_signed_status = itemView.findViewById(R.id.tv_signed_status);
 
             warning = itemView.findViewById(R.id.warning1);
             workOrderStatus = itemView.findViewById(R.id.workOrderStatus);

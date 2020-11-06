@@ -15,6 +15,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -37,6 +38,7 @@ import com.workorder.app.Util;
 import com.workorder.app.activity.HomeActivity;
 import com.workorder.app.activity.MapsActivity;
 import com.workorder.app.activity.ShowDocumentActivity;
+import com.workorder.app.activity.ShowPdf;
 import com.workorder.app.adapter.SWMSAdapter;
 import com.workorder.app.adapter.SyncronizedHomeAdapter;
 import com.workorder.app.pojo.GetLocationPOJO;
@@ -88,6 +90,12 @@ public class SWMSFragment extends Fragment implements LocationListener {
     AssesmentHomePOJO assesmentHomePOJO;
     List<AttachementPOJO> attachementPOJOS = new ArrayList<>();
 
+    CardView firstcard;
+    Button file;
+    TextView tv_signed_status;
+    TextView tv_doc_date;
+    TextView tv_doc_name;
+    TextView tv_version;
     Integer srValue;
 
     @Override
@@ -95,6 +103,13 @@ public class SWMSFragment extends Fragment implements LocationListener {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         init(rootView);
+
+        firstcard=rootView.findViewById(R.id.firstcard);
+        file=rootView.findViewById(R.id.file);
+        tv_signed_status=rootView.findViewById(R.id.tv_signed_status);
+        tv_doc_date=rootView.findViewById(R.id.tv_doc_date);
+        tv_doc_name=rootView.findViewById(R.id.tv_doc_name);
+        tv_version=rootView.findViewById(R.id.tv_version);
 
         if (Constants.workOrderdetail == null) {
             final SharedPreferences pref1 = getContext().getSharedPreferences("work", MODE_PRIVATE);
@@ -136,6 +151,21 @@ public class SWMSFragment extends Fragment implements LocationListener {
                             //Constants.docListPOJO = new Gson().fromJson(response, DocListPOJO.class);
                             //  attachementPOJOS = Constants.docListPOJO.getAttachementPOJOs();
                             //tv_wo_no.setText(attachementPOJOS.get());
+                            GetSwmsTemplate attachementPOJO=Constants.getSwmsTemplates.get(0);
+                            if(attachementPOJO.getFILENAME().equalsIgnoreCase("")){
+                                firstcard.setVisibility(View.GONE);
+                            }else {
+                                firstcard.setVisibility(View.VISIBLE);
+                            }
+                            if(attachementPOJO.getSignedStatus()){
+                                tv_signed_status.setText("Signed");
+                            }else {
+                                tv_signed_status.setText("Received");
+                            }
+                            tv_doc_date.setText(attachementPOJO.getAssignedDate());
+                            tv_doc_name.setText(attachementPOJO.getFILENAME());
+                            tv_version.setText("V.no :"+attachementPOJO.getVERSIONNUMBER());
+
                             adapter = new SWMSAdapter(getActivity(), Constants.getSwmsTemplates, id);
                             rv_home.setAdapter(adapter);
                             Log.d("AttachementSize", attachementPOJOS.size() + "");
@@ -151,6 +181,23 @@ public class SWMSFragment extends Fragment implements LocationListener {
                 }
             }*/
         }
+
+       file.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GetSwmsTemplate attachementPOJO=Constants.getSwmsTemplates.get(0);
+                Intent intent=new Intent(getContext(), ShowPdf.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("documentname",attachementPOJO.getFILENAME());
+                intent.putExtra("documenturl",attachementPOJO.getDOCUMENTURL());
+                intent.putExtra("status",tv_signed_status.getText().toString());
+                intent.putExtra("versionno",attachementPOJO.getVERSIONNUMBER());
+                //   intent.putExtra("assesmenttemplateid",attachements.get(position).getAssesmentTemplateId());
+                intent.putExtra("assesmentid",attachementPOJO.getAssesmentId());
+                //   intent.putExtra("assesmentempid",attachements.get(position).getAssignedEmployeeId());
+                startActivity(intent);
+            }
+        });
 
 
         return rootView;
@@ -171,7 +218,6 @@ public class SWMSFragment extends Fragment implements LocationListener {
             public void onClick(View v) {
                 dialog.dismiss();
                 Constants.ACTIVITY_NAME = Constants.HOME_ACTIVITY;
-
                 startActivity(new Intent(getContext(), HomeActivity.class));
 
             }

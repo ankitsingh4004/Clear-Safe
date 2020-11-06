@@ -119,6 +119,8 @@ public class SignatureInstActivity extends AppCompatActivity implements Compound
                 signature.clear();
             }
         });
+
+
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
