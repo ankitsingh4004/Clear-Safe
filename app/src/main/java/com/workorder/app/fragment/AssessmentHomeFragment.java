@@ -2,6 +2,8 @@ package com.workorder.app.fragment;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,6 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
 import com.workorder.app.R;
 import com.workorder.app.activity.LoginActivity;
@@ -29,10 +32,16 @@ import com.workorder.app.pojo.WorkOrderPOJO;
 import com.workorder.app.pojo.assesment.AssesmentHomePOJO;
 import com.workorder.app.util.Constants;
 import com.workorder.app.util.UrlClass;
+import com.workorder.app.util.UtilityFunction;
 import com.workorder.app.webservicecallback.GetApiCallback;
 import com.workorder.app.webservicecallback.OnTaskCompleted;
+import com.workorder.app.webservicecallback.SendData;
 
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 import static com.workorder.app.activity.HomeActivity.iv_mapview;
 import static com.workorder.app.activity.HomeActivity.tv_go_on_site;
@@ -54,7 +63,8 @@ public class AssessmentHomeFragment extends Fragment{
     TextView taskList;
     ProgressDialog progressDialog;
    // private List<SearchTaskListResponseModel> responseModel;
-
+   double distance = 0;
+    public static final double DISTANCE = 20;
     SyncronizedHomeAdapter syncronizedHomeAdapter;
 
     String role="",companyId="";
@@ -84,7 +94,7 @@ public class AssessmentHomeFragment extends Fragment{
        // Log.d("URL",UrlClass.GET_WORKORDER_URL+role+"&companyid="+companyId);
 
 
-        callCheckOnSiteApi();
+      //  callCheckOnSiteApi();
 
         if(LoginActivity.value==0) {
       if (Constants.workerPOJOList.size()==0) {
@@ -118,9 +128,25 @@ public class AssessmentHomeFragment extends Fragment{
               }
           }, true).execute();
 
+          for (int i=0;i< Constants.workOrderPOJOList.size();i++) {
+              if ((Constants.workOrderPOJOList.get(i).getLat() == null) || Constants.workOrderPOJOList.get(i).getLon() == null) {
+
+              } else {
+                  String dist = UtilityFunction.calculateDistance( Constants.CURRENT_LAT , Constants.CURRENT_LNG, Constants.workOrderPOJOList.get(i).getLat(), Constants.workOrderPOJOList.get(i).getLon(), Constants.PROVIDER);
+                  distance = Double.parseDouble(dist);
+                  if (distance <= DISTANCE) {
+
+                  } else {
+                      SharedPreferences mSharedPreferences =getContext().getSharedPreferences("TASK_ID", 0);
+                      if (mSharedPreferences != null)
+                          mSharedPreferences.edit().remove("assess").commit();
+                      callStatusUpdateApi("Completed", true);
+                  }
+              }
+          }
       }
       else {
-              new GetApiCallback(getActivity(), UrlClass.BASE_URL+"api/Order/GetActiveWorkOrders",    new OnTaskCompleted<String>() {
+              new GetApiCallback(getActivity(), UrlClass.BASE_URL+"api/Order/GetActiveWorkOrders",new OnTaskCompleted<String>() {
                   @Override
                   public void onTaskCompleted(String response) {
                       Log.d("ResponseWorkOrder", response);
@@ -145,6 +171,22 @@ public class AssessmentHomeFragment extends Fragment{
                   }
               }, true).execute();
 
+          for (int i=0;i< Constants.workOrderPOJOList.size();i++) {
+              if ((Constants.workOrderPOJOList.get(i).getLat() == null) || Constants.workOrderPOJOList.get(i).getLon() == null) {
+
+              } else {
+                  String dist = UtilityFunction.calculateDistance( Constants.CURRENT_LAT , Constants.CURRENT_LNG, Constants.workOrderPOJOList.get(i).getLat(), Constants.workOrderPOJOList.get(i).getLon(), Constants.PROVIDER);
+                  distance = Double.parseDouble(dist);
+                  if (distance <= DISTANCE) {
+
+                  } else {
+                      SharedPreferences mSharedPreferences = getContext().getSharedPreferences("TASK_ID", 0);
+                      if (mSharedPreferences != null)
+                          mSharedPreferences.edit().remove("assess").commit();
+                      callStatusUpdateApi("Completed", true);
+                  }
+              }
+          }
           }
 
 /*          new GetApiCallback(getActivity(), url, new OnTaskCompleted<String>() {
@@ -176,6 +218,24 @@ public class AssessmentHomeFragment extends Fragment{
       }else {
             syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,workno);
             mrecyclerView.setAdapter(syncronizedHomeAdapter);
+
+            /*for (int i=0;i< Constants.workOrderPOJOList.size();i++) {
+                if ((Constants.workOrderPOJOList.get(i).getLat() == null) || Constants.workOrderPOJOList.get(i).getLon() == null) {
+
+                } else {
+                    String dist = UtilityFunction.calculateDistance( Constants.CURRENT_LAT , Constants.CURRENT_LNG, Constants.workOrderPOJOList.get(i).getLat(), Constants.workOrderPOJOList.get(i).getLon(), Constants.PROVIDER);
+                    distance = Double.parseDouble(dist);
+                    if (distance <= DISTANCE) {
+
+                    } else {
+                        SharedPreferences mSharedPreferences =getContext().getSharedPreferences("TASK_ID", 0);
+                        if (mSharedPreferences != null)
+                            mSharedPreferences.edit().remove("assess").commit();
+                        callStatusUpdateApi("Completed", true);
+                    }
+                }
+            }*/
+
         }
       //  fetchData();
 
@@ -285,6 +345,44 @@ public class AssessmentHomeFragment extends Fragment{
 
     }
 
+    public void callStatusUpdateApi(final String isCompleted,final boolean workstatus) {
+        try {
+            if (Constants.homeStatusPOJO != null) {
+                JSONObject jsonObject = new JSONObject();
+
+                jsonObject.put("UpdateLatitude",  Constants.CURRENT_LAT);
+                jsonObject.put("UpdateLongitude", Constants.CURRENT_LNG);
+                jsonObject.put("Status", "Off-Site");
+                jsonObject.put("AssesmentSiteId", Constants.homeStatusPOJO.getASSESMENTID());
+                jsonObject.put("EmployeeID", 0);
+                jsonObject.put("WorkOrderNo", Constants.homeStatusPOJO.getASSESMENTID());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String dateTime = dateFormat.format(new Date());
+                jsonObject.put("EndDate", dateTime);
+                jsonObject.put("WorkOrderStatus", isCompleted);
+
+                Log.v("json",jsonObject.toString());
+
+                new SendData(getContext(), jsonObject, UrlClass.UPDATE_STATUS_URL, new OnTaskCompleted<String>() {
+                    @Override
+                    public void onTaskCompleted(String response) {
+                        Log.d("UpdateResponse", response);
+                        if (Constants.SEND_STATUS == 200) {
+                            tv_go_on_site.setText("Off-Site");
+                            tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));
+                            tv_go_on_site.setEnabled(false);
+                            callCheckOnSiteApi();
+                        }
+
+                    }
+                }, true).execute();
+            }
+        } catch (Exception e) {
+            Log.d("UpdateException", e.toString());
+        }
+    }
+
+
     public void callCheckOnSiteApi() {
         new GetApiCallback(getContext(), UrlClass.BASE_URL+"api/Order/getactivity" , new OnTaskCompleted<String>() {
             @Override
@@ -313,6 +411,7 @@ public class AssessmentHomeFragment extends Fragment{
             }
         }, true).execute();
     }
+
 
 
 }

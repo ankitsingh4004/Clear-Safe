@@ -71,6 +71,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
     NavigationView navigationView;
     public static ImageView iv_mapview;
     RelativeLayout rl_top;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +96,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
         navigationView.setNavigationItemSelectedListener(this);
         getWindow().setNavigationBarColor(getResources().getColor(R.color.navigationbar));
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorAccent));
+
 
        // Constants.loginPOJO= PreferenceManagerWorkOrder.GetLoginData(this);
         tv_name.setText(Constants.loginPOJO.getProfile().getFIRSTNAME().toString()+" "+Constants.loginPOJO.getProfile().getLASTNAME().toString());
@@ -510,6 +512,9 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
                 tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_on_site_bg_design));
 
             }else {
+                SharedPreferences mSharedPreferences = getApplicationContext().getSharedPreferences("TASK_ID", 0);
+                if (mSharedPreferences != null)
+                    mSharedPreferences.edit().remove("assess").commit();
                 tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));
 
 

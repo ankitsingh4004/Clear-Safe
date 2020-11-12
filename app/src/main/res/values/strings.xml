@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Clear Work Order</string>
+    <string name="app_name">Clear-EasyWHS</string>
 
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">Email</string>

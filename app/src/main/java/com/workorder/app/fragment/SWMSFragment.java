@@ -79,10 +79,6 @@ public class SWMSFragment extends Fragment implements LocationListener {
     //  private ArrayList<SearchTaskListResponseModel> data;
     /**/ RecyclerView rv_home;
     String task = "";
-    //  private PreferenceManager preferenceManager;
-    //  private ProgressDialog progressDialog;
-    // private List<SearchTaskListResponseModel> responseModel;
-
 
     GetLocationPOJO locationPOJO;
     int id;
@@ -96,6 +92,7 @@ public class SWMSFragment extends Fragment implements LocationListener {
     TextView tv_doc_date;
     TextView tv_doc_name;
     TextView tv_version;
+    TextView documentfile;
     Integer srValue;
 
     @Override
@@ -110,6 +107,7 @@ public class SWMSFragment extends Fragment implements LocationListener {
         tv_doc_date=rootView.findViewById(R.id.tv_doc_date);
         tv_doc_name=rootView.findViewById(R.id.tv_doc_name);
         tv_version=rootView.findViewById(R.id.tv_version);
+        documentfile=rootView.findViewById(R.id.documentfile);
 
         if (Constants.workOrderdetail == null) {
             final SharedPreferences pref1 = getContext().getSharedPreferences("work", MODE_PRIVATE);
@@ -130,6 +128,7 @@ public class SWMSFragment extends Fragment implements LocationListener {
         final SharedPreferences pref1 = getContext().getSharedPreferences("TASK_ID", MODE_PRIVATE);
         id = pref1.getInt("assess", 0);
         if (id == 0) {
+            firstcard.setVisibility(View.GONE);
             tv_wo_no.setVisibility(View.GONE);
             show.setVisibility(View.GONE);
             opentThanksYesClickDialog1("SWMS are only available once the Work Order has been started and you are On-Site.");
@@ -164,6 +163,7 @@ public class SWMSFragment extends Fragment implements LocationListener {
                             }
                             tv_doc_date.setText(attachementPOJO.getAssignedDate());
                             tv_doc_name.setText(attachementPOJO.getFILENAME());
+                            documentfile.setText(attachementPOJO.getDOCUMENTNAME());
                             tv_version.setText("V.no :"+attachementPOJO.getVERSIONNUMBER());
 
                             adapter = new SWMSAdapter(getActivity(), Constants.getSwmsTemplates, id);

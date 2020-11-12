@@ -43,6 +43,9 @@ public class GetWorkOrderDetailPojo implements Serializable {
     @SerializedName("IsSurveyAttached")
     @Expose
     private String isSurveyAttached;
+    @SerializedName("IsSurveySigned")
+    @Expose
+    private String IsSurveySigned;
     @SerializedName("SurveyId")
     @Expose
     private Integer surveyId;
@@ -327,4 +330,27 @@ public class GetWorkOrderDetailPojo implements Serializable {
         this.sWMSWarningLevel = sWMSWarningLevel;
     }
 
+    public String getIsSurveySigned() {
+        return IsSurveySigned;
+    }
+
+    public void setIsSurveySigned(String isSurveySigned) {
+        IsSurveySigned = isSurveySigned;
+    }
+
+    public String getsWMSStatus() {
+        return sWMSStatus;
+    }
+
+    public void setsWMSStatus(String sWMSStatus) {
+        this.sWMSStatus = sWMSStatus;
+    }
+
+    public String getsWMSWarningLevel() {
+        return sWMSWarningLevel;
+    }
+
+    public void setsWMSWarningLevel(String sWMSWarningLevel) {
+        this.sWMSWarningLevel = sWMSWarningLevel;
+    }
 }

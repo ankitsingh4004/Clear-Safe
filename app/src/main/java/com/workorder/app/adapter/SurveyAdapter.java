@@ -140,9 +140,9 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
                 rb[i] = new RadioButton(context);
                 rb[i].setTextSize(16f);
                 rb[i].setPadding(10,5,5,10);
-            /*    ColorStateList darkStateList = ContextCompat.getColorStateList(context, R.color.checkbox_tinit_dark_theme);
-                CompoundButtonCompat.setButtonTintList(rb[i], darkStateList);*/
-                rb[i].setButtonDrawable(R.drawable.checkbox);
+                ColorStateList darkStateList = ContextCompat.getColorStateList(context, R.color.checkbox_tinit_dark_theme);
+                CompoundButtonCompat.setButtonTintList(rb[i], darkStateList);
+              //  rb[i].setButtonDrawable(R.drawable.checkbox);
                 rb[i].setText(lcs.get(pos).getSurveyAnswers().get(i).getSURVEYANSWERTITLE());
 
                 if(lcs.get(pos).getSurveyAnswers().get(i).getSURVEYACOMMENT()==null){

@@ -216,10 +216,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View view) {
                 if (tv_go_on_site.getText().toString().equalsIgnoreCase("On-Site")) {
                     assesmentHomePOJO = (GetWorkorderPOJO) getIntent().getSerializableExtra("WorkOrderPOJO");
-                    Intent i = new Intent(MapsActivity.this, SurveyTemplate.class);
-                    i.putExtra("assessmentid", Constants.workOrderdetail.getAssesmentId());
-                    i.putExtra("workorderid", assesmentHomePOJO.getWorkOrderId());
-                    startActivity(i);
+                    if(Constants.workOrderdetail.getIsSurveySigned().equalsIgnoreCase("No")) {
+                        Intent i = new Intent(MapsActivity.this, SurveyTemplate.class);
+                        i.putExtra("assessmentid", Constants.workOrderdetail.getAssesmentId());
+                        i.putExtra("workorderid", assesmentHomePOJO.getWorkOrderId());
+                        startActivity(i);
+                    }else {
+                        opentThanksYesClickDialog1("Survey Already Submitted");
+                    }
                 } else {
                     opentThanksYesClickDialog1("Work Order has to be Activated and you have to be On-Site before the Survey can be processed");
                 }

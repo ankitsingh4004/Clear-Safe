@@ -18,11 +18,10 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface APIInterface {
-
     @GET("api/Survey/GetSurveyTemplates")
     Call<List<SurveyTemplatePojo>> surveytemplate(
             @Header("Authorization")
-                    String Token);
+                    String Token, @Query("assesmentId") int id);
 
     @GET("api/Survey/GetSurveyQuestions")
     Call<List<SurveyQuestionPojo>> surveytemplatequest(

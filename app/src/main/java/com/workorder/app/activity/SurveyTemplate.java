@@ -76,7 +76,7 @@ public class SurveyTemplate extends FragmentActivity {
 
         APIInterface apiInterface = APIHelper.getClient().create(APIInterface.class);
 
-        Call<List<SurveyTemplatePojo>>listCall=apiInterface.surveytemplate("Bearer " + Constants.loginPOJO.getAccessToken());;
+        Call<List<SurveyTemplatePojo>>listCall=apiInterface.surveytemplate("Bearer " + Constants.loginPOJO.getAccessToken(),assessmentid);;
         listCall.enqueue(new Callback<List<SurveyTemplatePojo>>() {
             @Override
             public void onResponse(Call<List<SurveyTemplatePojo>> call, Response<List<SurveyTemplatePojo>> response) {

@@ -64,17 +64,17 @@ public class ResetPassword extends AppCompatActivity {
                         Log.v("json",jsonObject.toString());
 
                         Log.v("json",jsonObject.toString());
-                        new SendData1(getApplicationContext(), jsonObject, UrlClass.Reset_Password, new OnTaskCompleted<String>() {
+                        new SendData1(ResetPassword.this, jsonObject, UrlClass.Reset_Password, new OnTaskCompleted<String>() {
                             @Override
                             public void onTaskCompleted(String response) {
                                 try {
                                     JSONObject object = new JSONObject(response);
-                                    Boolean result = object.getBoolean("status");
+                                    Boolean result = object.getBoolean("Status");
                                     if (result) {
                                         opentThanksYesClickDialog1("Successfully Password is Reset.");
                                     } else {
                                         //Toast.makeText(context, "Signature Uploaded Failed...", Toast.LENGTH_SHORT).show();
-                                        Toast.makeText(getApplicationContext(), "" + object.getString("msg"), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "" + object.getString("Message"), Toast.LENGTH_SHORT).show();
 
                                     }
                                     Log.v("response",response);
