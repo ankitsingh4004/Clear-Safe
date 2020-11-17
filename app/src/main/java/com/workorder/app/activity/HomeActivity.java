@@ -401,7 +401,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-
+                Constants.ACTIVITY_NAME = Constants.HOME_ACTIVITY;
+                startActivity(new Intent(HomeActivity.this,HomeActivity.class));
 
             }
         });
@@ -546,9 +547,15 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
         }).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Constants.ACTIVITY_NAME = Constants.HOME_ACTIVITY;
-                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
-                finish();
+                new SendData(HomeActivity.this, null, UrlClass.LOGOUT_URL, new OnTaskCompleted<String>() {
+                    @Override
+                    public void onTaskCompleted(String response) {
+                        Constants.ACTIVITY_NAME = Constants.HOME_ACTIVITY;
+                        startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                        finish();
+                    }
+                }, true).execute();
+
             }
         });
 
@@ -608,6 +615,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
                             tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));
                             tv_go_on_site.setEnabled(false);
                             callCheckOnSiteApi();
+
                         }
                         if (workstatus) {
                             opentThanksYesClickDialog();

@@ -5,8 +5,8 @@ import com.workorder.app.workorderapplication.activity.SearchAsset;
 public class UrlClass {
    public static String BASE_URL="http://109.228.49.117:8097/";
    // public static String BASE_URL="192.168.0.14:5002/";
-
     public static String LOGIN_URL=BASE_URL+"api/account/login";
+    public static String LOGOUT_URL=BASE_URL+"api/account/Logout";
     public static String Change_Password=BASE_URL+"account/change-password";
     public static String Reset_Password=BASE_URL+"api/Account/ResetPassword";
     public static String Forgot_Password=BASE_URL+"api/Account/ForgotPassword?Email=";

@@ -1,3 +1,4 @@
+
 package com.workorder.app.fragment;
 
 import android.app.Dialog;
@@ -26,6 +27,7 @@ import com.google.gson.Gson;
 import com.workorder.app.R;
 import com.workorder.app.activity.LoginActivity;
 import com.workorder.app.adapter.SyncronizedHomeAdapter;
+import com.workorder.app.pojo.GetWorkOrderDetailPojo;
 import com.workorder.app.pojo.GetWorkorderPOJO;
 import com.workorder.app.pojo.HomeStatusPOJO;
 import com.workorder.app.pojo.WorkOrderPOJO;
@@ -128,7 +130,8 @@ public class AssessmentHomeFragment extends Fragment{
               }
           }, true).execute();
 
-          for (int i=0;i< Constants.workOrderPOJOList.size();i++) {
+          callCheckOnSiteApi();
+       /*   for (int i=0;i< Constants.workOrderPOJOList.size();i++) {
               if ((Constants.workOrderPOJOList.get(i).getLat() == null) || Constants.workOrderPOJOList.get(i).getLon() == null) {
 
               } else {
@@ -143,7 +146,7 @@ public class AssessmentHomeFragment extends Fragment{
                       callStatusUpdateApi("Completed", true);
                   }
               }
-          }
+          }*/
       }
       else {
               new GetApiCallback(getActivity(), UrlClass.BASE_URL+"api/Order/GetActiveWorkOrders",new OnTaskCompleted<String>() {
@@ -171,22 +174,7 @@ public class AssessmentHomeFragment extends Fragment{
                   }
               }, true).execute();
 
-          for (int i=0;i< Constants.workOrderPOJOList.size();i++) {
-              if ((Constants.workOrderPOJOList.get(i).getLat() == null) || Constants.workOrderPOJOList.get(i).getLon() == null) {
-
-              } else {
-                  String dist = UtilityFunction.calculateDistance( Constants.CURRENT_LAT , Constants.CURRENT_LNG, Constants.workOrderPOJOList.get(i).getLat(), Constants.workOrderPOJOList.get(i).getLon(), Constants.PROVIDER);
-                  distance = Double.parseDouble(dist);
-                  if (distance <= DISTANCE) {
-
-                  } else {
-                      SharedPreferences mSharedPreferences = getContext().getSharedPreferences("TASK_ID", 0);
-                      if (mSharedPreferences != null)
-                          mSharedPreferences.edit().remove("assess").commit();
-                      callStatusUpdateApi("Completed", true);
-                  }
-              }
-          }
+          callCheckOnSiteApi();
           }
 
 /*          new GetApiCallback(getActivity(), url, new OnTaskCompleted<String>() {
@@ -397,6 +385,32 @@ public class AssessmentHomeFragment extends Fragment{
                         workno=Constants.homeStatusPOJO.getWORK_ORDER_ID();
                      //   workorderno=Constants.homeStatusPOJO.getASSESMENTID();
 
+                        new GetApiCallback(getContext(), UrlClass.BASE_URL+"api/Order/GetOrderAssesments?orderId="+workno, new OnTaskCompleted<String>() {
+                            @Override
+                            public void onTaskCompleted(String response) {
+                                Log.d("ResponseWorkOrder", response);
+                                try {
+                                    Log.d("workorderid1", String.valueOf(workno));
+
+                                    Constants.workOrderPOJOdetail = Arrays.asList(new Gson().fromJson(response, GetWorkOrderDetailPojo[].class));
+                                    Constants.workOrderdetail=Constants.workOrderPOJOdetail.get(0);
+
+                                    String dist = UtilityFunction.calculateDistance( Constants.CURRENT_LAT , Constants.CURRENT_LNG, Constants.workOrderdetail.getLat(), Constants.workOrderdetail.getLon(), Constants.PROVIDER);
+                                    distance = Double.parseDouble(dist);
+                                    if (distance <= DISTANCE) {
+
+                                    } else {
+                                        SharedPreferences mSharedPreferences =getContext().getSharedPreferences("TASK_ID", 0);
+                                        if (mSharedPreferences != null)
+                                            mSharedPreferences.edit().remove("assess").commit();
+                                        callStatusUpdateApi("Completed", true);
+                                    }
+                                } catch (Exception e) {
+
+                                }
+
+                            }
+                        }, true).execute();
                     } else if (Constants.homeStatusPOJO.getSTATUS().equals("Off-Site")) {
                         tv_go_on_site.setText("Off-Site");
                         tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));

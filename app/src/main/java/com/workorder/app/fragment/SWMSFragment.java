@@ -42,6 +42,7 @@ import com.workorder.app.activity.ShowPdf;
 import com.workorder.app.adapter.SWMSAdapter;
 import com.workorder.app.adapter.SyncronizedHomeAdapter;
 import com.workorder.app.pojo.GetLocationPOJO;
+import com.workorder.app.pojo.GetWorkOrderDetailPojo;
 import com.workorder.app.pojo.GetWorkorderPOJO;
 import com.workorder.app.pojo.HomeStatusPOJO;
 import com.workorder.app.pojo.assesment.AssesmentHomePOJO;
@@ -95,6 +96,7 @@ public class SWMSFragment extends Fragment implements LocationListener {
     TextView documentfile;
     Integer srValue;
 
+    int workorderid;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -109,7 +111,7 @@ public class SWMSFragment extends Fragment implements LocationListener {
         tv_version=rootView.findViewById(R.id.tv_version);
         documentfile=rootView.findViewById(R.id.documentfile);
 
-        if (Constants.workOrderdetail == null) {
+       /* if (Constants.workOrderdetail == null) {
             final SharedPreferences pref1 = getContext().getSharedPreferences("work", MODE_PRIVATE);
             String wno = pref1.getString("workorderno", null);
             tv_wo_no.setText(wno);
@@ -123,8 +125,9 @@ public class SWMSFragment extends Fragment implements LocationListener {
             prefsEditor.putString("workorderno", Constants.workOrderdetail.getWorkOrderNo());
             prefsEditor.commit();
         }
+*/
 
-
+        callCheckOnSiteApi();
         final SharedPreferences pref1 = getContext().getSharedPreferences("TASK_ID", MODE_PRIVATE);
         id = pref1.getInt("assess", 0);
         if (id == 0) {
@@ -180,6 +183,8 @@ public class SWMSFragment extends Fragment implements LocationListener {
                     rv_home.setAdapter(adapter);
                 }
             }*/
+
+
         }
 
        file.setOnClickListener(new View.OnClickListener() {
@@ -261,19 +266,31 @@ public class SWMSFragment extends Fragment implements LocationListener {
 
                     Constants.homeStatusPOJO = new Gson().fromJson(response, HomeStatusPOJO.class);
                     if (Constants.homeStatusPOJO.getSTATUS().equals("On-Site")) {
-                        try {
+                        workorderid=Constants.homeStatusPOJO.getWORK_ORDER_ID();
+                        Log.d("workorderid", String.valueOf(workorderid));
 
-                        } catch (Exception e) {
-                            Log.d("Exception", e.getMessage());
-                        }
+                        new GetApiCallback(getContext(), UrlClass.BASE_URL+"api/Order/GetOrderAssesments?orderId="+workorderid, new OnTaskCompleted<String>() {
+                            @Override
+                            public void onTaskCompleted(String response) {
+                                Log.d("ResponseWorkOrder", response);
+                                try {
+                                    Log.d("workorderid1", String.valueOf(workorderid));
 
-                        //  tv_wo_no.setText(Constants.homeStatusPOJO.g());
+                                    Constants.workOrderPOJOdetail = Arrays.asList(new Gson().fromJson(response, GetWorkOrderDetailPojo[].class));
+                                    Constants.workOrderdetail=Constants.workOrderPOJOdetail.get(0);
+                                    tv_wo_no.setText(Constants.workOrderdetail.getWorkOrderNo());
 
+                                } catch (Exception e) {
+
+                                }
+
+                            }
+                        }, true).execute();
                         tv_go_on_site.setText(Constants.homeStatusPOJO.getSTATUS());
                         tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_on_site_bg_design));
                         tv_go_on_site.setEnabled(true);
                     } else if (Constants.homeStatusPOJO.getSTATUS().equals("Off-Site")) {
-                        tv_wo_no.setVisibility(View.GONE);
+                      //  tv_wo_no.setVisibility(View.GONE);
                         show.setVisibility(View.GONE);
                         //     opentThanksYesClickDialog1("SWMS are only available once the Work Order has been started and you are On-Site.");
                         tv_go_on_site.setText("Off-Site");

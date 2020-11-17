@@ -45,9 +45,11 @@ public class forgotPassword extends AppCompatActivity {
                             public void onTaskCompleted(String response) {
                                 try {
                                     Log.v("response", response);
-                                    Intent i=new Intent(forgotPassword.this,ResetPassword.class);
+                                    JSONObject jsonObject=new JSONObject(response);
+                                    Intent i=new Intent(forgotPassword.this,OtpVerify.class);
                                     i.putExtra("email",et_login_user_id.getText().toString());
-                                    i.putExtra("code",response);
+                                    i.putExtra("code",jsonObject.getString("code"));
+                                    i.putExtra("otp",jsonObject.getString("otp"));
                                     startActivity(i);
                                 } catch (Exception e) {
                                     Log.d("ResponseException", e.toString());

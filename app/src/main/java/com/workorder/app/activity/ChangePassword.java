@@ -120,6 +120,7 @@ public class ChangePassword extends Fragment {
             public void onClick(View v) {
                 dialog.dismiss();
 
+                startActivity(new Intent(getContext(),HomeActivity.class));
 
             }
         });

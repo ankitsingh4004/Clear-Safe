@@ -205,8 +205,12 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
 
                         }
                     }else {
-                        Toast.makeText(SurveyActivity.this, "select one option" , Toast.LENGTH_SHORT).show();
+                        if(lcs.get(i).getQUESTIONTYPEID()==3){
+                            Toast.makeText(SurveyActivity.this, "Enter your answer", Toast.LENGTH_SHORT).show();
 
+                        }else {
+                            Toast.makeText(SurveyActivity.this, "Select one option", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                 }
@@ -290,8 +294,12 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                         Log.v("requestBody", requestBody);
 
                     } else {
-                        Toast.makeText(SurveyActivity.this, "select one option" , Toast.LENGTH_SHORT).show();
+                        if(lcs.get(i).getQUESTIONTYPEID()==3){
+                            Toast.makeText(SurveyActivity.this, "Enter your answer", Toast.LENGTH_SHORT).show();
 
+                        }else {
+                            Toast.makeText(SurveyActivity.this, "Select one option", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
 

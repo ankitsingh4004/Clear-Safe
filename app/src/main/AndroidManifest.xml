@@ -304,6 +304,7 @@
 
         <activity android:name=".activity.ResetPassword" />
         <activity android:name=".activity.SignatureInstActivity" />
+        <activity android:name=".activity.OtpVerify" />
 
         <service
             android:name=".GetLatLngServices"
