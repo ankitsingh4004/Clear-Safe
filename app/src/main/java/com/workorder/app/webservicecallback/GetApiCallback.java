@@ -47,9 +47,6 @@ public class GetApiCallback extends AsyncTask<Object, Void, Object> {
 
     }
 
-
-
-
     @Override
     protected Object doInBackground(Object... objects) {
         try {

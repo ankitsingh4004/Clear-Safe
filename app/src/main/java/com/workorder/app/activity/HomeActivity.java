@@ -41,13 +41,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.workorder.app.R;
 import com.workorder.app.fragment.SWMSFragment;
 import com.workorder.app.fragment.AssessmentHomeFragment;
 import com.workorder.app.fragment.SurveyFragment;
 import com.workorder.app.pojo.HomeStatusPOJO;
+import com.workorder.app.pojo.survey.SurveyPOJO;
 import com.workorder.app.util.Constants;
 import com.workorder.app.util.UrlClass;
+import com.workorder.app.util.UtilityFunction;
 import com.workorder.app.webservicecallback.GetApiCallback;
 import com.workorder.app.webservicecallback.OnTaskCompleted;
 import com.workorder.app.webservicecallback.SendData;
@@ -58,8 +61,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 
 public class HomeActivity extends AppCompatActivity implements LocationListener, NavigationView.OnNavigationItemSelectedListener {
@@ -479,7 +484,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
             fragment = new AssessmentHomeFragment();
             if (fragment != null) {
                 getSupportFragmentManager().beginTransaction().add(R.id.container, fragment, null).addToBackStack(null).commit();
-                callCheckOnSiteApi();
+                //callCheckOnSiteApi();
             }
 
         }
@@ -537,6 +542,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
     }
 
     public void logOutAlert() {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Alert").setMessage("Are you sure you want to Logout from app");
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -547,14 +553,20 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
         }).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                new SendData(HomeActivity.this, null, UrlClass.LOGOUT_URL, new OnTaskCompleted<String>() {
-                    @Override
-                    public void onTaskCompleted(String response) {
-                        Constants.ACTIVITY_NAME = Constants.HOME_ACTIVITY;
-                        startActivity(new Intent(HomeActivity.this, LoginActivity.class));
-                        finish();
-                    }
-                }, true).execute();
+                try {
+                    new GetApiCallback(HomeActivity.this, UrlClass.LOGOUT_URL, new OnTaskCompleted<String>() {
+                        @Override
+                        public void onTaskCompleted(String response) {
+                            Constants.ACTIVITY_NAME = Constants.HOME_ACTIVITY;
+                            startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                            finish();
+
+                        }
+                    },true).execute();
+                }catch (Exception e)
+                {
+                    Log.d("ShowListExceptiion",e.toString());
+                }
 
             }
         });
@@ -598,7 +610,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
                 jsonObject.put("Status", "Off-Site");
                 jsonObject.put("AssesmentSiteId", Constants.homeStatusPOJO.getASSESMENTID());
                 jsonObject.put("EmployeeID", 0);
-                jsonObject.put("WorkOrderNo", Constants.homeStatusPOJO.getASSESMENTID());
+                jsonObject.put("WorkOrderNo", Constants.homeStatusPOJO.getWORK_ORDER_ID());
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String dateTime = dateFormat.format(new Date());
                 jsonObject.put("EndDate", dateTime);
@@ -629,7 +641,45 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
             Log.d("UpdateException", e.toString());
         }
     }
+    public void callStatusUpdateApi1(final String isCompleted,final boolean workstatus) {
+        try {
+            if (Constants.homeStatusPOJO != null) {
+                JSONObject jsonObject = new JSONObject();
 
+                jsonObject.put("UpdateLatitude", latitude);
+                jsonObject.put("UpdateLongitude", longitude);
+                jsonObject.put("Status", "Off-Site");
+                jsonObject.put("AssesmentSiteId", Constants.homeStatusPOJO.getASSESMENTID());
+                jsonObject.put("EmployeeID", 0);
+                jsonObject.put("WorkOrderNo", Constants.homeStatusPOJO.getWORK_ORDER_ID());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String dateTime = dateFormat.format(new Date());
+                jsonObject.put("EndDate", dateTime);
+                jsonObject.put("WorkOrderStatus", isCompleted);
+
+                Log.v("json",jsonObject.toString());
+
+                new SendData(this, jsonObject, UrlClass.UPDATE_STATUS_URL, new OnTaskCompleted<String>() {
+                    @Override
+                    public void onTaskCompleted(String response) {
+                        Log.d("UpdateResponse", response);
+                        if (Constants.SEND_STATUS == 200) {
+                            tv_go_on_site.setText("Off-Site");
+                            tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));
+                            tv_go_on_site.setEnabled(false);
+                        //  callCheckOnSiteApi();
+
+                        }
+
+                    }
+                }, true).execute();
+            }
+        } catch (Exception e) {
+            Log.d("UpdateException", e.toString());
+        }
+    }
+    double distance = 0;
+    public static final double DISTANCE = 20;
     public void callCheckOnSiteApi() {
         new GetApiCallback(this, UrlClass.BASE_URL+"api/Order/getactivity" , new OnTaskCompleted<String>() {
             @Override
@@ -646,6 +696,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
                         SharedPreferences.Editor prefsEditor = mPrefs.edit();
                         prefsEditor.putInt("assess",Constants.homeStatusPOJO.getASSESMENTID() );
                         prefsEditor.commit();
+
+
                     } else if (Constants.homeStatusPOJO.getSTATUS().equals("Off-Site")) {
                         tv_go_on_site.setText("Off-Site");
                         tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));

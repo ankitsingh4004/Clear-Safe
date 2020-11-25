@@ -113,7 +113,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     boolean isNetworkEnable = false;
     SiteLocationPOJO siteLocationPOJO;
     double distance = 0;
-    public static final double DISTANCE = 20;
+    public static final double DISTANCE = 99999920;
     // Bottom Sheet
     ListView listView;
     TextView tv_suspended;
@@ -196,7 +196,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onTaskCompleted(String response) {
                 Log.d("ResponseWorkOrder", response);
                 try {
-
                     Constants.workOrderPOJOdetail = Arrays.asList(new Gson().fromJson(response, GetWorkOrderDetailPojo[].class));
                     Constants.workOrderdetail=Constants.workOrderPOJOdetail.get(0);
                     if(Constants.workOrderdetail.getIsSurveyAttached().equalsIgnoreCase("Yes")){
@@ -600,6 +599,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         tv_go_on_site.setText(Constants.homeStatusPOJO.getSTATUS());
                         tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_on_site_bg_design));
                         tv_go_on_site.setEnabled(true);
+
                     } else if (Constants.homeStatusPOJO.getSTATUS().equals("Off-Site")) {
                         tv_go_on_site.setText("Off-Site");
                         tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));

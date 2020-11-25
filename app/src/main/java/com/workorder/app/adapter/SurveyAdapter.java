@@ -11,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -371,7 +372,21 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.QuestionLi
             comment = itemView.findViewById(R.id.comment);
 
             radioGroup.setOnCheckedChangeListener(this);
+            edittext.setOnTouchListener(new View.OnTouchListener() {
 
+                public boolean onTouch(View view, MotionEvent event) {
+
+                    if (view.getId() == R.id.edittext) {
+                        view.getParent().requestDisallowInterceptTouchEvent(true);
+                        switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                            case MotionEvent.ACTION_UP:
+                                view.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+                    }
+                    return false;
+                }
+            });
         }
 
         @Override

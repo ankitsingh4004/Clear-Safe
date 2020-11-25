@@ -32,7 +32,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="WO Number"
+                android:text="Work Order No : "
                 android:id="@+id/show"
                 android:textColor="@color/black"
                 />

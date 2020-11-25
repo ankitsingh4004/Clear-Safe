@@ -107,7 +107,7 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
             public void onClick(View v) {
                 //onBackPressed();
                 map.clear();
-               startActivity(new Intent(SurveyActivity.this,SurveyTemplate.class));
+               finish();
             }
         });
 

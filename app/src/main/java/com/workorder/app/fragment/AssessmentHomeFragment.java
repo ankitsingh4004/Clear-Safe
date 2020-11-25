@@ -96,13 +96,13 @@ public class AssessmentHomeFragment extends Fragment{
        // Log.d("URL",UrlClass.GET_WORKORDER_URL+role+"&companyid="+companyId);
 
 
-      //  callCheckOnSiteApi();
+      //callCheckOnSiteApi();
 
         if(LoginActivity.value==0) {
-      if (Constants.workerPOJOList.size()==0) {
+     // if (Constants.workerPOJOList.size()==0) {
 
           showProgressPopup();
-
+            callCheckOnSiteApi();
           new GetApiCallback(getActivity(), UrlClass.BASE_URL+"api/Order/GetActiveWorkOrders", new OnTaskCompleted<String>() {
               @Override
               public void onTaskCompleted(String response) {
@@ -130,7 +130,7 @@ public class AssessmentHomeFragment extends Fragment{
               }
           }, true).execute();
 
-          callCheckOnSiteApi();
+
        /*   for (int i=0;i< Constants.workOrderPOJOList.size();i++) {
               if ((Constants.workOrderPOJOList.get(i).getLat() == null) || Constants.workOrderPOJOList.get(i).getLon() == null) {
 
@@ -147,7 +147,7 @@ public class AssessmentHomeFragment extends Fragment{
                   }
               }
           }*/
-      }
+     /* }
       else {
               new GetApiCallback(getActivity(), UrlClass.BASE_URL+"api/Order/GetActiveWorkOrders",new OnTaskCompleted<String>() {
                   @Override
@@ -159,8 +159,8 @@ public class AssessmentHomeFragment extends Fragment{
                           img.setVisibility(View.VISIBLE);
                       //    titleText.setText("Download Completed");
                           Log.d("Url", UrlClass.GET_ALL_TASK_URL);
-                /*    JSONArray jsonArray=new JSONArray(response);
-                    Log.d("SingleResponse",jsonArray.get(0).toString());*/
+                *//*    JSONArray jsonArray=new JSONArray(response);
+                    Log.d("SingleResponse",jsonArray.get(0).toString());*//*
                           Constants.workOrderPOJOList = Arrays.asList(new Gson().fromJson(response, GetWorkorderPOJO[].class));
                           syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,Constants.homeStatusPOJO.getSTATUS(),workno);
                           mrecyclerView.setAdapter(syncronizedHomeAdapter);
@@ -174,7 +174,7 @@ public class AssessmentHomeFragment extends Fragment{
                   }
               }, true).execute();
 
-          callCheckOnSiteApi();
+          callCheckOnSiteApi();*/
           }
 
 /*          new GetApiCallback(getActivity(), url, new OnTaskCompleted<String>() {
@@ -203,7 +203,7 @@ public class AssessmentHomeFragment extends Fragment{
 
               }
           },false).execute();*/
-      }else {
+      else {
             syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,workno);
             mrecyclerView.setAdapter(syncronizedHomeAdapter);
 
@@ -359,7 +359,7 @@ public class AssessmentHomeFragment extends Fragment{
                             tv_go_on_site.setText("Off-Site");
                             tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));
                             tv_go_on_site.setEnabled(false);
-                            callCheckOnSiteApi();
+                          //  callCheckOnSiteApi();
                         }
 
                     }
@@ -371,7 +371,8 @@ public class AssessmentHomeFragment extends Fragment{
     }
 
 
-    public void callCheckOnSiteApi() {
+    public void
+    callCheckOnSiteApi() {
         new GetApiCallback(getContext(), UrlClass.BASE_URL+"api/Order/getactivity" , new OnTaskCompleted<String>() {
             @Override
             public void onTaskCompleted(String response) {
@@ -385,32 +386,17 @@ public class AssessmentHomeFragment extends Fragment{
                         workno=Constants.homeStatusPOJO.getWORK_ORDER_ID();
                      //   workorderno=Constants.homeStatusPOJO.getASSESMENTID();
 
-                        new GetApiCallback(getContext(), UrlClass.BASE_URL+"api/Order/GetOrderAssesments?orderId="+workno, new OnTaskCompleted<String>() {
-                            @Override
-                            public void onTaskCompleted(String response) {
-                                Log.d("ResponseWorkOrder", response);
-                                try {
-                                    Log.d("workorderid1", String.valueOf(workno));
+                        String dist = UtilityFunction.calculateDistance( Constants.CURRENT_LAT , Constants.CURRENT_LNG, Constants.homeStatusPOJO.getLATITUDE(), Constants.homeStatusPOJO.getLONGITUDE(), Constants.PROVIDER);
+                        distance = Double.parseDouble(dist);
+                        if (distance <= DISTANCE) {
 
-                                    Constants.workOrderPOJOdetail = Arrays.asList(new Gson().fromJson(response, GetWorkOrderDetailPojo[].class));
-                                    Constants.workOrderdetail=Constants.workOrderPOJOdetail.get(0);
+                        } else {
+                            SharedPreferences mSharedPreferences =getContext().getSharedPreferences("TASK_ID", 0);
+                            if (mSharedPreferences != null)
+                                mSharedPreferences.edit().remove("assess").commit();
+                            callStatusUpdateApi("Completed", true);
+                        }
 
-                                    String dist = UtilityFunction.calculateDistance( Constants.CURRENT_LAT , Constants.CURRENT_LNG, Constants.workOrderdetail.getLat(), Constants.workOrderdetail.getLon(), Constants.PROVIDER);
-                                    distance = Double.parseDouble(dist);
-                                    if (distance <= DISTANCE) {
-
-                                    } else {
-                                        SharedPreferences mSharedPreferences =getContext().getSharedPreferences("TASK_ID", 0);
-                                        if (mSharedPreferences != null)
-                                            mSharedPreferences.edit().remove("assess").commit();
-                                        callStatusUpdateApi("Completed", true);
-                                    }
-                                } catch (Exception e) {
-
-                                }
-
-                            }
-                        }, true).execute();
                     } else if (Constants.homeStatusPOJO.getSTATUS().equals("Off-Site")) {
                         tv_go_on_site.setText("Off-Site");
                         tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));
