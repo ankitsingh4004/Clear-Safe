@@ -73,6 +73,7 @@ public class AssessmentHomeFragment extends Fragment{
     String url="";
     String workorderno;
     int workno;
+    
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -397,6 +398,9 @@ public class AssessmentHomeFragment extends Fragment{
                             callStatusUpdateApi("Completed", true);
                         }
 
+
+
+                        
                     } else if (Constants.homeStatusPOJO.getSTATUS().equals("Off-Site")) {
                         tv_go_on_site.setText("Off-Site");
                         tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));
