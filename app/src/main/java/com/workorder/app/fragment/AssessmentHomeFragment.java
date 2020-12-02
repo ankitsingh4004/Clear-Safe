@@ -103,7 +103,7 @@ public class AssessmentHomeFragment extends Fragment{
      // if (Constants.workerPOJOList.size()==0) {
 
           showProgressPopup();
-            callCheckOnSiteApi();
+
           new GetApiCallback(getActivity(), UrlClass.BASE_URL+"api/Order/GetActiveWorkOrders", new OnTaskCompleted<String>() {
               @Override
               public void onTaskCompleted(String response) {
@@ -118,15 +118,19 @@ public class AssessmentHomeFragment extends Fragment{
                 /*    JSONArray jsonArray=new JSONArray(response);
                     Log.d("SingleResponse",jsonArray.get(0).toString());*/
                       Constants.workOrderPOJOList = Arrays.asList(new Gson().fromJson(response, GetWorkorderPOJO[].class));
-                      syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,workno);
+                      syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,0);
                       mrecyclerView.setAdapter(syncronizedHomeAdapter);
-                     // Constants.TASK_ID = "" + Constants.workOrderPOJOList.get(0).get();
+                      callCheckOnSiteApi();
+
+                      // Constants.TASK_ID = "" + Constants.workOrderPOJOList.get(0).get();
                       // assesmentHomePOJO=Constants.assesmentHomePOJOList.get(0);
                          LoginActivity.value=1;
 
                   } catch (Exception e) {
 
                   }
+
+
 
               }
           }, true).execute();
@@ -205,26 +209,8 @@ public class AssessmentHomeFragment extends Fragment{
               }
           },false).execute();*/
       else {
-            syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,workno);
-            mrecyclerView.setAdapter(syncronizedHomeAdapter);
 
-            /*for (int i=0;i< Constants.workOrderPOJOList.size();i++) {
-                if ((Constants.workOrderPOJOList.get(i).getLat() == null) || Constants.workOrderPOJOList.get(i).getLon() == null) {
-
-                } else {
-                    String dist = UtilityFunction.calculateDistance( Constants.CURRENT_LAT , Constants.CURRENT_LNG, Constants.workOrderPOJOList.get(i).getLat(), Constants.workOrderPOJOList.get(i).getLon(), Constants.PROVIDER);
-                    distance = Double.parseDouble(dist);
-                    if (distance <= DISTANCE) {
-
-                    } else {
-                        SharedPreferences mSharedPreferences =getContext().getSharedPreferences("TASK_ID", 0);
-                        if (mSharedPreferences != null)
-                            mSharedPreferences.edit().remove("assess").commit();
-                        callStatusUpdateApi("Completed", true);
-                    }
-                }
-            }*/
-
+            callCheckOnSiteApi1();
         }
       //  fetchData();
 
@@ -372,8 +358,54 @@ public class AssessmentHomeFragment extends Fragment{
     }
 
 
-    public void
-    callCheckOnSiteApi() {
+    public void callCheckOnSiteApi() {
+        new GetApiCallback(getContext(), UrlClass.BASE_URL+"api/Order/getactivity" , new OnTaskCompleted<String>() {
+            @Override
+            public void onTaskCompleted(String response) {
+                try {
+                    Log.d("CheckStatusResponse", response);
+                    Constants.homeStatusPOJO = new Gson().fromJson(response, HomeStatusPOJO.class);
+                    if (Constants.homeStatusPOJO.getSTATUS().equals("On-Site")) {
+                        tv_go_on_site.setText(Constants.homeStatusPOJO.getSTATUS());
+                        tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_on_site_bg_design));
+                        tv_go_on_site.setEnabled(true);
+                        workno=Constants.homeStatusPOJO.getWORK_ORDER_ID();
+                     //   workorderno=Constants.homeStatusPOJO.getASSESMENTID();
+                        Log.d("CheckStatusResponse1", response);
+                        String dist = UtilityFunction.calculateDistance( Constants.CURRENT_LAT , Constants.CURRENT_LNG, Constants.homeStatusPOJO.getLATITUDE(), Constants.homeStatusPOJO.getLONGITUDE(), Constants.PROVIDER);
+                        distance = Double.parseDouble(dist);
+                        if (distance <= DISTANCE) {
+                            syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,workno);
+                            mrecyclerView.setAdapter(syncronizedHomeAdapter);
+
+                        } else {
+                            SharedPreferences mSharedPreferences =getContext().getSharedPreferences("TASK_ID", 0);
+                            if (mSharedPreferences != null)
+                                mSharedPreferences.edit().remove("assess").commit();
+                            callStatusUpdateApi("Completed", true);
+                            syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,0);
+                            mrecyclerView.setAdapter(syncronizedHomeAdapter);
+
+                        }
+
+                    } else if (Constants.homeStatusPOJO.getSTATUS().equals("Off-Site")) {
+                        tv_go_on_site.setText("Off-Site");
+                        tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));
+                        tv_go_on_site.setEnabled(false);
+                        workno=0;
+                        workorderno="";
+                        Log.d("CheckStatusResponse2", response);
+                        syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,0);
+                        mrecyclerView.setAdapter(syncronizedHomeAdapter);
+                    }
+                } catch (Exception e) {
+                    Log.d("Exception", e.toString());
+                }
+
+            }
+        }, true).execute();
+    }
+public void callCheckOnSiteApi1() {
         new GetApiCallback(getContext(), UrlClass.BASE_URL+"api/Order/getactivity" , new OnTaskCompleted<String>() {
             @Override
             public void onTaskCompleted(String response) {
@@ -387,26 +419,18 @@ public class AssessmentHomeFragment extends Fragment{
                         workno=Constants.homeStatusPOJO.getWORK_ORDER_ID();
                      //   workorderno=Constants.homeStatusPOJO.getASSESMENTID();
 
-                        String dist = UtilityFunction.calculateDistance( Constants.CURRENT_LAT , Constants.CURRENT_LNG, Constants.homeStatusPOJO.getLATITUDE(), Constants.homeStatusPOJO.getLONGITUDE(), Constants.PROVIDER);
-                        distance = Double.parseDouble(dist);
-                        if (distance <= DISTANCE) {
-
-                        } else {
-                            SharedPreferences mSharedPreferences =getContext().getSharedPreferences("TASK_ID", 0);
-                            if (mSharedPreferences != null)
-                                mSharedPreferences.edit().remove("assess").commit();
-                            callStatusUpdateApi("Completed", true);
-                        }
+                        syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,workno);
+                        mrecyclerView.setAdapter(syncronizedHomeAdapter);
 
 
-
-                        
                     } else if (Constants.homeStatusPOJO.getSTATUS().equals("Off-Site")) {
                         tv_go_on_site.setText("Off-Site");
                         tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));
                         tv_go_on_site.setEnabled(false);
                         workno=0;
                         workorderno="";
+                        syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,0);
+                        mrecyclerView.setAdapter(syncronizedHomeAdapter);
                     }
                 } catch (Exception e) {
                     Log.d("Exception", e.toString());

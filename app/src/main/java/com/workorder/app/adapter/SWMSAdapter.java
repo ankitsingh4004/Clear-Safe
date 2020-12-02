@@ -61,7 +61,13 @@ public class SWMSAdapter extends RecyclerView.Adapter<SWMSAdapter.DocListViewHol
             holder.tv_version.setText("V.no : " + attachementPOJO.getVersion());
             holder.tv_doc_temp.setText("" + attachementPOJO.getTemplateNumber());
             holder.tv_doc_date.setText(UtilityFunction.getSplitedDate(attachementPOJO.getAssignedDate()));
-        holder.workOrderStatus.setText(attachementPOJO.getSWMSStatus());
+        if(attachementPOJO.getSWMSStatus().equalsIgnoreCase("Signed" +
+                "")){
+            holder.workOrderStatus.setText(attachementPOJO.getSWMSStatus());
+        }else {
+            holder.workOrderStatus.setText("Active");
+        }
+
         holder.warningtext.setText(attachementPOJO.getSWMSWarningLevel());
         if(attachementPOJO.getSWMSWarningLevel().equalsIgnoreCase("Ok")){
             holder.warning.setImageResource(R.drawable.ic_warning_black2_24dp);

@@ -162,7 +162,7 @@ public class SWMSFragment extends Fragment implements LocationListener {
                             if(attachementPOJO.getSignedStatus()){
                                 tv_signed_status.setText("Signed");
                             }else {
-                                tv_signed_status.setText("Received");
+                                tv_signed_status.setText("Active");
                             }
                             tv_doc_date.setText(attachementPOJO.getAssignedDate());
                             tv_doc_name.setText(attachementPOJO.getFILENAME());

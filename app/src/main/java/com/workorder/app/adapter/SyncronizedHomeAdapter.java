@@ -42,7 +42,7 @@ public class SyncronizedHomeAdapter extends RecyclerView.Adapter<SyncronizedHome
     }
 
     @Override
-    public void onBindViewHolder(SynchronizedHomeHolder holder, @SuppressLint("RecyclerView") final int position) {
+    public void onBindViewHolder(final SynchronizedHomeHolder holder, @SuppressLint("RecyclerView") final int position) {
 
         try {
           /*  if(HomeActivity.tv_go_on_site.getText().toString().equalsIgnoreCase("On-Site")) {
@@ -55,7 +55,20 @@ public class SyncronizedHomeAdapter extends RecyclerView.Adapter<SyncronizedHome
 
             }*/
             holder.tv_assesment.setText(homePOJOList.get(position).getWorkOrderNo());
-            holder.workOrderStatus.setText(homePOJOList.get(position).getWorkOrderStatus());
+            if(workrno==0){
+                holder.workOrderStatus.setText(homePOJOList.get(position).getWorkOrderStatus());
+            }else {
+                if (workrno==homePOJOList.get(position).getWorkOrderId()) {
+                    if(homePOJOList.get(position).getWorkOrderStatus().equalsIgnoreCase("Completed")){
+                        holder.workOrderStatus.setText(homePOJOList.get(position).getWorkOrderStatus());
+                    }else {
+                        holder.workOrderStatus.setText("Active");
+                    }
+                } else {
+                    holder.workOrderStatus.setText(homePOJOList.get(position).getWorkOrderStatus());
+                }
+            }
+
             holder.warningtext.setText(homePOJOList.get(position).getOrderWarningLevel());
             if(homePOJOList.get(position).getOrderWarningLevel().equalsIgnoreCase("Ok")){
                 holder.warning.setImageResource(R.drawable.ic_warning_black2_24dp);
@@ -65,11 +78,7 @@ public class SyncronizedHomeAdapter extends RecyclerView.Adapter<SyncronizedHome
                 holder.warning.setImageResource(R.drawable.ic_warning_black1_24dp);
             }
 
-            if(homePOJOList.get(position).getWorkOrderStatus().equalsIgnoreCase("Downloaded")){
-                if(homePOJOList.get(position).getWorkOrderId()==workrno){
-                    holder.workOrderStatus.setText("Active");
-                }
-            }
+
             holder.priority.setText(homePOJOList.get(position).getPriority());
             holder.ordertype.setText(homePOJOList.get(position).getOrderType());
             holder.clientname.setText(homePOJOList.get(position).getClientName());
@@ -101,7 +110,7 @@ public class SyncronizedHomeAdapter extends RecyclerView.Adapter<SyncronizedHome
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("WorkOrderPOJO", homePOJOList.get(position));
                     intent.putExtra("WorkOrderid", homePOJOList.get(position).getWorkOrderId());
-                    intent.putExtra("workorderstatus", homePOJOList.get(position).getWorkOrderStatus());
+                    intent.putExtra("workorderstatus", holder.workOrderStatus.getText().toString());
                     intent.putExtra("warninglevel", homePOJOList.get(position).getOrderWarningLevel());
                     Constants.workOrderPOJO=homePOJOList.get(position);
                     context.startActivity(intent);

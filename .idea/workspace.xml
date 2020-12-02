@@ -6,8 +6,8 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="json" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Exception" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="AutoImportSettings">
@@ -38,10 +38,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/LoginActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/MapsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/MapsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/adapter/SWMSAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/adapter/SWMSAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/adapter/SyncronizedHomeAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/adapter/SyncronizedHomeAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/fragment/AssessmentHomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/fragment/AssessmentHomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/fragment/SWMSFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/workorder/app/fragment/SWMSFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +110,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="device.picker.selection" value="Pixel_2_API_28" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/martcues/Martcues/Martcues/Martcues" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Martcues" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
     <property name="show.do.not.ask.upgrade.gradle.plugin" value="3.3.0" />
     <property name="show.migrate.to.gradle.popup" value="false" />
@@ -244,26 +248,26 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="430" height="466" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1603346586282" />
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1606108383812">
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1606481858611">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1606108383812" />
-    <state width="1323" height="186" key="GridCell.Tab.0.bottom" timestamp="1606221217683">
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1606481858611" />
+    <state width="1323" height="186" key="GridCell.Tab.0.bottom" timestamp="1606890245461">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="186" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606221217683" />
-    <state width="1323" height="186" key="GridCell.Tab.0.center" timestamp="1606221217683">
+    <state width="1323" height="186" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606890245461" />
+    <state width="1323" height="186" key="GridCell.Tab.0.center" timestamp="1606890245461">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="186" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606221217683" />
-    <state width="1323" height="186" key="GridCell.Tab.0.left" timestamp="1606221217683">
+    <state width="1323" height="186" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606890245461" />
+    <state width="1323" height="186" key="GridCell.Tab.0.left" timestamp="1606890245461">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="186" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606221217683" />
-    <state width="1323" height="186" key="GridCell.Tab.0.right" timestamp="1606221217683">
+    <state width="1323" height="186" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606890245461" />
+    <state width="1323" height="186" key="GridCell.Tab.0.right" timestamp="1606890245461">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="186" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606221217683" />
+    <state width="1323" height="186" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606890245461" />
     <state width="1323" height="28" key="GridCell.Tab.1.bottom" timestamp="1603350890841">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -336,6 +340,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1605094914625" />
+    <state x="332" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1606721041231">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="332" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.728@0.0.1366.728" timestamp="1606721041231" />
     <state x="514" y="121" key="refactoring.ChangeSignatureDialog" timestamp="1603456206351">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -383,6 +391,41 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/SignatureActivity.java</url>
           <line>149</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/workorder/app/fragment/AssessmentHomeFragment.java</url>
+          <line>397</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/workorder/app/fragment/AssessmentHomeFragment.java</url>
+          <line>398</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/workorder/app/fragment/AssessmentHomeFragment.java</url>
+          <line>377</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/workorder/app/fragment/AssessmentHomeFragment.java</url>
+          <line>378</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/workorder/app/fragment/AssessmentHomeFragment.java</url>
+          <line>386</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/workorder/app/fragment/AssessmentHomeFragment.java</url>
+          <line>385</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/workorder/app/activity/LoginActivity.java</url>
+          <line>212</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

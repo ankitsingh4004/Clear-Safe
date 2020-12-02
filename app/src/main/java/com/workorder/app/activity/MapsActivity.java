@@ -113,7 +113,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     boolean isNetworkEnable = false;
     SiteLocationPOJO siteLocationPOJO;
     double distance = 0;
-    public static final double DISTANCE = 20;
+    public static final double DISTANCE = 100000;
     // Bottom Sheet
     ListView listView;
     TextView tv_suspended;
@@ -177,6 +177,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
         workorderid=getIntent().getIntExtra("WorkOrderid",0);
+
         workorderstatus=getIntent().getStringExtra("workorderstatus");
         warninglevel=getIntent().getStringExtra("warninglevel");
         Log.v("workorderid", String.valueOf(workorderid));
