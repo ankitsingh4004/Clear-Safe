@@ -113,7 +113,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     boolean isNetworkEnable = false;
     SiteLocationPOJO siteLocationPOJO;
     double distance = 0;
-    public static final double DISTANCE = 100000;
+    public static final double DISTANCE =20;
     // Bottom Sheet
     ListView listView;
     TextView tv_suspended;
@@ -157,7 +157,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         workOrderStatus = findViewById(R.id.workOrderStatus);
         warningtext = findViewById(R.id.warningtext);
         warning1 = findViewById(R.id.warning1);
-
+        template.setVisibility(View.GONE);
 
         ll_bottom_sheet.setVisibility(View.GONE);
         //   tv_trade_category = findViewById(R.id.tv_site_location_trade_category);

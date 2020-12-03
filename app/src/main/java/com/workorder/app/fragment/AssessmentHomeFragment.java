@@ -418,9 +418,25 @@ public void callCheckOnSiteApi1() {
                         tv_go_on_site.setEnabled(true);
                         workno=Constants.homeStatusPOJO.getWORK_ORDER_ID();
                      //   workorderno=Constants.homeStatusPOJO.getASSESMENTID();
+                        new GetApiCallback(getActivity(), UrlClass.BASE_URL+"api/Order/GetActiveWorkOrders", new OnTaskCompleted<String>() {
+                            @Override
+                            public void onTaskCompleted(String response) {
+                                Log.d("ResponseWorkOrder", response);
+                                try {
 
-                        syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,workno);
-                        mrecyclerView.setAdapter(syncronizedHomeAdapter);
+                                    Constants.workOrderPOJOList = Arrays.asList(new Gson().fromJson(response, GetWorkorderPOJO[].class));
+                                    syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,workno);
+                                    mrecyclerView.setAdapter(syncronizedHomeAdapter);
+
+                                } catch (Exception e) {
+
+                                }
+
+
+
+                            }
+                        }, true).execute();
+
 
 
                     } else if (Constants.homeStatusPOJO.getSTATUS().equals("Off-Site")) {
