@@ -538,6 +538,19 @@
                 android:layout_height="10dp" />
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="km"
+            android:id="@+id/distance"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:gravity="right"
+            android:layout_marginBottom="5dp"
+            android:textColor="#000"
+            android:textSize="15sp" />
+
+
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:map="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"

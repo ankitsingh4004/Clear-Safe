@@ -129,6 +129,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     TextView workOrderStatus;
     TextView warningtext;
     TextView guidelines;
+    TextView distancetext;
     ImageView warning1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +139,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         iv_back = findViewById(R.id.iv_site_location_back);
         template = findViewById(R.id.template);
+        distancetext = findViewById(R.id.distance);
         warning = findViewById(R.id.warning);
         guidelines = findViewById(R.id.guidelines);
         description = findViewById(R.id.descrption);
@@ -1013,6 +1015,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.d("DISTANCE",""+distance);
 
 
+            int km =(int)distance;
+            distancetext.setText(km+" m");
+
             new FetchURL(MapsActivity.this).execute(getUrl(place1.getPosition(), place2.getPosition(), "driving"), "driving");
 
             if (DIALOG_STATUS.equals(FIRST_TIME_DIALOG)) {
@@ -1101,6 +1106,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 String dist = UtilityFunction.calculateDistance(latitude, longitude, destLatLng.latitude, destLatLng.longitude, Constants.PROVIDER);
                 distance = Double.parseDouble(dist);
+                int km =(int)distance;
+                distancetext.setText(km+" m");
+
 
                 new FetchURL(MapsActivity.this).execute(getUrl(place1.getPosition(), place2.getPosition(), "driving"), "driving");
 
