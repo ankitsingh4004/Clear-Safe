@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:text="work order number"
                     android:textColor="#000"
-                    android:textStyle="bold"
+android:textStyle="bold"
                     android:textIsSelectable="true"
                     android:textSize="18sp" />
 
@@ -101,7 +101,6 @@
                 android:layout_height="match_parent"
                 android:text="Client Name - "
                 android:textColor="#000"
-                android:fontFamily="sans-serif-medium"
 
                 android:textSize="16sp" />
 
@@ -143,7 +142,6 @@
                 android:layout_height="match_parent"
                 android:text="Order Type - "
                 android:textColor="#000"
-                android:fontFamily="sans-serif-medium"
 
                 android:textSize="16sp" />
 
@@ -185,7 +183,6 @@
                 android:layout_height="match_parent"
                 android:text="Priority - "
                 android:textColor="#000"
-                android:fontFamily="sans-serif-medium"
 
                 android:textSize="16sp" />
 
@@ -228,7 +225,6 @@
                 android:layout_height="match_parent"
                 android:text="Order Status - "
                 android:textColor="#000"
-                android:fontFamily="sans-serif-medium"
 
                 android:textSize="16sp" />
 
@@ -272,7 +268,6 @@
                 android:layout_height="match_parent"
                 android:text="Warning Level - "
                 android:textColor="#000"
-                android:fontFamily="sans-serif-medium"
 
                 android:textSize="16sp" />
 

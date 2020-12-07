@@ -209,7 +209,8 @@ public class AssessmentHomeFragment extends Fragment{
               }
           },false).execute();*/
       else {
-
+            syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,0);
+            mrecyclerView.setAdapter(syncronizedHomeAdapter);
             callCheckOnSiteApi1();
         }
       //  fetchData();
