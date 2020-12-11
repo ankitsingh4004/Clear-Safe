@@ -26,7 +26,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.workorder.app.R;
 import com.workorder.app.activity.HomeActivity;
 import com.workorder.app.activity.LoginActivity;
-import com.workorder.app.workorderapplication.remote.NetworkWorkOrder;
 
 import java.io.IOException;
 import java.text.ParseException;

@@ -43,7 +43,6 @@ import com.google.gson.Gson;
 import com.workorder.app.R;
 import com.workorder.app.fragment.AssessmentHomeFragment;
 import com.workorder.app.fragment.SWMSFragment;
-import com.workorder.app.fragment.SurveyFragment;
 import com.workorder.app.pojo.HomeStatusPOJO;
 import com.workorder.app.util.Constants;
 import com.workorder.app.util.UrlClass;

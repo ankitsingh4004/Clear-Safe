@@ -31,13 +31,6 @@ import com.workorder.app.webservicecallback.OnTaskCompleted;
 import com.workorder.app.webservicecallback.SendData;
 import com.workorder.app.webservicecallback.SendData1;
 import com.workorder.app.webservicecallback.VersionCheckListner;
-import com.workorder.app.workorderapplication.activity.MainActivity;
-import com.workorder.app.workorderapplication.activity.SearchWorkOrder;
-import com.workorder.app.workorderapplication.activity.WorkerSearchList;
-import com.workorder.app.workorderapplication.model.login.LoginResponseModel;
-import com.workorder.app.workorderapplication.remote.NetworkWorkOrder;
-import com.workorder.app.workorderapplication.remote.PreferenceManagerWorkOrder;
-import com.workorder.app.workorderapplication.remote.RetrofitManagerWorkOrder;
 
 import org.json.JSONObject;
 
@@ -52,7 +45,7 @@ public class LoginActivity extends AppCompatActivity implements VersionCheckList
     // PreferenceManager preferenceManager;
     //PreferenceManagerWorkOrder preferenceManagerWorkOrder;
     String username1="",userrole="",userid="";
-    PreferenceManagerWorkOrder preferenceManagerWorkOrder;
+
     String user_id;
     public static int value;
     TextView forgotpassword;
@@ -74,7 +67,6 @@ public class LoginActivity extends AppCompatActivity implements VersionCheckList
             getWindow().setNavigationBarColor(getResources().getColor(R.color.navigationbar));
         }
         new GooglePlayStoreAppVersionNameLoader(getApplicationContext(), this).execute();
-        preferenceManagerWorkOrder = PreferenceManagerWorkOrder.getInstance(getApplicationContext());
 
         forgotpassword.setOnClickListener(new OnClickListener() {
             @Override
@@ -221,16 +213,16 @@ public class LoginActivity extends AppCompatActivity implements VersionCheckList
 
                 try {
                     JSONObject jsonObject = new JSONObject();
-                 jsonObject.put("username", userName);
-              jsonObject.put("Password", password);
+              jsonObject.put("username", userName);
+            jsonObject.put("Password", password);
                    // jsonObject.put("username", "info@uveoustech.com");
                 //     jsonObject.put("Password", "Uveous@#$056");
                 //  jsonObject.put("username", "radhey2784@gmail.com");
                  // jsonObject.put("Password", "Test@123");
-                 //  jsonObject.put("username", "kundans48@gmail.com");
-             //      jsonObject.put("Password", "P@ssword123");
-              //   jsonObject.put("username", "Democmpny01emp02@clear-safe.com");
-                // jsonObject.put("Password", "P@ssword123");
+               //   jsonObject.put("username", "testemp01@abc.com");
+                 // jsonObject.put("Password", "P@ssword123");
+           //    jsonObject.put("username", "democmpny01emp01@clear-safe.com");
+            //  jsonObject.put("Password", "P@ssword123");
              //   jsonObject.put("username", "shaluch123chauhan@gmail.com");
                  //jsonObject.put("Password", "Shalu@123");
 //
@@ -320,66 +312,6 @@ public class LoginActivity extends AppCompatActivity implements VersionCheckList
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
-        }else {
-            LoginResponseModel loginResponseModel=new Gson().fromJson(response,LoginResponseModel.class);
-            if(loginResponseModel.getProfile().getRoleNames().get(0).equals("Facilities Manager"))//BBM
-                preferenceManagerWorkOrder.setKey_User_Role("Finance Manager");
-            else
-            preferenceManagerWorkOrder.setKey_User_Role(loginResponseModel.getProfile().getRoleNames().get(0));
-            preferenceManagerWorkOrder.setKey_User_Name(loginResponseModel.getProfile().getUserName());
-            preferenceManagerWorkOrder.setKey_User_Id(String.valueOf(loginResponseModel.getProfile().getId()));
-            preferenceManagerWorkOrder.setKey_Person_Company_Id(String.valueOf(loginResponseModel.getProfile().getCompanyId()));
-            preferenceManagerWorkOrder.setKey_Parent_Company_Id(String.valueOf(loginResponseModel.getProfile().getCompanyId()));
-            username1=loginResponseModel.getProfile().getUserName();
-            userid= String.valueOf(loginResponseModel.getProfile().getId());
-            userrole=loginResponseModel.getProfile().getRoleNames().get(0);
-            if (userrole.toString().trim().equals("Employee")){
-                Bundle bundle=new Bundle();
-                bundle.putString("Id", preferenceManagerWorkOrder.getKey_Person_Company_Id());
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
-                finish();
-            }else
-            if (userrole.toString().equals("Landlord")){
-                Bundle bundle=new Bundle();
-                bundle.putString("Id", preferenceManagerWorkOrder.getKey_Person_Company_Id());
-                Intent intent = new Intent(LoginActivity.this, SearchWorkOrder.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
-                finish();
-            }else if (userrole.toString().trim().equals("Employee")){
-                Intent intent = new Intent(LoginActivity.this,WorkerSearchList.class);
-                startActivity(intent);
-             }
-            else if (userrole.toString().trim().equals("Client")) {
-                Bundle bundle=new Bundle();
-                bundle.putString("Id", preferenceManagerWorkOrder.getKey_Person_Company_Id());
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
-                finish();
-            }
-
-            else if (userrole.toString().trim().equals("Client")) {
-                Bundle bundle=new Bundle();
-                bundle.putString("Id", preferenceManagerWorkOrder.getKey_Person_Company_Id());
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
-                finish();
-            }
-            else {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("username", username1);
-                intent.putExtra("userrole", userrole);
-                startActivity(intent);
-                finish();
-                //progressDialog.dismiss();
-            }
-
-
-
         }
 
 

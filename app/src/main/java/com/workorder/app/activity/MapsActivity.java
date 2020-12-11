@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
 import android.os.CountDownTimer;
@@ -68,13 +69,13 @@ import com.workorder.app.webservicecallback.OnTaskCompleted;
 import com.workorder.app.webservicecallback.SendData;
 import com.workorder.app.webservicecallback.directionhelpers.FetchURL;
 import com.workorder.app.webservicecallback.directionhelpers.TaskLoadedCallback;
-import com.workorder.app.workorderapplication.remote.ApiServicesWorkOrder;
-import com.workorder.app.workorderapplication.remote.NetworkWorkOrder;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -82,6 +83,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, TaskLoadedCallback {
@@ -984,8 +986,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void setMarkerOnMap()
     {
         try {
-            Log.d("Latitude", "" + latitude);
-            Log.d("Longitude", "" + longitude);
+            Log.d("Latitude", "28.6263905" + latitude);
+            Log.d("Longitude", "77.3722361" + longitude);
           //  latitude=28.6119;
           //  longitude=77.3762;
             startLatlng = new LatLng(latitude,longitude);
@@ -1013,10 +1015,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             String dist = UtilityFunction.calculateDistance(latitude, longitude, destLatLng.latitude, destLatLng.longitude, Constants.PROVIDER);
             distance = Double.parseDouble(dist);
             Log.d("DISTANCE",""+distance);
-
-
-            int km =(int)distance;
-            distancetext.setText(km+" m");
+/*
+            Geocoder geocoder = new Geocoder(MapsActivity.this, Locale.getDefault());
+            String result = null;
+            try {
+                List<Address> addressList = geocoder.getFromLocation(latitude, longitude, 1);
+                if (addressList != null && addressList.size() > 0) {
+                    Address address = addressList.get(0);
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+                        sb.append(address.getAddressLine(i)); //.append("\n");
+                    }
+                    sb.append(address.getLocality()).append("\n");
+                    sb.append(address.getPostalCode()).append("\n");
+                    sb.append(address.getCountryName());
+                    result = sb.toString();
+                    Log.v("address",result);
+                }
+            } catch (IOException e) {
+                Log.v("Location Address Loader", "Unable connect to Geocoder", e);
+            }*/
+            int km =((int)distance/1000);
+            distancetext.setText(km+"km");
 
             new FetchURL(MapsActivity.this).execute(getUrl(place1.getPosition(), place2.getPosition(), "driving"), "driving");
 
@@ -1106,9 +1126,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 String dist = UtilityFunction.calculateDistance(latitude, longitude, destLatLng.latitude, destLatLng.longitude, Constants.PROVIDER);
                 distance = Double.parseDouble(dist);
-                int km =(int)distance;
-                distancetext.setText(km+" m");
+                int a=(int)distance;
 
+                int km =((int)distance/1000);
+                distancetext.setText(km+"km");
 
                 new FetchURL(MapsActivity.this).execute(getUrl(place1.getPosition(), place2.getPosition(), "driving"), "driving");
 

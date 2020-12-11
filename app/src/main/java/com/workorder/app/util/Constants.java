@@ -13,13 +13,8 @@ import com.workorder.app.pojo.assesment.AssesmentHomePOJO;
 import com.workorder.app.pojo.docPOJO.DocListPOJO;
 import com.workorder.app.pojo.docPOJO.GetSwmsTemplate;
 import com.workorder.app.pojo.survey.SurveyPOJO;
-import com.workorder.app.search_autocomplete.Prediction;
-import com.workorder.app.workorderapplication.model.UpdateAssetPOJO;
-import com.workorder.app.workorderapplication.model.assetModel.AssetRequestModel;
-import com.workorder.app.workorderapplication.model.assetModel.EditAssetsDetails;
-import com.workorder.app.workorderapplication.model.workOrderModel.EditWorkOrderDetails;
-import com.workorder.app.workorderapplication.model.workOrderModel.WorkOrderPostResquest;
-import com.workorder.app.workorderapplication.model.workOrderModel.WorkOrderResponseModel;
+
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,22 +67,19 @@ public class Constants {
     public static String ACTIVITY_NAME= HOME_ACTIVITY;
 
 
-    public static WorkOrderPostResquest workOrderPostResquest;
-
-    public static Prediction prediction;
     public static String FROM_CITY="";
     public static String FROM_COUNTRY="";
     public static String TO_COUNTRY="";
 
-    public static List<WorkOrderResponseModel> workOrderList=new ArrayList<>();
+
     public static CreateAssetPOJO createAssetModel=new CreateAssetPOJO();
-    public static UpdateAssetPOJO updateAssetPOJO=new UpdateAssetPOJO();
 
-    public static EditAssetsDetails assetsDetails;
 
-    public static EditWorkOrderDetails orderDetails;
 
-    public static EditWorkOrderDetails workOrderDetails;
+
+
+
+
 
 
 

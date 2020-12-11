@@ -42,6 +42,8 @@ public class SurveyTemplate extends FragmentActivity {
     List<SurveyTemplatePojo> lcs;
     ImageView iv_back;
     TextView tv_list_type;
+    TextView tv_role;
+    TextView tv_name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,11 +61,15 @@ public class SurveyTemplate extends FragmentActivity {
                 // finish();
             }
         });
+
+        tv_name = findViewById(R.id.tv_home_activity_name);
+        tv_role = findViewById(R.id.tv_home_activity_role);
         tv_list_type = findViewById(R.id.unsigned_task);
 
         tv_list_type.setText("Survey List");
 
-
+        tv_name.setText(Constants.loginPOJO.getProfile().getFIRSTNAME().toString()+" "+Constants.loginPOJO.getProfile().getLASTNAME().toString());
+        tv_role.setText(Constants.loginPOJO.getProfile().getRoleNames().get(0));
         recyclerView= findViewById(R.id.rv_sync_trask_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(SurveyTemplate.this));
 

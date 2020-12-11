@@ -3,7 +3,6 @@ package com.workorder.app.adapter;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.CompoundButtonCompat;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +14,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -27,17 +25,9 @@ import com.workorder.app.R;
 import com.workorder.app.Util;
 import com.workorder.app.activity.SubmitPojo;
 
-import com.workorder.app.pojo.docPOJO.AttachementPOJO;
-import com.workorder.app.pojo.survey.SurveyPOJO;
 import com.workorder.app.pojo.survey.SurveyQuestionPojo;
-import com.workorder.app.util.SubmitSurveyAns;
-import com.workorder.app.webservicecallback.OnTaskCompleted;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;

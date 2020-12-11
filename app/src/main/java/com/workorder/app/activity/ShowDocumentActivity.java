@@ -98,6 +98,8 @@ public class ShowDocumentActivity extends AppCompatActivity implements DownloadF
              String finalUrl = "http://docs.google.com/viewer?url=" + url1 + "&embedded=true";
              final WebView webView = findViewById(R.id.webView);
 
+             Log.v("finalUrl",finalUrl);
+
              WebSettings webSettings = webView.getSettings();
              webSettings.setBuiltInZoomControls(true);
              webSettings.setJavaScriptEnabled(true);

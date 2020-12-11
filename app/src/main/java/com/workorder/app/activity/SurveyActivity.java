@@ -17,20 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
 import com.workorder.app.ConnectivityReceiver;
 import com.workorder.app.R;
-import com.workorder.app.Util;
-import com.workorder.app.adapter.Survey;
 import com.workorder.app.adapter.SurveyAdapter;
 import com.workorder.app.api.APIHelper;
 import com.workorder.app.api.APIInterface;
@@ -42,13 +31,9 @@ import com.workorder.app.webservicecallback.OnTaskCompleted;
 import com.workorder.app.webservicecallback.SendData;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,8 +41,6 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-import static com.workorder.app.adapter.SurveyAdapter.coment;
-import static com.workorder.app.adapter.SurveyAdapter.map2;
 import static com.workorder.app.adapter.SurveyAdapter.map3;
 
 public class SurveyActivity extends FragmentActivity implements SurveyAdapter.RatingSelectionInterface {
@@ -83,6 +66,9 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
     private LinkedHashMap<Integer,String> map1=new LinkedHashMap<>();
     Boolean yesno;
     String pqid;
+    TextView tv_role;
+    TextView tv_name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,7 +97,10 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
             }
         });
 
-
+        tv_name = findViewById(R.id.tv_home_activity_name);
+        tv_role = findViewById(R.id.tv_home_activity_role);
+        tv_name.setText(Constants.loginPOJO.getProfile().getFIRSTNAME().toString()+" "+Constants.loginPOJO.getProfile().getLASTNAME().toString());
+        tv_role.setText(Constants.loginPOJO.getProfile().getRoleNames().get(0));
         Log.v("wrk", String.valueOf(surveyTemplateId));
         next=findViewById(R.id.next);
         back=findViewById(R.id.back);
