@@ -423,6 +423,8 @@ public class SWMSFragment extends Fragment implements LocationListener {
 
     boolean isGPSEnable = false;
     boolean isNetworkEnable = false;
+
+    
     double latitude, longitude;
     LocationManager locationManager;
     Location location;
