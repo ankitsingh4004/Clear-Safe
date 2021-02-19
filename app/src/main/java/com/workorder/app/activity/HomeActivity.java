@@ -505,10 +505,12 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
                 tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_on_site_bg_design));
 
             }else {
+                tv_go_on_site.setText("Off-Site");
+                tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));
+                tv_go_on_site.setEnabled(false);
                 SharedPreferences mSharedPreferences = getApplicationContext().getSharedPreferences("TASK_ID", 0);
                 if (mSharedPreferences != null)
                     mSharedPreferences.edit().remove("assess").commit();
-                tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));
 
 
             }
@@ -544,6 +546,9 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
                     new GetApiCallback(HomeActivity.this, UrlClass.LOGOUT_URL, new OnTaskCompleted<String>() {
                         @Override
                         public void onTaskCompleted(String response) {
+                            SharedPreferences mSharedPreferences = getApplicationContext().getSharedPreferences("TASK_ID", 0);
+                            if (mSharedPreferences != null)
+                                mSharedPreferences.edit().remove("assess").commit();
                             Constants.ACTIVITY_NAME = Constants.HOME_ACTIVITY;
                             startActivity(new Intent(HomeActivity.this, LoginActivity.class));
                             finish();
@@ -678,11 +683,6 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
                         tv_go_on_site.setText(Constants.homeStatusPOJO.getSTATUS());
                         tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_on_site_bg_design));
                         tv_go_on_site.setEnabled(true);
-
-                        SharedPreferences mPrefs = getSharedPreferences("TASK_ID", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor prefsEditor = mPrefs.edit();
-                        prefsEditor.putInt("assess",Constants.homeStatusPOJO.getASSESMENTID() );
-                        prefsEditor.commit();
 
 
                     } else if (Constants.homeStatusPOJO.getSTATUS().equals("Off-Site")) {

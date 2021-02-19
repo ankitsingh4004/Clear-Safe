@@ -39,6 +39,8 @@ import com.workorder.app.activity.HomeActivity;
 import com.workorder.app.activity.MapsActivity;
 import com.workorder.app.activity.ShowDocumentActivity;
 import com.workorder.app.activity.ShowPdf;
+import com.workorder.app.activity.SignatureInstActivity;
+import com.workorder.app.adapter.DocumentTemplate;
 import com.workorder.app.adapter.SWMSAdapter;
 import com.workorder.app.adapter.SyncronizedHomeAdapter;
 import com.workorder.app.pojo.GetLocationPOJO;
@@ -46,6 +48,7 @@ import com.workorder.app.pojo.GetWorkOrderDetailPojo;
 import com.workorder.app.pojo.GetWorkorderPOJO;
 import com.workorder.app.pojo.HomeStatusPOJO;
 import com.workorder.app.pojo.assesment.AssesmentHomePOJO;
+import com.workorder.app.pojo.docPOJO.AssessmentPOJO;
 import com.workorder.app.pojo.docPOJO.AttachementPOJO;
 import com.workorder.app.pojo.docPOJO.DocListPOJO;
 import com.workorder.app.pojo.docPOJO.GetSwmsTemplate;
@@ -75,10 +78,13 @@ public class SWMSFragment extends Fragment implements LocationListener {
     ProgressBar progressbar;
     TextView tv_wo_no;
     TextView show;
+    String a = "";
     //HomeFragmentAdapter adapter;
     //  private List<SearchTaskListResponseModel> list = new ArrayList<>();
     //  private ArrayList<SearchTaskListResponseModel> data;
-    /**/ RecyclerView rv_home;
+    /**/
+    RecyclerView rv_home;
+    RecyclerView rv_doc_list;
     String task = "";
 
     GetLocationPOJO locationPOJO;
@@ -88,14 +94,14 @@ public class SWMSFragment extends Fragment implements LocationListener {
     List<AttachementPOJO> attachementPOJOS = new ArrayList<>();
 
     CardView firstcard;
-    Button file;
+    ImageView file;
     TextView tv_signed_status;
     TextView tv_doc_date;
     TextView tv_doc_name;
     TextView tv_version;
     TextView documentfile;
     Integer srValue;
-
+    AssessmentPOJO attachementPOJO1;
     int workorderid;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -131,13 +137,14 @@ public class SWMSFragment extends Fragment implements LocationListener {
         final SharedPreferences pref1 = getContext().getSharedPreferences("TASK_ID", MODE_PRIVATE);
         id = pref1.getInt("assess", 0);
         if (id == 0) {
+            tv_go_on_site.setText("Off-Site");
+            tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));
+            tv_go_on_site.setEnabled(false);
             firstcard.setVisibility(View.GONE);
             tv_wo_no.setVisibility(View.GONE);
             show.setVisibility(View.GONE);
             opentThanksYesClickDialog1("SWMS are only available once the Work Order has been started and you are On-Site.");
-            tv_go_on_site.setText("Off-Site");
-            tv_go_on_site.setBackgroundDrawable(getResources().getDrawable(R.drawable.go_off_site_design));
-            tv_go_on_site.setEnabled(false);
+
         } else {
             Log.v("id", String.valueOf(id));
 
@@ -149,12 +156,12 @@ public class SWMSFragment extends Fragment implements LocationListener {
                         @Override
                         public void onTaskCompleted(String response) {
                             Log.d("response", response);
-                            Constants.getSwmsTemplates = Arrays.asList(new Gson().fromJson(response, GetSwmsTemplate[].class));
+                            Constants.AssessmentPOJO = Arrays.asList(new Gson().fromJson(response, AssessmentPOJO[].class));
                             //Constants.docListPOJO = new Gson().fromJson(response, DocListPOJO.class);
                             //  attachementPOJOS = Constants.docListPOJO.getAttachementPOJOs();
                             //tv_wo_no.setText(attachementPOJOS.get());
-                            GetSwmsTemplate attachementPOJO=Constants.getSwmsTemplates.get(0);
-                            if(attachementPOJO.getFILENAME().equalsIgnoreCase("")){
+
+                    /*        if(attachementPOJO.getFILENAME().equalsIgnoreCase("")){
                                 firstcard.setVisibility(View.GONE);
                             }else {
                                 firstcard.setVisibility(View.VISIBLE);
@@ -168,8 +175,18 @@ public class SWMSFragment extends Fragment implements LocationListener {
                             tv_doc_name.setText(attachementPOJO.getFILENAME());
                             documentfile.setText(attachementPOJO.getDOCUMENTNAME());
                             tv_version.setText("V.no :"+attachementPOJO.getVERSIONNUMBER());
+*/
 
-                            adapter = new SWMSAdapter(getActivity(), Constants.getSwmsTemplates, id);
+                            if(Constants.AssessmentPOJO.get(0).getDocuments().size()==0){
+                                firstcard.setVisibility(View.GONE);
+                            }else {
+                                firstcard.setVisibility(View.VISIBLE);
+                                attachementPOJO1=Constants.AssessmentPOJO.get(0);
+                                DocumentTemplate adapter1 = new DocumentTemplate(getActivity(), Constants.AssessmentPOJO.get(0).getDocuments(), id, attachementPOJO1);
+                                rv_doc_list.setAdapter(adapter1);
+                            }
+
+                            adapter = new SWMSAdapter(getActivity(), Constants.AssessmentPOJO , id);
                             rv_home.setAdapter(adapter);
                             Log.d("AttachementSize", attachementPOJOS.size() + "");
                         }
@@ -190,17 +207,52 @@ public class SWMSFragment extends Fragment implements LocationListener {
        file.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                GetSwmsTemplate attachementPOJO=Constants.getSwmsTemplates.get(0);
-                Intent intent=new Intent(getContext(), ShowPdf.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("documentname",attachementPOJO.getFILENAME());
-                intent.putExtra("documenturl",attachementPOJO.getDOCUMENTURL());
-                intent.putExtra("status",tv_signed_status.getText().toString());
-                intent.putExtra("versionno",attachementPOJO.getVERSIONNUMBER());
-                //   intent.putExtra("assesmenttemplateid",attachements.get(position).getAssesmentTemplateId());
-                intent.putExtra("assesmentid",attachementPOJO.getAssesmentId());
-                //   intent.putExtra("assesmentempid",attachements.get(position).getAssignedEmployeeId());
-                startActivity(intent);
+                final List<AssessmentPOJO.Documents> attachementPOJO=Constants.AssessmentPOJO.get(0).getDocuments();
+                for(int i=0;i<attachementPOJO.size();i++) {
+                    a += attachementPOJO.get(i).getFILENAME() + ",";
+                }
+                if(a.endsWith(",")) {
+                    a= a.substring(0, a.length() - 1);
+                }
+                Log.v("name",a);
+                if(String.valueOf(attachementPOJO1.isSignedStatus()).equalsIgnoreCase("true")){
+                    opentThanksYesClickDialog1("Document File already signed");
+                }else {
+                    Intent intent=new Intent(getContext(), SignatureInstActivity.class);
+                    //    intent.putExtra("assesmenttemplateid",assesmenttemplateid);
+                    intent.putExtra("documentname",a);
+                    intent.putExtra("versionno",attachementPOJO.get(0).getVERSION_NUMBER());
+                    intent.putExtra("assesmentid",attachementPOJO1.getAssesmentId());
+                    //   intent.putExtra("assesmentempid",assesmentempid);
+                    startActivity(intent);
+                 /*   final Dialog dialog = new Dialog(getContext());
+                    dialog.setContentView(R.layout.inflate_sign_pop);
+                    TextView tv_type = dialog.findViewById(R.id.tv_hoem_alert_type);
+                    TextView tv_ok = dialog.findViewById(R.id.tv_home_check_on_site_yes);
+                    TextView tv_no = dialog.findViewById(R.id.tv_home_check_on_site_no);
+                    tv_type.setText("Alert");
+                    TextView tv_message = dialog.findViewById(R.id.tv_home_alert_message);
+                    tv_message.setText("You need to scroll down and read all documents before selecting Sign. To sign and verify that you have read the documents.");
+
+                    dialog.show();
+                    tv_ok.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+
+                        }
+                    });
+
+                    tv_no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+*/
+                }
+
+
             }
         });
 
@@ -222,8 +274,6 @@ public class SWMSFragment extends Fragment implements LocationListener {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Constants.ACTIVITY_NAME = Constants.HOME_ACTIVITY;
-                startActivity(new Intent(getContext(), HomeActivity.class));
 
             }
         });
@@ -231,9 +281,12 @@ public class SWMSFragment extends Fragment implements LocationListener {
 
     public void init(View rootView) {
         rv_home = rootView.findViewById(R.id.rv_task_list);
+        rv_doc_list = rootView.findViewById(R.id.rv_doc_list);
         tv_wo_no = rootView.findViewById(R.id.tv_swms_work_order_no);
         show = rootView.findViewById(R.id.show);
+
         rv_home.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rv_doc_list.setLayoutManager(new LinearLayoutManager(getActivity()));
         //    progressDialog = new ProgressDialog(getActivity());
     }
 

@@ -98,6 +98,10 @@ public class GetWorkorderPOJO implements Serializable {
     @Expose
     private String orderWarningLevel;
 
+    @SerializedName("completedForUser")
+    @Expose
+    private Boolean completedForUser;
+
     public Integer getWorkOrderId() {
         return workOrderId;
     }
@@ -338,4 +342,11 @@ public class GetWorkorderPOJO implements Serializable {
         this.orderWarningLevel = orderWarningLevel;
     }
 
+    public Boolean getCompletedForUser() {
+        return completedForUser;
+    }
+
+    public void setCompletedForUser(Boolean completedForUser) {
+        this.completedForUser = completedForUser;
+    }
 }

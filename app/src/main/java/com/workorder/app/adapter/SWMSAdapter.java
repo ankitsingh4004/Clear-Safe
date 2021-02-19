@@ -17,6 +17,7 @@ import com.workorder.app.R;
 import com.workorder.app.activity.MapsActivity;
 import com.workorder.app.activity.ShowDocumentActivity;
 import com.workorder.app.activity.ShowPdf;
+import com.workorder.app.pojo.docPOJO.AssessmentPOJO;
 import com.workorder.app.pojo.docPOJO.AttachementPOJO;
 import com.workorder.app.pojo.docPOJO.GetSwmsTemplate;
 import com.workorder.app.util.Constants;
@@ -29,12 +30,12 @@ import java.util.Map;
 public class SWMSAdapter extends RecyclerView.Adapter<SWMSAdapter.DocListViewHolder> {
 
     Context context;
-    List<GetSwmsTemplate> attachementPOJOList;
+    List<AssessmentPOJO> attachementPOJOList;
     int assessmentid;
    // DocClickListner mclickListner;
    // List<Attachement> attachementList;
 
-    public SWMSAdapter(Context context, List<GetSwmsTemplate> attachementPOJOList, int assessmentid) {
+    public SWMSAdapter(Context context, List<AssessmentPOJO> attachementPOJOList, int assessmentid) {
         this.context = context;
         this.attachementPOJOList=attachementPOJOList;
         this.assessmentid=assessmentid;
@@ -52,7 +53,7 @@ public class SWMSAdapter extends RecyclerView.Adapter<SWMSAdapter.DocListViewHol
 
     @Override
     public void onBindViewHolder(final DocListViewHolder holder, final int position) {
-        final GetSwmsTemplate attachementPOJO=attachementPOJOList.get(position);
+        final AssessmentPOJO attachementPOJO=attachementPOJOList.get(position);
 
 
             holder.tv_DocName.setText("" + attachementPOJO.getTitle());

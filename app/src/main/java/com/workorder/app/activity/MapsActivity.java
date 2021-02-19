@@ -115,7 +115,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     boolean isNetworkEnable = false;
     SiteLocationPOJO siteLocationPOJO;
     double distance = 0;
-    public static final double DISTANCE =99999920;
+    public static final double DISTANCE =20;
     // Bottom Sheet
     ListView listView;
     TextView tv_suspended;
@@ -196,6 +196,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             warning1.setImageResource(R.drawable.ic_warning_black1_24dp);
         }
 
+         final ProgressDialog dialog1=new ProgressDialog(MapsActivity.this);
+            dialog1.setMessage("Please wait");
+            dialog1.show();
+            dialog1.setCanceledOnTouchOutside(false);
+
+
         new GetApiCallback(MapsActivity.this, UrlClass.BASE_URL+"api/Order/GetOrderAssesments?orderId="+workorderid, new OnTaskCompleted<String>() {
             @Override
             public void onTaskCompleted(String response) {
@@ -203,11 +209,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 try {
                     Constants.workOrderPOJOdetail = Arrays.asList(new Gson().fromJson(response, GetWorkOrderDetailPojo[].class));
                     Constants.workOrderdetail=Constants.workOrderPOJOdetail.get(0);
+
+
                     if(Constants.workOrderdetail.getIsSurveyAttached().equalsIgnoreCase("Yes")){
                         template.setVisibility(View.VISIBLE);
                     }else {
                         template.setVisibility(View.GONE);
                     }
+                    dialog1.dismiss();
+                    callApi();
+
                 } catch (Exception e) {
 
                 }
@@ -239,7 +250,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         assesmentHomePOJO = (GetWorkorderPOJO) getIntent().getSerializableExtra("WorkOrderPOJO");
+        if (assesmentHomePOJO != null) {
 
+            tv_wo_no.setText(assesmentHomePOJO.getWorkOrderNo());
+            tv_wo_start_dt.setText(UtilityFunction.changeDateTime(assesmentHomePOJO.getWorkOrderDate()));
+            tv_wo_end_dt.setText(UtilityFunction.changeDateTime(assesmentHomePOJO.getDueDate()));
+
+            tv_address.setText(assesmentHomePOJO.getAddress1());
+            tv_status.setText(assesmentHomePOJO.getStatus());
+
+            //  warning.setText(assesmentHomePOJO.getWarningText());
+            description.setText(assesmentHomePOJO.getWorkScope());
+            destLatLng = new LatLng(assesmentHomePOJO.getLat(), assesmentHomePOJO.getLon());
+        }
         callCheckOnSiteApi();
 
 
@@ -270,7 +293,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
-    public void openOnSiteDialog() {
+    /*public void openOnSiteDialog() {
         final Dialog dialog = new Dialog(MapsActivity.this);
         dialog.setContentView(R.layout.inflate_open_dialog_go_on_site_home_activity);
 
@@ -329,7 +352,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
     }
-
+*/
     public void callStatusUpdateApi(final boolean isCompleted) {
         try {
             if (Constants.homeStatusPOJO != null) {
@@ -452,6 +475,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
+ public void opentThanksYesClickDialog2(String message) {
+        final Dialog dialog = new Dialog(MapsActivity.this);
+        dialog.setContentView(R.layout.inflate_home_thanks_yes_click);
+        TextView tv_type = dialog.findViewById(R.id.tv_alert_type);
+        TextView tv_ok = dialog.findViewById(R.id.tv_ok_thanks);
+        tv_type.setText("Alert");
+        TextView tv_message = dialog.findViewById(R.id.tv_message_thanks);
+        tv_message.setText(message);
+
+        dialog.show();
+        tv_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Constants.ACTIVITY_NAME = Constants.HOME_ACTIVITY;
+                startActivity(new Intent(MapsActivity.this,HomeActivity.class));
+
+            }
+        });
+    }
 
     @Override
     public void onBackPressed() {
@@ -494,7 +537,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //    marker=mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
-        callApi();
 
     }
 
@@ -849,8 +891,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 ll_bottom_sheet.setVisibility(View.GONE);
                 if(HomeActivity.tv_go_on_site.getText().toString().equalsIgnoreCase("On-Site")){
 
-                }else
-                { showDialog();
+                }else {
+                    if (Constants.workOrderdetail.getPrevStatus()) {
+                        showDialog();
+
+                    } else {
+                        opentThanksYesClickDialog2("Please complete the previous workorder in the schedule.");
+                    }
                 }
             }
         });
@@ -888,12 +935,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     }else
                     {
-                        showDialog();
-                        if (is_dialog_show) {
-                            timer.cancel();
-                        } else {
-                            timer.start();
+                        if(Constants.workOrderdetail.getPrevStatus()){
+                            showDialog();
+                            if (is_dialog_show) {
+                                timer.cancel();
+                            } else {
+                                timer.start();
+                            }
+                        }else {
+                            opentThanksYesClickDialog2("Please complete the previous workorder in the schedule.");
                         }
+
+
                     }
                 }
 
@@ -909,7 +962,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
           //  Log.d("SiteId", assesmentHomePOJO.getSiteNameId()+"");
            if (assesmentHomePOJO != null) {
 
-              tv_wo_no.setText(assesmentHomePOJO.getWorkOrderNo());
+            /*  tv_wo_no.setText(assesmentHomePOJO.getWorkOrderNo());
               tv_wo_start_dt.setText(UtilityFunction.changeDateTime(assesmentHomePOJO.getWorkOrderDate()));
                  tv_wo_end_dt.setText(UtilityFunction.changeDateTime(assesmentHomePOJO.getDueDate()));
 
@@ -921,7 +974,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
               description.setText(assesmentHomePOJO.getWorkScope());
                 destLatLng = new LatLng(assesmentHomePOJO.getLat(), assesmentHomePOJO.getLon());
               //  destLatLng=new LatLng(28.6119,77.3762);
-
+*/
                 // if (UtilityFunction.gpsstatusCheck(MapsActivity.this)) {
                 fn_permission();
 
@@ -1052,8 +1105,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if(HomeActivity.tv_go_on_site.getText().toString().equalsIgnoreCase("On-Site")){
                     }else
                     {
-                        showDialog();
-                        DIALOG_STATUS = REPEATED_DIALOG;
+                        if(Constants.workOrderdetail.getPrevStatus()){
+                            showDialog();
+                            DIALOG_STATUS = REPEATED_DIALOG;
+
+                        }else {
+                            opentThanksYesClickDialog2("Please complete the previous workorder in the schedule.");
+                        }
 
                     }
                  //   }
@@ -1134,26 +1192,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 new FetchURL(MapsActivity.this).execute(getUrl(place1.getPosition(), place2.getPosition(), "driving"), "driving");
 
 
-                if (DIALOG_STATUS.equals(FIRST_TIME_DIALOG)) {
+          /*      if (DIALOG_STATUS.equals(FIRST_TIME_DIALOG)) {
                     if (distance <= DISTANCE && distance>0) {
 
                         Log.d("text1",HomeActivity.tv_go_on_site.getText().toString());
                         if(HomeActivity.tv_go_on_site.getText().toString().equalsIgnoreCase("On-Site")){
 
                         }else
-                        { showDialog();
+                        { if(Constants.workOrderdetail.getPrevStatus()){
+                            showDialog();
                             DIALOG_STATUS = REPEATED_DIALOG;
 
+                        }else {
+                            opentThanksYesClickDialog2("Please complete the previous workorder in the schedule.");
+                        }
                         }
 
-                     /* if (Constants.homeStatusPOJO.getStatus().equals("On-Site"))
+                     *//* if (Constants.homeStatusPOJO.getStatus().equals("On-Site"))
                       {
                           showDialog();
                       }else {
                           showDialog();
-                      }*/
+                      }*//*
                     }
-                }
+                }*/
             } catch (Exception e) {
                 Log.d("BroadCastException", e.toString());
             }

@@ -61,7 +61,7 @@ public class SignatureInstActivity extends AppCompatActivity implements Compound
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signature);
-      //  tv_title=findViewById(R.id.tv_activity_name);
+        tv_title=findViewById(R.id.tv_activity_name);
         iv_back=findViewById(R.id.iv_back);
         sms=findViewById(R.id.sms);
         documentname=getIntent().getStringExtra("documentname");
@@ -72,7 +72,9 @@ public class SignatureInstActivity extends AppCompatActivity implements Compound
 
         }
 
-        sms.setText("Please sign to confirm that you have read the attached current instructions.If you have not read the attached document then please close this panel, read the file and then sign this panel by selecting the option SIGN.");
+        tv_title.setText(documentname);
+
+        sms.setText("Please sign to confirm that you have read the attached document(s). If you have not read the attached document(s) then please close this panel, read the document(s) and then sign this panel by selecting the option SIGN. By signing you are agreeing and verifying that you have read all the attached document(s).");
 
 
    /*     if(documentname.equalsIgnoreCase("")){
@@ -127,19 +129,18 @@ public class SignatureInstActivity extends AppCompatActivity implements Compound
                 try {
                     imageUrl =  signature.getBase64();
                     Log.v("shalu",signature.getBase64());
-                    if(checkBox.isChecked() && (ch_worker.isChecked() || ch_observer.isChecked()))
+                    if((ch_worker.isChecked() || ch_observer.isChecked()))
                     {
                         if (imageUrl.length()>5500) {
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                             String dateTime = dateFormat.format(new Date());
                             JSONObject jsonObject=new JSONObject();
 
-
                             jsonObject.put("AssesmentId", assesmentid);
                             jsonObject.put("IsSignedStatus",1);
                             jsonObject.put("SingNatureDate",dateTime);
                             jsonObject.put("FileName",documentname);
-                            jsonObject.put("VersionNo",v);
+                            jsonObject.put("VersionNo",0);
                             jsonObject.put("imageUrl",imageUrl);
 
                             Log.v("json",jsonObject.toString());
@@ -191,10 +192,6 @@ public class SignatureInstActivity extends AppCompatActivity implements Compound
                         {
                             Toast.makeText(SignatureInstActivity.this, "Please sign to submit your signature.", Toast.LENGTH_SHORT).show();
                         }
-                    }else if (!checkBox.isChecked()){
-
-                        Toast.makeText(SignatureInstActivity.this, "Please Enable Check Box To Enter Your Signature.", Toast.LENGTH_SHORT).show();
-
                     }else if (!ch_worker.isChecked() || !ch_observer.isChecked())
                     {
                         Toast.makeText(SignatureInstActivity.this, "Please select the signature type.", Toast.LENGTH_SHORT).show();

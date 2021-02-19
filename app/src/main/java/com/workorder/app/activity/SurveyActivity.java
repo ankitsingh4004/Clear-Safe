@@ -249,7 +249,12 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                             jsonObject.put("SurveyId",lcs.get(0).getSURVEYID());
                             jsonObject.put("AssesmentId", assessmentid);
                             jsonObject.put("WorkOrerId", workorderid);
-                            jsonObject.put("CompanyId",Constants.loginPOJO.getProfile().getCompanyId());
+                            if(Constants.loginPOJO.getProfile().getCompanyTypeID()==2){
+                                jsonObject.put("CompanyId",Constants.loginPOJO.getProfile().getId());
+                            }else {
+                                jsonObject.put("CompanyId",Constants.loginPOJO.getProfile().getCompanyId());
+                            }
+
                             jsonObject.put("Comments","");
                             jsonObject.put("Questions", jsonArray);
                         }catch (Exception e){

@@ -141,7 +141,7 @@ public class UtilityFunction {
     public static String parseDateToddMMMyyyy(String DateFormat) {
         //SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
         String inputPattern = "yyyy-MM-dd HH:mm";
-        String outputPattern = "MMM dd,yyyy hh:mm";
+        String outputPattern = "MMM dd,yyyy HH:mm";
 
 
         SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern,Locale.getDefault());

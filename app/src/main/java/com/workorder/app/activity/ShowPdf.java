@@ -62,7 +62,7 @@ public class ShowPdf extends AppCompatActivity {
         tv_title.setText(documentname);
 
         webView = (WebView) findViewById(R.id.webView);
-        signFab.show();
+     //   signFab.show();
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait..");
         progressDialog.setCancelable(false);
@@ -71,7 +71,7 @@ public class ShowPdf extends AppCompatActivity {
         signFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(status.equalsIgnoreCase("Signed")){
+                if(status.equalsIgnoreCase("true")){
                     opentThanksYesClickDialog1("Document File already signed");
                 }else {
                     Intent intent=new Intent(ShowPdf.this,SignatureInstActivity.class);

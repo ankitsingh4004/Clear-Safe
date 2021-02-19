@@ -77,7 +77,6 @@ public class ShowDocumentActivity extends AppCompatActivity implements DownloadF
              }*/
 
              pdfName= getIntent().getStringExtra("pdf");
-             documentname= getIntent().getStringExtra("documentname");
              status= getIntent().getStringExtra("status");
              assesmenttemplateid= getIntent().getIntExtra("assesmenttemplateid",0);
              assesmentid= getIntent().getIntExtra("assesmentid",0);
@@ -174,7 +173,6 @@ public class ShowDocumentActivity extends AppCompatActivity implements DownloadF
             }else {
                 Intent intent=new Intent(ShowDocumentActivity.this,SignatureActivity.class);
                 intent.putExtra("assesmenttemplateid",assesmenttemplateid);
-                intent.putExtra("documentname",documentname);
                 intent.putExtra("assesmentid",assesmentid);
                 intent.putExtra("assesmentempid",assesmentempid);
                 startActivity(intent);

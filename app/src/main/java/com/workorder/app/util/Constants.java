@@ -10,6 +10,7 @@ import com.workorder.app.pojo.HomeStatusPOJO;
 import com.workorder.app.pojo.LoginPOJO;
 import com.workorder.app.pojo.WorkOrderPOJO;
 import com.workorder.app.pojo.assesment.AssesmentHomePOJO;
+import com.workorder.app.pojo.docPOJO.AssessmentPOJO;
 import com.workorder.app.pojo.docPOJO.DocListPOJO;
 import com.workorder.app.pojo.docPOJO.GetSwmsTemplate;
 import com.workorder.app.pojo.survey.SurveyPOJO;
@@ -27,8 +28,10 @@ public class Constants {
     public static List<AssesmentHomePOJO> assesmentHomePOJOList=new ArrayList<>();
 
     public static List<GetWorkorderPOJO> workOrderPOJOList=new ArrayList<>();
+    public static List<GetWorkorderPOJO> workOrderPOJOList1=new ArrayList<>();
     public static List<GetWorkOrderDetailPojo> workOrderPOJOdetail=new ArrayList<>();
     public static List<GetSwmsTemplate> getSwmsTemplates=new ArrayList<>();
+    public static List<com.workorder.app.pojo.docPOJO.AssessmentPOJO> AssessmentPOJO=new ArrayList<>();
 
 
     public static HomeStatusPOJO homeStatusPOJO;

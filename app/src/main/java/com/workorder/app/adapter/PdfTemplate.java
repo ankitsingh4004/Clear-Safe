@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.workorder.app.R;
 import com.workorder.app.activity.ShowDocumentActivity;
 import com.workorder.app.activity.ShowPdf;
+import com.workorder.app.pojo.docPOJO.AssessmentPOJO;
 import com.workorder.app.pojo.docPOJO.AttachementPOJO;
 import com.workorder.app.pojo.docPOJO.GetSwmsTemplate;
 import com.workorder.app.util.UtilityFunction;
@@ -24,11 +25,11 @@ import java.util.List;
 
 public class PdfTemplate extends RecyclerView.Adapter<PdfTemplate.MyViewHolder> {
     Context context;
-    List<GetSwmsTemplate.Attachement> attachements;
-    GetSwmsTemplate attachementPOJO1;
+    List<AssessmentPOJO.Attachements> attachements;
+    AssessmentPOJO attachementPOJO1;
     int assessmentid;
 
-    public PdfTemplate(Context context, List<GetSwmsTemplate.Attachement> attachements, int assessmentid, GetSwmsTemplate attachementPOJO) {
+    public PdfTemplate(Context context, List<AssessmentPOJO.Attachements> attachements, int assessmentid, AssessmentPOJO attachementPOJO) {
         this.context=context;
         this.attachements=attachements;
         this.assessmentid=assessmentid;
@@ -45,7 +46,7 @@ public class PdfTemplate extends RecyclerView.Adapter<PdfTemplate.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        final GetSwmsTemplate.Attachement attachementPOJO=attachements.get(position);
+        final AssessmentPOJO.Attachements attachementPOJO=attachements.get(position);
         int i=position+1;
         holder.tv_DocName.setText(""+attachementPOJO.getDocumentName());
         holder.tv_doc.setText(""+attachementPOJO.getDocumentName());
@@ -58,8 +59,6 @@ public class PdfTemplate extends RecyclerView.Adapter<PdfTemplate.MyViewHolder> 
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context, ShowDocumentActivity.class);
-                intent.putExtra("documentname",attachementPOJO1.getFILENAME());
-                intent.putExtra("documenturl",attachementPOJO1.getDOCUMENTURL());
                 intent.putExtra("pdf",""+attachements.get(position).getDocumentName());
                 intent.putExtra("status",attachements.get(position).getStatus());
                 intent.putExtra("assesmenttemplateid",attachements.get(position).getAssesmentTemplateId());

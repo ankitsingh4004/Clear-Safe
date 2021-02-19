@@ -42,11 +42,14 @@ import com.workorder.app.webservicecallback.SendData;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import static com.workorder.app.activity.HomeActivity.iv_mapview;
 import static com.workorder.app.activity.HomeActivity.tv_go_on_site;
+import static com.workorder.app.util.Constants.workOrderPOJOList1;
 
 public class AssessmentHomeFragment extends Fragment{
     Dialog dialog;
@@ -109,7 +112,7 @@ public class AssessmentHomeFragment extends Fragment{
               public void onTaskCompleted(String response) {
                   Log.d("ResponseWorkOrder", response);
                   try {
-
+                      Constants.workOrderPOJOList1=new ArrayList<>();
                       yesButton.setVisibility(View.VISIBLE);
                       img.setVisibility(View.VISIBLE);
                       progressbar.setVisibility(View.GONE);
@@ -118,7 +121,13 @@ public class AssessmentHomeFragment extends Fragment{
                 /*    JSONArray jsonArray=new JSONArray(response);
                     Log.d("SingleResponse",jsonArray.get(0).toString());*/
                       Constants.workOrderPOJOList = Arrays.asList(new Gson().fromJson(response, GetWorkorderPOJO[].class));
-                      syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,0);
+
+                      for(int i=0;i<Constants.workOrderPOJOList.size();i++){
+                          if(!Constants.workOrderPOJOList.get(i).getCompletedForUser()){
+                              workOrderPOJOList1.add(Constants.workOrderPOJOList.get(i));
+                          }
+                      }
+                      syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList1,workorderno,0);
                       mrecyclerView.setAdapter(syncronizedHomeAdapter);
                       callCheckOnSiteApi();
 
@@ -209,7 +218,7 @@ public class AssessmentHomeFragment extends Fragment{
               }
           },false).execute();*/
       else {
-            syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,0);
+            syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList1,workorderno,0);
             mrecyclerView.setAdapter(syncronizedHomeAdapter);
             callCheckOnSiteApi1();
         }
@@ -376,15 +385,20 @@ public class AssessmentHomeFragment extends Fragment{
                         String dist = UtilityFunction.calculateDistance( Constants.CURRENT_LAT , Constants.CURRENT_LNG, Constants.homeStatusPOJO.getLATITUDE(), Constants.homeStatusPOJO.getLONGITUDE(), Constants.PROVIDER);
                         distance = Double.parseDouble(dist);
                         if (distance <= DISTANCE) {
-                            syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,workno);
+                            syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList1,workorderno,workno);
                             mrecyclerView.setAdapter(syncronizedHomeAdapter);
+                            SharedPreferences mPrefs = getContext().getSharedPreferences("TASK_ID", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                            prefsEditor.putInt("assess",Constants.homeStatusPOJO.getASSESMENTID() );
+                            prefsEditor.commit();
+
 
                         } else {
                             SharedPreferences mSharedPreferences =getContext().getSharedPreferences("TASK_ID", 0);
                             if (mSharedPreferences != null)
                                 mSharedPreferences.edit().remove("assess").commit();
                             callStatusUpdateApi("Completed", true);
-                            syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,0);
+                            syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList1,workorderno,0);
                             mrecyclerView.setAdapter(syncronizedHomeAdapter);
 
                         }
@@ -396,7 +410,7 @@ public class AssessmentHomeFragment extends Fragment{
                         workno=0;
                         workorderno="";
                         Log.d("CheckStatusResponse2", response);
-                        syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,0);
+                        syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList1,workorderno,0);
                         mrecyclerView.setAdapter(syncronizedHomeAdapter);
                     }
                 } catch (Exception e) {
@@ -424,9 +438,16 @@ public void callCheckOnSiteApi1() {
                             public void onTaskCompleted(String response) {
                                 Log.d("ResponseWorkOrder", response);
                                 try {
+                                    workOrderPOJOList1.clear();
 
                                     Constants.workOrderPOJOList = Arrays.asList(new Gson().fromJson(response, GetWorkorderPOJO[].class));
-                                    syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,workno);
+                                    for(int i=0;i<Constants.workOrderPOJOList.size();i++){
+                                        if(!Constants.workOrderPOJOList.get(i).getCompletedForUser()){
+                                            workOrderPOJOList1.add(Constants.workOrderPOJOList.get(i));
+                                        }
+                                    }
+
+                                    syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList1,workorderno,workno);
                                     mrecyclerView.setAdapter(syncronizedHomeAdapter);
 
                                 } catch (Exception e) {
@@ -446,7 +467,7 @@ public void callCheckOnSiteApi1() {
                         tv_go_on_site.setEnabled(false);
                         workno=0;
                         workorderno="";
-                        syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList,workorderno,0);
+                        syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList1,workorderno,0);
                         mrecyclerView.setAdapter(syncronizedHomeAdapter);
                     }
                 } catch (Exception e) {

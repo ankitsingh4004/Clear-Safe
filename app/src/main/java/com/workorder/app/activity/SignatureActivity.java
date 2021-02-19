@@ -66,7 +66,6 @@ public class SignatureActivity extends AppCompatActivity implements CompoundButt
       //  tv_title=findViewById(R.id.tv_activity_name);
         iv_back=findViewById(R.id.iv_back);
         sms=findViewById(R.id.sms);
-        documentname=getIntent().getStringExtra("documentname");
 
    /*     if(documentname.equalsIgnoreCase("")){
             sms.setText("Please enter your signature in the space below.");
@@ -118,7 +117,7 @@ public class SignatureActivity extends AppCompatActivity implements CompoundButt
                 try {
                     imageUrl =  signature.getBase64();
                     Log.v("shalu",signature.getBase64());
-                    if(checkBox.isChecked() && (ch_worker.isChecked() || ch_observer.isChecked()))
+                    if((ch_worker.isChecked() || ch_observer.isChecked()))
                     {
                         if (imageUrl.length()>5500) {
                             //String CurentStatus = preferenceManager.getKeyStatus();
@@ -196,10 +195,6 @@ public class SignatureActivity extends AppCompatActivity implements CompoundButt
                         {
                             Toast.makeText(SignatureActivity.this, "Please sign to submit your signature.", Toast.LENGTH_SHORT).show();
                         }
-                    }else if (!checkBox.isChecked()){
-
-                        Toast.makeText(SignatureActivity.this, "Please Enable Check Box To Enter Your Signature.", Toast.LENGTH_SHORT).show();
-
                     }else if (!ch_worker.isChecked() || !ch_observer.isChecked())
                     {
                         Toast.makeText(SignatureActivity.this, "Please select the signature type.", Toast.LENGTH_SHORT).show();

@@ -97,9 +97,20 @@ public class GetWorkOrderDetailPojo implements Serializable {
     @SerializedName("SWMSWarningLevel")
     @Expose
     private String sWMSWarningLevel;
+    @SerializedName("PrevStatus")
+    @Expose
+    private Boolean PrevStatus;
 
     public Integer getAssesmentId() {
         return assesmentId;
+    }
+
+    public Boolean getPrevStatus() {
+        return PrevStatus;
+    }
+
+    public void setPrevStatus(Boolean prevStatus) {
+        PrevStatus = prevStatus;
     }
 
     public void setAssesmentId(Integer assesmentId) {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/layout_bg"
     android:orientation="vertical"
     tools:context="com.workorder.app.activity.SignatureActivity">
@@ -13,14 +13,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         >
-        <FrameLayout
+        <LinearLayout
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorAccent"
+            android:padding="12dp"
+            android:orientation="horizontal"
             tools:ignore="MissingConstraints">
 
             <!-- This is a centered logo -->
@@ -28,8 +30,7 @@
                 android:id="@+id/iv_back"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="5dp"
                 app:srcCompat="@drawable/ic_arrow_back" />
 
             <!--   <ImageView
@@ -44,11 +45,12 @@
                 android:id="@+id/tv_activity_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
                 android:text="Signature Screen"
+                android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
-        </FrameLayout>
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/checklinear"
             android:layout_width="match_parent"
@@ -64,6 +66,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
+                android:visibility="gone"
                 android:buttonTint="@color/colorAccent"
                 android:shadowColor="@color/black"
                 android:textColorHint="@color/blueTheme" />
@@ -122,6 +125,7 @@
         android:layout_height="wrap_content"
          android:layout_marginBottom="30dp"
         android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
     >
 
         <Button
@@ -144,4 +148,4 @@
     </LinearLayout>
 
 
-</FrameLayout>
+</RelativeLayout>

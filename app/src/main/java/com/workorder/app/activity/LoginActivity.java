@@ -213,18 +213,18 @@ public class LoginActivity extends AppCompatActivity implements VersionCheckList
 
                 try {
                     JSONObject jsonObject = new JSONObject();
-                  //  jsonObject.put("username", userName);
-                    //jsonObject.put("Password", password);
+                   jsonObject.put("username", userName);
+                   jsonObject.put("Password", password);
                    // jsonObject.put("username", "info@uveoustech.com");
                 //     jsonObject.put("Password", "Uveous@#$056");
                 //  jsonObject.put("username", "radhey2784@gmail.com");
                  // jsonObject.put("Password", "Test@123");
-               //   jsonObject.put("username", "testemp01@abc.com");
-                 // jsonObject.put("Password", "P@ssword123");
-             jsonObject.put("username", "democmpny01emp01@clear-safe.com");
-             jsonObject.put("Password", "P@ssword123");
-             //   jsonObject.put("username", "shaluch123chauhan@gmail.com");
-                 //jsonObject.put("Password", "Shalu@123");
+                // jsonObject.put("username", "rk25412@gmail.com");
+               // jsonObject.put("Password", "123");
+               //   jsonObject.put("username", "bhaviktank28@gmail.com");
+       //    jsonObject.put("Password", "P@ssword123");
+       //  jsonObject.put("username", "logan@gmail.com");
+       //  jsonObject.put("Password", "123");
 //
                   //  jsonObject.put("grant_type","password");
                    // UrlClass.BASE_URL="http://109.228.49.117:8095/api/";
@@ -307,12 +307,12 @@ public class LoginActivity extends AppCompatActivity implements VersionCheckList
         Log.d("CompanyId", String.valueOf(Constants.loginPOJO.getProfile().getCompanyId()));
         UrlClass.ROLE_TYPE = String.valueOf(Constants.loginPOJO.getProfile().getRoleNames());
         UrlClass.COMPANYID = String.valueOf(Constants.loginPOJO.getProfile().getCompanyId());
-        if (Constants.loginPOJO.getProfile().getRoleNames().get(0).equalsIgnoreCase("Employee")         ) {
+     //   if (Constants.loginPOJO.getProfile().getRoleNames().get(0).equalsIgnoreCase("Employee")) {
             Constants.ACTIVITY_NAME =Constants.HOME_ACTIVITY;
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
-        }
+     //   }
 
 
     }

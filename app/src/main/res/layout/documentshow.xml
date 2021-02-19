@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:paddingBottom="5dp"
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    android:paddingBottom="5dp"
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:id="@+id/relateive"
+            android:paddingRight="5dp"
+            >
+
+            <TextView
+                android:id="@+id/img_attachment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:fontFamily="sans-serif-medium"
+                android:text="k"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_doc_name"
+                style="@style/LargeText15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginTop="5dp"
+                android:textColor="#000"
+                android:layout_toLeftOf="@+id/iv_doc_download"
+                android:layout_toRightOf="@+id/img_attachment"
+                android:text="30-414654845465.pdf" />
+
+
+            <TextView
+                android:id="@+id/tv_doc_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:visibility="gone"
+                android:fontFamily="sans-serif-medium"
+                android:layout_below="@+id/tv_doc_name"
+                android:layout_toRightOf="@+id/img_attachment"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:textSize="15sp"
+                android:text="03-12-2018" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/tv_doc_date"
+                android:visibility="visible"
+                android:gravity="right"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/img_attachment"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="15dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/f"
+                    android:id="@+id/ds"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginRight="5dp"
+                    android:visibility="visible"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Document Status - "
+                        android:textColor="#000"
+                        android:textSize="14sp" />
+
+
+
+                    <TextView
+                        android:id="@+id/tv_signed_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="signed"
+                        android:gravity="right"
+                        android:layout_marginRight="20dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:textColor="#4CAF50"
+                        android:textSize="15sp"
+                        />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/f"
+                    android:visibility="visible"
+                    android:layout_marginRight="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Document File - "
+                        android:textColor="#000"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="File"
+                        android:textColor="#000"
+                        android:id="@+id/documentfile"
+                        android:textSize="14sp" />
+
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="5dp"
+            >
+
+            <TextView
+                android:id="@+id/tv_version"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="po"
+                android:textColor="#4C70AF"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+    <Button
+        android:layout_marginBottom="5dp"
+        android:id="@+id/btn_doc_open"
+        style="@style/BlueButton"
+        android:layout_marginRight="2dp"
+        android:layout_gravity="right"
+        android:text="Open" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="2dp"
+        android:background="#000"></View>
+
+
+</LinearLayout>
