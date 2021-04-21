@@ -25,6 +25,10 @@ public class MyApplication extends MultiDexApplication {
         return mInstance;
     }
 
+    public static synchronized MyApplication getContext() {
+        return mInstance;
+    }
+
     public void clearApplicationData(Context mContext) {
         File cache = mContext.getCacheDir();
         File appDir = new File(cache.getParent());

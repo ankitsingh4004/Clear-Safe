@@ -152,7 +152,7 @@ public class SWMSFragment extends Fragment implements LocationListener {
             boolean isConnected = ConnectivityReceiver.isConnected();
             if (isConnected == true) {
                 try {
-                    new GetApiCallback(getActivity(), UrlClass.BASE_URL + "api/Order/GetAssesmentTemplates?assesmentId=" + id, new OnTaskCompleted<String>() {
+                    new GetApiCallback(getActivity(), UrlClass.getBaseUrl() + "api/Order/GetAssesmentTemplates?assesmentId=" + id, new OnTaskCompleted<String>() {
                         @Override
                         public void onTaskCompleted(String response) {
                             Log.d("response", response);
@@ -207,6 +207,7 @@ public class SWMSFragment extends Fragment implements LocationListener {
        file.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                a="";
                 final List<AssessmentPOJO.Documents> attachementPOJO=Constants.AssessmentPOJO.get(0).getDocuments();
                 for(int i=0;i<attachementPOJO.size();i++) {
                     a += attachementPOJO.get(i).getFILENAME() + ",";
@@ -311,7 +312,7 @@ public class SWMSFragment extends Fragment implements LocationListener {
 
 
     public void callCheckOnSiteApi() {
-        new GetApiCallback(getContext(), UrlClass.BASE_URL + "api/Order/getactivity", new OnTaskCompleted<String>() {
+        new GetApiCallback(getContext(), UrlClass.getBaseUrl() + "api/Order/getactivity", new OnTaskCompleted<String>() {
             @Override
             public void onTaskCompleted(String response) {
                 try {
@@ -322,7 +323,7 @@ public class SWMSFragment extends Fragment implements LocationListener {
                         workorderid=Constants.homeStatusPOJO.getWORK_ORDER_ID();
                         Log.d("workorderid", String.valueOf(workorderid));
 
-                        new GetApiCallback(getContext(), UrlClass.BASE_URL+"api/Order/GetOrderAssesments?orderId="+workorderid, new OnTaskCompleted<String>() {
+                        new GetApiCallback(getContext(), UrlClass.getBaseUrl()+"api/Order/GetOrderAssesments?orderId="+workorderid, new OnTaskCompleted<String>() {
                             @Override
                             public void onTaskCompleted(String response) {
                                 Log.d("ResponseWorkOrder", response);
@@ -332,6 +333,7 @@ public class SWMSFragment extends Fragment implements LocationListener {
                                     Constants.workOrderPOJOdetail = Arrays.asList(new Gson().fromJson(response, GetWorkOrderDetailPojo[].class));
                                     Constants.workOrderdetail=Constants.workOrderPOJOdetail.get(0);
                                     tv_wo_no.setText(Constants.workOrderdetail.getWorkOrderNo());
+                                   // System.out.println(tv_wo_no);
 
                                 } catch (Exception e) {
 

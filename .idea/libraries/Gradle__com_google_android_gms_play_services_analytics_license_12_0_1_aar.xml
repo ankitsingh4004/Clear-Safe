@@ -1,9 +1,15 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.android.gms:play-services-analytics-license:12.0.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-analytics-license-12.0.1.aar/73282620c3b017cacd68436c06d76ad5/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-analytics-license-12.0.1.aar/73282620c3b017cacd68436c06d76ad5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-analytics-license-12.0.1.aar/73282620c3b017cacd68436c06d76ad5/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-analytics-license-12.0.1.aar/73282620c3b017cacd68436c06d76ad5/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-analytics-license-12.0.1.aar/e25fa6c0485a0b10236183e224ebf4ba/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-analytics-license-12.0.1.aar/e25fa6c0485a0b10236183e224ebf4ba/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-analytics-license-12.0.1.aar/e25fa6c0485a0b10236183e224ebf4ba/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-analytics-license-12.0.1.aar/ef4e677fc6be5938f12a971ad6f77633/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-analytics-license-12.0.1.aar/ef4e677fc6be5938f12a971ad6f77633/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-analytics-license-12.0.1.aar/ef4e677fc6be5938f12a971ad6f77633/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

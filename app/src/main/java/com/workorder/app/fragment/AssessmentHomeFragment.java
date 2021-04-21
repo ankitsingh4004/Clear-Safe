@@ -107,7 +107,7 @@ public class AssessmentHomeFragment extends Fragment{
 
           showProgressPopup();
 
-          new GetApiCallback(getActivity(), UrlClass.BASE_URL+"api/Order/GetActiveWorkOrders", new OnTaskCompleted<String>() {
+          new GetApiCallback(getActivity(), UrlClass.getBaseUrl()+"api/Order/GetActiveWorkOrders", new OnTaskCompleted<String>() {
               @Override
               public void onTaskCompleted(String response) {
                   Log.d("ResponseWorkOrder", response);
@@ -369,7 +369,7 @@ public class AssessmentHomeFragment extends Fragment{
 
 
     public void callCheckOnSiteApi() {
-        new GetApiCallback(getContext(), UrlClass.BASE_URL+"api/Order/getactivity" , new OnTaskCompleted<String>() {
+        new GetApiCallback(getContext(), UrlClass.getBaseUrl()+"api/Order/getactivity" , new OnTaskCompleted<String>() {
             @Override
             public void onTaskCompleted(String response) {
                 try {
@@ -397,7 +397,7 @@ public class AssessmentHomeFragment extends Fragment{
                             SharedPreferences mSharedPreferences =getContext().getSharedPreferences("TASK_ID", 0);
                             if (mSharedPreferences != null)
                                 mSharedPreferences.edit().remove("assess").commit();
-                            callStatusUpdateApi("Completed", true);
+                           callStatusUpdateApi("Completed", true);
                             syncronizedHomeAdapter = new SyncronizedHomeAdapter(getActivity(), Constants.workOrderPOJOList1,workorderno,0);
                             mrecyclerView.setAdapter(syncronizedHomeAdapter);
 
@@ -421,7 +421,7 @@ public class AssessmentHomeFragment extends Fragment{
         }, true).execute();
     }
 public void callCheckOnSiteApi1() {
-        new GetApiCallback(getContext(), UrlClass.BASE_URL+"api/Order/getactivity" , new OnTaskCompleted<String>() {
+        new GetApiCallback(getContext(), UrlClass.getBaseUrl()+"api/Order/getactivity" , new OnTaskCompleted<String>() {
             @Override
             public void onTaskCompleted(String response) {
                 try {
@@ -433,7 +433,7 @@ public void callCheckOnSiteApi1() {
                         tv_go_on_site.setEnabled(true);
                         workno=Constants.homeStatusPOJO.getWORK_ORDER_ID();
                      //   workorderno=Constants.homeStatusPOJO.getASSESMENTID();
-                        new GetApiCallback(getActivity(), UrlClass.BASE_URL+"api/Order/GetActiveWorkOrders", new OnTaskCompleted<String>() {
+                        new GetApiCallback(getActivity(), UrlClass.getBaseUrl()+"api/Order/GetActiveWorkOrders", new OnTaskCompleted<String>() {
                             @Override
                             public void onTaskCompleted(String response) {
                                 Log.d("ResponseWorkOrder", response);

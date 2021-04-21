@@ -72,7 +72,7 @@ public class SignatureInstActivity extends AppCompatActivity implements Compound
 
         }
 
-        tv_title.setText(documentname);
+     //   tv_title.setText(documentname);
 
         sms.setText("Please sign to confirm that you have read the attached document(s). If you have not read the attached document(s) then please close this panel, read the document(s) and then sign this panel by selecting the option SIGN. By signing you are agreeing and verifying that you have read all the attached document(s).");
 
@@ -97,12 +97,12 @@ public class SignatureInstActivity extends AppCompatActivity implements Compound
         });
     }
 
-    @Override
+ /*   @Override
     public void onBackPressed() {
         super.onBackPressed();
         finish();
     }
-
+*/
     public void init() {
         checkBox = findViewById(R.id.ch_signature);
         ch_observer=findViewById(R.id.ch_sign_as_observer);
@@ -197,7 +197,7 @@ public class SignatureInstActivity extends AppCompatActivity implements Compound
                         Toast.makeText(SignatureInstActivity.this, "Please select the signature type.", Toast.LENGTH_SHORT).show();
                     }
                 }catch (Exception e)
-                {
+                {                                                                       
                     e.printStackTrace();
                     Log.d("SignatureException",e.toString());
                 }

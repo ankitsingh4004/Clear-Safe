@@ -426,7 +426,7 @@ public class UtilityFunction {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                // Constants.ACTIVITY_NAME=Constants.HOME_ACTIVITY;
-                UrlClass.BASE_URL="http://109.228.49.117:8095/";
+                UrlClass.BASE_URL="https://clear-peoplesafe.com/crm/";
                 Constants.loginPOJO=null;
 
                // NetworkWorkOrder.getInstance()=null;

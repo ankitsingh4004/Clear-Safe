@@ -4,8 +4,16 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.3.aar/b113c3276910802b6395d6f580bb9b21/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.3.aar/b113c3276910802b6395d6f580bb9b21/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.3.aar/b113c3276910802b6395d6f580bb9b21/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.3.aar/9f4f13ed1a5e8dbd728c3f4ce310425f/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.3.aar/9f4f13ed1a5e8dbd728c3f4ce310425f/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.3.aar/9f4f13ed1a5e8dbd728c3f4ce310425f/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.3.aar/2f2c5fbca10f83ad2be287e15984599a/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.3.aar/2f2c5fbca10f83ad2be287e15984599a/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.3.aar/2f2c5fbca10f83ad2be287e15984599a/res" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/es.voghdev.pdfviewpager/library/1.0.3/6094e1c8632ca8565ebca582c3b3d8cbff0fd4ff/library-1.0.3-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/es.voghdev.pdfviewpager/library/1.0.3/df52e1d05aa3e329820ef26e68d6310d39eaefa/library-1.0.3-sources.jar!/" />
     </SOURCES>

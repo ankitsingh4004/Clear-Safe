@@ -583,7 +583,7 @@ public class DashBoardActivity extends AppCompatActivity implements LocationList
 
 
     public void callCheckOnSiteApi() {
-        new GetApiCallback(this, UrlClass.BASE_URL+"api/Order/getactivity", new OnTaskCompleted<String>() {
+        new GetApiCallback(this, UrlClass.getBaseUrl()+"api/Order/getactivity", new OnTaskCompleted<String>() {
             @Override
             public void onTaskCompleted(String response) {
                 try {

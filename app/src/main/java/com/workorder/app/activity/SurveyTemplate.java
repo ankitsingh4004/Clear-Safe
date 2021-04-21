@@ -54,6 +54,7 @@ public class SurveyTemplate extends FragmentActivity {
         workorderid=getIntent().getIntExtra("workorderid",0);
         assessmentid=getIntent().getIntExtra("assessmentid",0);
 
+
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,9 +1,15 @@
 <component name="libraryTable">
   <library name="Gradle: com.android.support:support-v13:27.1.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-v13-27.1.1.aar/cac90081c1af6a9b20670a736c85eb97/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-v13-27.1.1.aar/cac90081c1af6a9b20670a736c85eb97/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-v13-27.1.1.aar/cac90081c1af6a9b20670a736c85eb97/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-v13-27.1.1.aar/cac90081c1af6a9b20670a736c85eb97/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-v13-27.1.1.aar/7c57a7ff3b91b513e86211295775640b/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-v13-27.1.1.aar/7c57a7ff3b91b513e86211295775640b/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-v13-27.1.1.aar/7c57a7ff3b91b513e86211295775640b/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-v13-27.1.1.aar/71e0a980cf56964a73db54ed967a842b/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-v13-27.1.1.aar/71e0a980cf56964a73db54ed967a842b/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-v13-27.1.1.aar/71e0a980cf56964a73db54ed967a842b/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

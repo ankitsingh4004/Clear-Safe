@@ -1,9 +1,15 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.android.gms:play-services-wallet:12.0.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-wallet-12.0.1.aar/9b5f9b432a728097f22dacb7fb86d451/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-wallet-12.0.1.aar/9b5f9b432a728097f22dacb7fb86d451/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-wallet-12.0.1.aar/9b5f9b432a728097f22dacb7fb86d451/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-wallet-12.0.1.aar/9b5f9b432a728097f22dacb7fb86d451/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-wallet-12.0.1.aar/bebdc53eb7313ee3196cfeb443eac923/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-wallet-12.0.1.aar/bebdc53eb7313ee3196cfeb443eac923/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-wallet-12.0.1.aar/bebdc53eb7313ee3196cfeb443eac923/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-wallet-12.0.1.aar/cc675d7866c64dd221e1626e603a6a78/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-wallet-12.0.1.aar/cc675d7866c64dd221e1626e603a6a78/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-wallet-12.0.1.aar/cc675d7866c64dd221e1626e603a6a78/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

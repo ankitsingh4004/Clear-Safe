@@ -21,7 +21,7 @@ public class APIHelper {
 
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(UrlClass.BASE_URL)
+                .baseUrl(UrlClass.getBaseUrl())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();

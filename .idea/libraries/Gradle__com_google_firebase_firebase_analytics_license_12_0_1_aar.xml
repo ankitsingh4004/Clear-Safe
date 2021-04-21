@@ -1,9 +1,15 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.firebase:firebase-analytics-license:12.0.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-analytics-license-12.0.1.aar/eebc1dd873c28462f912f4a87bbcf312/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-analytics-license-12.0.1.aar/eebc1dd873c28462f912f4a87bbcf312/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-analytics-license-12.0.1.aar/eebc1dd873c28462f912f4a87bbcf312/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-analytics-license-12.0.1.aar/eebc1dd873c28462f912f4a87bbcf312/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-analytics-license-12.0.1.aar/4701f97a99dedee6e371c3733f9683b0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-analytics-license-12.0.1.aar/4701f97a99dedee6e371c3733f9683b0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-analytics-license-12.0.1.aar/4701f97a99dedee6e371c3733f9683b0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-analytics-license-12.0.1.aar/b701df1198f090ca8742b3a98f395eb6/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-analytics-license-12.0.1.aar/b701df1198f090ca8742b3a98f395eb6/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-analytics-license-12.0.1.aar/b701df1198f090ca8742b3a98f395eb6/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

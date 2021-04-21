@@ -37,10 +37,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import retrofit2.Call;
 import retrofit2.Callback;
-
 import static com.workorder.app.adapter.SurveyAdapter.map3;
 
 public class SurveyActivity extends FragmentActivity implements SurveyAdapter.RatingSelectionInterface {
@@ -63,7 +61,7 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
     int assessmentid;
     int workorderid;
     private LinkedHashMap<Integer,String> map=new LinkedHashMap<>();
-    private LinkedHashMap<Integer,String> map1=new LinkedHashMap<>();
+
     Boolean yesno;
     String pqid;
     TextView tv_role;
@@ -80,7 +78,6 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
         workorderid=getIntent().getIntExtra("workorderid",0);
         assessmentid=getIntent().getIntExtra("assessmentid",0);
 
-
         surveyTemplateId=getIntent().getIntExtra("surveyTemplateId",0);
         Log.v("wrk", String.valueOf(surveyTemplateId));
 
@@ -93,6 +90,8 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
             public void onClick(View v) {
                 //onBackPressed();
                 map.clear();
+
+                map3.clear();
                finish();
             }
         });
@@ -176,7 +175,7 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
             public void onClick(View view) {
 
                 if(i< lcs.size()-1) {
-                    if(map.size()>i){
+                    if(map3.size()>i){
                         i = i + 1;
 
                         back.setVisibility(View.VISIBLE);
@@ -210,7 +209,7 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                     sub.setTextColor(getResources().getColor(R.color.white));
                     next.setBackground(getResources().getDrawable(R.drawable.blue_desing));
 
-                    if (map.size() == lcs.size()) {
+                    if (map3.size() == lcs.size()) {
 
                         JSONArray jsonArray = new JSONArray();
                         for (Map.Entry<Integer, SubmitPojo> mmap : map3.entrySet()) {
@@ -260,7 +259,7 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                         }catch (Exception e){
 
                         }
-                        Log.v("shalu1",map1.toString());
+
 
                         requestBody = jsonObject.toString();
 
@@ -270,6 +269,8 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                             new SendData(SurveyActivity.this, jsonObject, UrlClass.SUBMIT_ANSWER, new OnTaskCompleted<String>() {
                                 @Override
                                 public void onTaskCompleted(String response) {
+                                    map.clear();
+                                    map3.clear();
                                     opentThanksYesClickDialog("Survey Submitted Successfully");
                                 }
                             }, true).execute();
@@ -496,7 +497,7 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
                 surveyAnswers = lcs.get(p).getSurveyAnswers();
             }
             ques.setText(lcs.get(p).getQUESTIONTITLE());
-            adapter = new SurveyAdapter(SurveyActivity.this, surveyAnswers, p, this, map, lcs,map1);
+            adapter = new SurveyAdapter(SurveyActivity.this, surveyAnswers, p, this, map, lcs);
             rv_sync_task_list.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }catch (Exception e){
@@ -510,22 +511,22 @@ public class SurveyActivity extends FragmentActivity implements SurveyAdapter.Ra
     }
 
     @Override
-    public void itemselect(Integer questionID, Integer answerID, Object gotoid, Integer surveyID, String SurveyorIDt) {
+    public void itemselect(Integer questionID,Integer answerID, String gotoid, Integer surveyID, String SurveyorIDt) {
         map.put(questionID,answerID+","+gotoid+","+surveyID+","+SurveyorIDt);
         Log.v("SELECt",map.toString());
-    }
-
-    @Override
-    public void itemselect1(Integer questionID, Object ParentQuestionId, String FreeText, ArrayList<Integer> answer, String yes, String comment) {
-        map1.put(questionID,ParentQuestionId+","+FreeText+","+answer+","+yes+","+comment);
-        Log.v("SELECt1",map1.toString());
     }
 
 
     @Override
     public void itemUnSelect(int questionID) {
+        map.remove(questionID);
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        map.clear();
+        map3.clear();
+    }
 }

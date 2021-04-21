@@ -673,7 +673,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
     double distance = 0;
     public static final double DISTANCE = 20;
     public void callCheckOnSiteApi() {
-        new GetApiCallback(this, UrlClass.BASE_URL+"api/Order/getactivity" , new OnTaskCompleted<String>() {
+        new GetApiCallback(this, UrlClass.getBaseUrl()+"api/Order/getactivity" , new OnTaskCompleted<String>() {
             @Override
             public void onTaskCompleted(String response) {
                 try {

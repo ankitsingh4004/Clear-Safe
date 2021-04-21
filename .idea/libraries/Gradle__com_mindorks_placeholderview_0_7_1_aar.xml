@@ -4,8 +4,16 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/placeholderview-0.7.1.aar/45314d872243d8ce16f3fe8707249a86/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/placeholderview-0.7.1.aar/45314d872243d8ce16f3fe8707249a86/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/placeholderview-0.7.1.aar/45314d872243d8ce16f3fe8707249a86/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/placeholderview-0.7.1.aar/3009c92ed28f4ac3aba48e45996c11b3/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/placeholderview-0.7.1.aar/3009c92ed28f4ac3aba48e45996c11b3/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/placeholderview-0.7.1.aar/3009c92ed28f4ac3aba48e45996c11b3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/placeholderview-0.7.1.aar/ae8bbca3940faf7066391aa97d2d37bf/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/placeholderview-0.7.1.aar/ae8bbca3940faf7066391aa97d2d37bf/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/placeholderview-0.7.1.aar/ae8bbca3940faf7066391aa97d2d37bf/jars/classes.jar!/" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mindorks/placeholderview/0.7.1/8af5c214631f77a4c2ef5939858cfeaa95252433/placeholderview-0.7.1-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mindorks/placeholderview/0.7.1/caf1c56c36b8af7bad9db6dc432969c07a8394e7/placeholderview-0.7.1-sources.jar!/" />
     </SOURCES>

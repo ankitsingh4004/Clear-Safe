@@ -4,6 +4,12 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-identity-12.0.1.aar/8f93351932ab6bb7c9cf71436e5770e5/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-identity-12.0.1.aar/8f93351932ab6bb7c9cf71436e5770e5/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-identity-12.0.1.aar/8f93351932ab6bb7c9cf71436e5770e5/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-identity-12.0.1.aar/d56ed5bb222a1a04892849a54058494c/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-identity-12.0.1.aar/d56ed5bb222a1a04892849a54058494c/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-identity-12.0.1.aar/d56ed5bb222a1a04892849a54058494c/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-identity-12.0.1.aar/a76284d971625c1d4c1aee63a1311f69/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-identity-12.0.1.aar/a76284d971625c1d4c1aee63a1311f69/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-identity-12.0.1.aar/a76284d971625c1d4c1aee63a1311f69/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

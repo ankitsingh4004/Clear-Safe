@@ -54,7 +54,7 @@ public class SignatureActivity extends AppCompatActivity implements CompoundButt
     GetSwmsTemplate.Attachement attachementPOJO;
     final Context context = this;
     int assesmenttemplateid;
-    String documentname;
+    String pdfName;
     int assesmentempid;
     int assesmentid;
     TextView sms;
@@ -63,7 +63,7 @@ public class SignatureActivity extends AppCompatActivity implements CompoundButt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signature);
-      //  tv_title=findViewById(R.id.tv_activity_name);
+        tv_title=findViewById(R.id.tv_activity_name);
         iv_back=findViewById(R.id.iv_back);
         sms=findViewById(R.id.sms);
 
@@ -75,10 +75,11 @@ public class SignatureActivity extends AppCompatActivity implements CompoundButt
         assesmenttemplateid= getIntent().getIntExtra("assesmenttemplateid",0);
         assesmentempid= getIntent().getIntExtra("assesmentempid",0);
         assesmentid= getIntent().getIntExtra("assesmentid",0);
+        pdfName= getIntent().getStringExtra("pdfName");
 
      //   attachementPOJO= (GetSwmsTemplate.Attachement) getIntent().getSerializableExtra("AssesmentPOJO");
         init();
-
+      //  tv_title.setText(pdfName);
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,12 +88,12 @@ public class SignatureActivity extends AppCompatActivity implements CompoundButt
         });
     }
 
-    @Override
+  /*  @Override
     public void onBackPressed() {
         super.onBackPressed();
         finish();
     }
-
+*/
     public void init() {
         checkBox = findViewById(R.id.ch_signature);
         ch_observer=findViewById(R.id.ch_sign_as_observer);

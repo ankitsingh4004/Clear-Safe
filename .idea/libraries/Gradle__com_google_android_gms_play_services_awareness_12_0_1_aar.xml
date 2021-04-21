@@ -1,9 +1,15 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.android.gms:play-services-awareness:12.0.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-awareness-12.0.1.aar/59b870fc5eccb590ad8f8e1452f20f5d/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-awareness-12.0.1.aar/59b870fc5eccb590ad8f8e1452f20f5d/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-awareness-12.0.1.aar/59b870fc5eccb590ad8f8e1452f20f5d/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-awareness-12.0.1.aar/59b870fc5eccb590ad8f8e1452f20f5d/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-awareness-12.0.1.aar/4908d81ac3bc51d5bc9693de475a27a3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-awareness-12.0.1.aar/4908d81ac3bc51d5bc9693de475a27a3/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-awareness-12.0.1.aar/4908d81ac3bc51d5bc9693de475a27a3/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-awareness-12.0.1.aar/d91cd16fdaadd9ff5b64a8ec5284327d/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-awareness-12.0.1.aar/d91cd16fdaadd9ff5b64a8ec5284327d/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-awareness-12.0.1.aar/d91cd16fdaadd9ff5b64a8ec5284327d/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -1,9 +1,15 @@
 <component name="libraryTable">
   <library name="Gradle: com.journeyapps:zxing-android-embedded:3.2.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/5bcb301410df630d4a301857f08129f0/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/5bcb301410df630d4a301857f08129f0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/5bcb301410df630d4a301857f08129f0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/5bcb301410df630d4a301857f08129f0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/d373858b019620e0c602334e135317b3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/d373858b019620e0c602334e135317b3/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/d373858b019620e0c602334e135317b3/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/13348045fbdf545003f385c1a2187414/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/13348045fbdf545003f385c1a2187414/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/13348045fbdf545003f385c1a2187414/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

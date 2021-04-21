@@ -4,8 +4,16 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/materialdatetimepicker-3.6.2.aar/a125c4bdb547fe5257154ca7445e20e4/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/materialdatetimepicker-3.6.2.aar/a125c4bdb547fe5257154ca7445e20e4/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/materialdatetimepicker-3.6.2.aar/a125c4bdb547fe5257154ca7445e20e4/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/materialdatetimepicker-3.6.2.aar/33e5a754640b2f0e8ec6247f46c55aeb/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/materialdatetimepicker-3.6.2.aar/33e5a754640b2f0e8ec6247f46c55aeb/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/materialdatetimepicker-3.6.2.aar/33e5a754640b2f0e8ec6247f46c55aeb/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/materialdatetimepicker-3.6.2.aar/3677082b8830afba7b24d46cd05a5dbc/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/materialdatetimepicker-3.6.2.aar/3677082b8830afba7b24d46cd05a5dbc/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/materialdatetimepicker-3.6.2.aar/3677082b8830afba7b24d46cd05a5dbc/AndroidManifest.xml" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.wdullaer/materialdatetimepicker/3.6.2/30629390f75af7382bdf321b6fadfb80e4f7faaf/materialdatetimepicker-3.6.2-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.wdullaer/materialdatetimepicker/3.6.2/8c24035973ac6439fd293a0eb393d6450fb081d6/materialdatetimepicker-3.6.2-sources.jar!/" />
     </SOURCES>

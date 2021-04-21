@@ -1,9 +1,15 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.android.gms:play-services-ads:12.0.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-ads-12.0.1.aar/6c96f929a8b75e64574d541e9a4ee52c/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-ads-12.0.1.aar/6c96f929a8b75e64574d541e9a4ee52c/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-ads-12.0.1.aar/6c96f929a8b75e64574d541e9a4ee52c/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-ads-12.0.1.aar/6c96f929a8b75e64574d541e9a4ee52c/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-ads-12.0.1.aar/dada1d930962e8f11a7bc4c614167383/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-ads-12.0.1.aar/dada1d930962e8f11a7bc4c614167383/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-ads-12.0.1.aar/dada1d930962e8f11a7bc4c614167383/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-ads-12.0.1.aar/5076dbbf822519271760b7ac24dfd8d2/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-ads-12.0.1.aar/5076dbbf822519271760b7ac24dfd8d2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-ads-12.0.1.aar/5076dbbf822519271760b7ac24dfd8d2/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

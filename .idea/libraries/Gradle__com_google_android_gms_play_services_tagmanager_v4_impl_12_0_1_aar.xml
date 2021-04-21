@@ -4,6 +4,12 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tagmanager-v4-impl-12.0.1.aar/f967a0124920c1a738c88780d2ee21f5/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tagmanager-v4-impl-12.0.1.aar/f967a0124920c1a738c88780d2ee21f5/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tagmanager-v4-impl-12.0.1.aar/f967a0124920c1a738c88780d2ee21f5/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tagmanager-v4-impl-12.0.1.aar/35a522c2411700099a0dffd0fdfaeb3f/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tagmanager-v4-impl-12.0.1.aar/35a522c2411700099a0dffd0fdfaeb3f/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tagmanager-v4-impl-12.0.1.aar/35a522c2411700099a0dffd0fdfaeb3f/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tagmanager-v4-impl-12.0.1.aar/099a8c2cb27d25c35ba63b4238b88462/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tagmanager-v4-impl-12.0.1.aar/099a8c2cb27d25c35ba63b4238b88462/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tagmanager-v4-impl-12.0.1.aar/099a8c2cb27d25c35ba63b4238b88462/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

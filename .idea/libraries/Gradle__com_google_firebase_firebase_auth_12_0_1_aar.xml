@@ -4,6 +4,12 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-12.0.1.aar/51f758fda9a2b643685488fbdda4870c/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-12.0.1.aar/51f758fda9a2b643685488fbdda4870c/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-12.0.1.aar/51f758fda9a2b643685488fbdda4870c/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-12.0.1.aar/9e136f204b2394adeb8f0a73acce41d8/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-12.0.1.aar/9e136f204b2394adeb8f0a73acce41d8/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-12.0.1.aar/9e136f204b2394adeb8f0a73acce41d8/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-12.0.1.aar/ffd13e39d078ed19cc42a82063f62bfd/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-12.0.1.aar/ffd13e39d078ed19cc42a82063f62bfd/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-12.0.1.aar/ffd13e39d078ed19cc42a82063f62bfd/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

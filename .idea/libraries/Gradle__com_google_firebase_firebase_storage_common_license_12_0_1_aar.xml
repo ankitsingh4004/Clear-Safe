@@ -1,9 +1,15 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.firebase:firebase-storage-common-license:12.0.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-storage-common-license-12.0.1.aar/2de1ce46624ac83c3992c951b79673ad/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-storage-common-license-12.0.1.aar/2de1ce46624ac83c3992c951b79673ad/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-storage-common-license-12.0.1.aar/2de1ce46624ac83c3992c951b79673ad/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-storage-common-license-12.0.1.aar/2de1ce46624ac83c3992c951b79673ad/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-storage-common-license-12.0.1.aar/f0ace003547a332a4dc019f4fd379556/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-storage-common-license-12.0.1.aar/f0ace003547a332a4dc019f4fd379556/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-storage-common-license-12.0.1.aar/f0ace003547a332a4dc019f4fd379556/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-storage-common-license-12.0.1.aar/4cff4aa6b9e47286b6a1691a1bcc7329/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-storage-common-license-12.0.1.aar/4cff4aa6b9e47286b6a1691a1bcc7329/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-storage-common-license-12.0.1.aar/4cff4aa6b9e47286b6a1691a1bcc7329/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

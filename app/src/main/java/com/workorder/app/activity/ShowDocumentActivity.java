@@ -175,6 +175,7 @@ public class ShowDocumentActivity extends AppCompatActivity implements DownloadF
                 intent.putExtra("assesmenttemplateid",assesmenttemplateid);
                 intent.putExtra("assesmentid",assesmentid);
                 intent.putExtra("assesmentempid",assesmentempid);
+                intent.putExtra("pdfName",pdfName);
                 startActivity(intent);
             }
         }

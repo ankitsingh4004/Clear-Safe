@@ -115,7 +115,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     boolean isNetworkEnable = false;
     SiteLocationPOJO siteLocationPOJO;
     double distance = 0;
-    public static final double DISTANCE =20;
+    public static final double DISTANCE = 20;
     // Bottom Sheet
     ListView listView;
     TextView tv_suspended;
@@ -202,7 +202,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             dialog1.setCanceledOnTouchOutside(false);
 
 
-        new GetApiCallback(MapsActivity.this, UrlClass.BASE_URL+"api/Order/GetOrderAssesments?orderId="+workorderid, new OnTaskCompleted<String>() {
+        new GetApiCallback(MapsActivity.this, UrlClass.getBaseUrl()+"api/Order/GetOrderAssesments?orderId="+workorderid, new OnTaskCompleted<String>() {
             @Override
             public void onTaskCompleted(String response) {
                 Log.d("ResponseWorkOrder", response);
@@ -636,7 +636,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     public void callCheckOnSiteApi() {
-        new GetApiCallback(this,UrlClass.BASE_URL+"api/Order/getactivity", new OnTaskCompleted<String>() {
+        new GetApiCallback(this,UrlClass.getBaseUrl()+"api/Order/getactivity", new OnTaskCompleted<String>() {
             @Override
             public void onTaskCompleted(String response) {
                 try {
@@ -892,12 +892,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if(HomeActivity.tv_go_on_site.getText().toString().equalsIgnoreCase("On-Site")){
 
                 }else {
-                    if (Constants.workOrderdetail.getPrevStatus()) {
-                        showDialog();
+                    showDialog();
+
+               /*     if (Constants.workOrderdetail.getPrevStatus()) {
 
                     } else {
                         opentThanksYesClickDialog2("Please complete the previous workorder in the schedule.");
-                    }
+                    }*/
                 }
             }
         });
@@ -935,18 +936,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     }else
                     {
-                        if(Constants.workOrderdetail.getPrevStatus()){
-                            showDialog();
-                            if (is_dialog_show) {
-                                timer.cancel();
-                            } else {
-                                timer.start();
-                            }
+                        showDialog();
+                        if (is_dialog_show) {
+                            timer.cancel();
+                        } else {
+                            timer.start();
+                        }
+                     /*   if(Constants.workOrderdetail.getPrevStatus()){
+
                         }else {
                             opentThanksYesClickDialog2("Please complete the previous workorder in the schedule.");
                         }
 
-
+*/
                     }
                 }
 
@@ -1105,13 +1107,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if(HomeActivity.tv_go_on_site.getText().toString().equalsIgnoreCase("On-Site")){
                     }else
                     {
+                        showDialog();
+                        DIALOG_STATUS = REPEATED_DIALOG;
+/*
                         if(Constants.workOrderdetail.getPrevStatus()){
-                            showDialog();
-                            DIALOG_STATUS = REPEATED_DIALOG;
 
                         }else {
                             opentThanksYesClickDialog2("Please complete the previous workorder in the schedule.");
-                        }
+                        }*/
 
                     }
                  //   }

@@ -4,6 +4,12 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-cast-license-12.0.1.aar/18a353a82f51cab018af731bbadcb5a5/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-cast-license-12.0.1.aar/18a353a82f51cab018af731bbadcb5a5/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-cast-license-12.0.1.aar/18a353a82f51cab018af731bbadcb5a5/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-cast-license-12.0.1.aar/e9d2aeda0f1bb1e878d1db64ac24bbba/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-cast-license-12.0.1.aar/e9d2aeda0f1bb1e878d1db64ac24bbba/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-cast-license-12.0.1.aar/e9d2aeda0f1bb1e878d1db64ac24bbba/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-cast-license-12.0.1.aar/9a9a2bea325e7541ace79737fff6ff1b/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-cast-license-12.0.1.aar/9a9a2bea325e7541ace79737fff6ff1b/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-cast-license-12.0.1.aar/9a9a2bea325e7541ace79737fff6ff1b/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
